@@ -101,7 +101,7 @@ export default function AdminGallery() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="w-8 h-8 border-4 border-teal-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -112,7 +112,7 @@ export default function AdminGallery() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <span className="text-xs font-bold text-teal-400 uppercase tracking-wider">Hospital Infrastructure</span>
+          <span className="text-xs font-bold text-sky-400 uppercase tracking-wider">Hospital Infrastructure</span>
           <h1 className="text-2xl font-extrabold text-white">Facility Photos & Gallery Management</h1>
           <p className="text-xs sm:text-sm text-slate-400">
             Categorized photos of OT, IPD, Waiting Area, Ward, Lab, Pharmacy, Indoor, Outdoor, Canteen, Lift.
@@ -121,7 +121,7 @@ export default function AdminGallery() {
 
         <button
           onClick={() => setIsModalOpen(true)}
-          className="bg-teal-600 hover:bg-teal-500 text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl shadow transition flex items-center gap-2 self-start cursor-pointer"
+          className="bg-gradient-to-r from-[#000066] to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl shadow-lg shadow-blue-900/30 transition flex items-center gap-2 self-start cursor-pointer"
         >
           <Plus className="w-4 h-4" />
           <span>Add Facility Photo</span>
@@ -129,7 +129,7 @@ export default function AdminGallery() {
       </div>
 
       {message && (
-        <div className="p-4 bg-teal-950/80 border border-teal-800 text-teal-300 rounded-2xl flex items-center gap-2 text-sm">
+        <div className="p-4 bg-blue-950/80 border border-blue-800 text-sky-300 rounded-2xl flex items-center gap-2 text-sm">
           <CheckCircle2 className="w-4 h-4 shrink-0" />
           <span>{message}</span>
         </div>
@@ -150,7 +150,7 @@ export default function AdminGallery() {
             onClick={() => setActiveFilter(cat)}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold shrink-0 transition ${
               activeFilter === cat
-                ? 'bg-teal-600 text-white font-bold'
+                ? 'bg-gradient-to-r from-[#000066] to-blue-700 text-white font-bold shadow-sm'
                 : 'bg-slate-950 text-slate-400 hover:text-white border border-slate-800'
             }`}
           >
@@ -172,7 +172,7 @@ export default function AdminGallery() {
                 alt={item.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute top-3 left-3 bg-slate-950/80 text-teal-400 text-xs font-bold px-2.5 py-1 rounded-lg border border-slate-800">
+              <div className="absolute top-3 left-3 bg-slate-950/80 text-sky-400 text-xs font-bold px-2.5 py-1 rounded-lg border border-slate-800">
                 {item.category}
               </div>
             </div>
@@ -220,7 +220,7 @@ export default function AdminGallery() {
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                   placeholder="e.g. Modular Operation Theatre (OT 1)"
-                  className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                  className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
 
@@ -229,7 +229,7 @@ export default function AdminGallery() {
                 <select
                   value={formData.category}
                   onChange={(e) => setFormData({ ...formData, category: e.target.value as any })}
-                  className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                  className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 >
                   {categories.map((c) => (
                     <option key={c} value={c}>
@@ -255,7 +255,7 @@ export default function AdminGallery() {
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   placeholder="Brief caption about facility equipment..."
-                  className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none resize-none"
+                  className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
                 />
               </div>
 
@@ -270,7 +270,7 @@ export default function AdminGallery() {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="px-6 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold flex items-center gap-2 shadow cursor-pointer disabled:opacity-50"
+                  className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#000066] to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white font-bold flex items-center gap-2 shadow-lg shadow-blue-900/30 cursor-pointer disabled:opacity-50"
                 >
                   <Save className="w-4 h-4" />
                   <span>Save Photo</span>

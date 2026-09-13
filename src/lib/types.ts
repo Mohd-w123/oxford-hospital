@@ -4,6 +4,8 @@ export interface HospitalInfo {
   tagline: string;
   logoUrl: string;
   footerLogoUrl?: string;
+  faviconUrl?: string;
+  websiteTitle?: string;
   address: string;
   city: string;
   pincode: string;
@@ -29,17 +31,17 @@ export interface HospitalInfo {
 export interface Doctor {
   id: string;
   name: string;
-  nameHindi: string;
-  designation: string;
-  degrees: string;
-  specialties: string[];
+  nameHindi?: string;
+  designation?: string;
+  degrees?: string;
+  specialties?: string[];
   specialtiesHindi?: string[];
-  experience: string;
-  opdTimings: string;
-  photoUrl: string;
-  bio: string;
-  availableDays: string[];
-  featured: boolean;
+  experience?: string;
+  opdTimings?: string;
+  photoUrl?: string;
+  bio?: string;
+  availableDays?: string[];
+  featured?: boolean;
 }
 
 export interface ServiceItem {

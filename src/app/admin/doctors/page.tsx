@@ -17,13 +17,13 @@ export default function AdminDoctors() {
   const emptyDoctor: Omit<Doctor, 'id'> = {
     name: '',
     nameHindi: '',
-    designation: 'Consultant Specialist',
-    degrees: 'MBBS, MD / MS',
-    specialties: ['General Medicine'],
+    designation: '',
+    degrees: '',
+    specialties: [],
     specialtiesHindi: [],
-    experience: '5+ Years Experience',
-    opdTimings: 'सुबह 9:00 AM - शाम 8:00 PM',
-    photoUrl: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=800&q=80',
+    experience: '',
+    opdTimings: '',
+    photoUrl: '',
     bio: '',
     availableDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     featured: false
@@ -50,7 +50,10 @@ export default function AdminDoctors() {
 
   const handleOpenAdd = () => {
     setEditingDoctor(null);
-    setFormData(emptyDoctor);
+    setFormData({
+      ...emptyDoctor,
+      specialtiesText: ''
+    });
     setIsModalOpen(true);
   };
 
@@ -58,7 +61,15 @@ export default function AdminDoctors() {
     setEditingDoctor(doc);
     setFormData({
       ...doc,
-      specialtiesText: doc.specialties.join(', ')
+      name: doc.name || '',
+      nameHindi: doc.nameHindi || '',
+      degrees: doc.degrees || '',
+      designation: doc.designation || '',
+      experience: doc.experience || '',
+      opdTimings: doc.opdTimings || '',
+      photoUrl: doc.photoUrl || '',
+      bio: doc.bio || '',
+      specialtiesText: Array.isArray(doc.specialties) ? doc.specialties.join(', ') : ''
     });
     setIsModalOpen(true);
   };
@@ -77,6 +88,10 @@ export default function AdminDoctors() {
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.name || !formData.name.trim()) {
+      setError('Doctor Name (English) is required.');
+      return;
+    }
     setSaving(true);
     setMessage('');
     setError('');
@@ -84,10 +99,18 @@ export default function AdminDoctors() {
     try {
       const specialtiesArray = typeof formData.specialtiesText === 'string'
         ? formData.specialtiesText.split(',').map((s: string) => s.trim()).filter(Boolean)
-        : formData.specialties;
+        : (formData.specialties || []);
 
       const payload = {
         ...formData,
+        name: formData.name.trim(),
+        nameHindi: formData.nameHindi || '',
+        degrees: formData.degrees || '',
+        designation: formData.designation || '',
+        experience: formData.experience || '',
+        opdTimings: formData.opdTimings || '',
+        photoUrl: formData.photoUrl || '',
+        bio: formData.bio || '',
         specialties: specialtiesArray
       };
       delete payload.specialtiesText;
@@ -114,7 +137,7 @@ export default function AdminDoctors() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="w-8 h-8 border-4 border-teal-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -125,7 +148,7 @@ export default function AdminDoctors() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <span className="text-xs font-bold text-teal-400 uppercase tracking-wider">Medical Staff</span>
+          <span className="text-xs font-bold text-sky-400 uppercase tracking-wider">Medical Staff</span>
           <h1 className="text-2xl font-extrabold text-white">Doctors & Medical Panel Management</h1>
           <p className="text-xs sm:text-sm text-slate-400">
             Add, update, or remove doctors, their degrees, OPD timings, specialties and photos.
@@ -134,7 +157,7 @@ export default function AdminDoctors() {
 
         <button
           onClick={handleOpenAdd}
-          className="bg-teal-600 hover:bg-teal-500 text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl shadow transition flex items-center gap-2 self-start cursor-pointer"
+          className="bg-gradient-to-r from-[#000066] to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl shadow-lg shadow-blue-900/30 transition flex items-center gap-2 self-start cursor-pointer"
         >
           <Plus className="w-4 h-4" />
           <span>Add New Doctor</span>
@@ -142,7 +165,7 @@ export default function AdminDoctors() {
       </div>
 
       {message && (
-        <div className="p-4 bg-teal-950/80 border border-teal-800 text-teal-300 rounded-2xl flex items-center gap-2 text-sm">
+        <div className="p-4 bg-blue-950/80 border border-blue-800 text-sky-300 rounded-2xl flex items-center gap-2 text-sm">
           <CheckCircle2 className="w-4 h-4 shrink-0" />
           <span>{message}</span>
         </div>
@@ -164,43 +187,53 @@ export default function AdminDoctors() {
           >
             <div>
               <div className="flex items-start gap-4">
-                <div className="w-20 h-24 rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 shrink-0">
-                  <img
-                    src={doc.photoUrl}
-                    alt={doc.name}
-                    className="w-full h-full object-cover object-top"
-                  />
+                <div className="w-20 h-24 rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 shrink-0 flex items-center justify-center">
+                  {doc.photoUrl ? (
+                    <img
+                      src={doc.photoUrl}
+                      alt={doc.name}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  ) : (
+                    <Users className="w-8 h-8 text-slate-600" />
+                  )}
                 </div>
                 <div>
                   <h3 className="font-bold text-base text-white">{doc.name}</h3>
                   {doc.nameHindi && (
-                    <p className="text-xs font-semibold text-teal-400">{doc.nameHindi}</p>
+                    <p className="text-xs font-semibold text-sky-400">{doc.nameHindi}</p>
                   )}
-                  <p className="text-xs font-bold text-slate-300 mt-1">{doc.degrees}</p>
-                  <p className="text-[11px] text-slate-400">{doc.designation}</p>
+                  {doc.degrees && <p className="text-xs font-bold text-slate-300 mt-1">{doc.degrees}</p>}
+                  {doc.designation && <p className="text-[11px] text-slate-400">{doc.designation}</p>}
                 </div>
               </div>
 
               <div className="mt-4 space-y-2 text-xs">
-                <div className="bg-slate-900 p-2.5 rounded-xl border border-slate-800 flex items-center gap-2 text-slate-300">
-                  <Clock className="w-3.5 h-3.5 text-teal-400 shrink-0" />
-                  <span>OPD: <strong>{doc.opdTimings}</strong></span>
-                </div>
-
-                <div className="bg-slate-900 p-2.5 rounded-xl border border-slate-800 text-slate-300">
-                  <span className="font-semibold text-teal-400">Experience:</span> {doc.experience}
-                </div>
-
-                <div>
-                  <span className="text-[11px] font-bold text-slate-400 uppercase">Specialties:</span>
-                  <div className="flex flex-wrap gap-1 mt-1">
-                    {doc.specialties.map((spec, i) => (
-                      <span key={i} className="text-[10px] bg-slate-900 text-slate-300 px-2 py-0.5 rounded border border-slate-800">
-                        {spec}
-                      </span>
-                    ))}
+                {doc.opdTimings && (
+                  <div className="bg-slate-900 p-2.5 rounded-xl border border-slate-800 flex items-center gap-2 text-slate-300">
+                    <Clock className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+                    <span>OPD: <strong>{doc.opdTimings}</strong></span>
                   </div>
-                </div>
+                )}
+
+                {doc.experience && (
+                  <div className="bg-slate-900 p-2.5 rounded-xl border border-slate-800 text-slate-300">
+                    <span className="font-semibold text-sky-400">Experience:</span> {doc.experience}
+                  </div>
+                )}
+
+                {doc.specialties && doc.specialties.length > 0 && (
+                  <div>
+                    <span className="text-[11px] font-bold text-slate-400 uppercase">Specialties:</span>
+                    <div className="flex flex-wrap gap-1 mt-1">
+                      {doc.specialties.map((spec, i) => (
+                        <span key={i} className="text-[10px] bg-slate-900 text-slate-300 px-2 py-0.5 rounded border border-slate-800">
+                          {spec}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -208,7 +241,7 @@ export default function AdminDoctors() {
             <div className="pt-3 border-t border-slate-800 flex items-center justify-between">
               <button
                 onClick={() => handleOpenEdit(doc)}
-                className="text-xs font-semibold text-teal-400 hover:text-teal-300 flex items-center gap-1 cursor-pointer"
+                className="text-xs font-semibold text-sky-400 hover:text-sky-300 flex items-center gap-1 cursor-pointer"
               >
                 <Edit2 className="w-3.5 h-3.5" />
                 <span>Edit Profile</span>
@@ -249,10 +282,10 @@ export default function AdminDoctors() {
                   <input
                     type="text"
                     required
-                    value={formData.name}
+                    value={formData.name || ''}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. Dr. Hussain Khan"
-                    className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
                 </div>
 
@@ -263,62 +296,58 @@ export default function AdminDoctors() {
                     value={formData.nameHindi || ''}
                     onChange={(e) => setFormData({ ...formData, nameHindi: e.target.value })}
                     placeholder="e.g. डॉ. हुसैन खान"
-                    className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">Degrees & Qualifications *</label>
+                  <label className="block text-slate-300 font-semibold mb-1">Degrees & Qualifications</label>
                   <input
                     type="text"
-                    required
-                    value={formData.degrees}
+                    value={formData.degrees || ''}
                     onChange={(e) => setFormData({ ...formData, degrees: e.target.value })}
                     placeholder="e.g. MBBS, MD (Internal Medicine)"
-                    className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">Designation / Role *</label>
+                  <label className="block text-slate-300 font-semibold mb-1">Designation / Role</label>
                   <input
                     type="text"
-                    required
-                    value={formData.designation}
+                    value={formData.designation || ''}
                     onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
                     placeholder="e.g. Senior Consultant - General Medicine"
-                    className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">Experience & Background *</label>
+                  <label className="block text-slate-300 font-semibold mb-1">Experience & Background</label>
                   <input
                     type="text"
-                    required
-                    value={formData.experience}
+                    value={formData.experience || ''}
                     onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
                     placeholder="e.g. 12+ Years Experience"
-                    className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">OPD Consultation Hours *</label>
+                  <label className="block text-slate-300 font-semibold mb-1">OPD Consultation Hours</label>
                   <input
                     type="text"
-                    required
-                    value={formData.opdTimings}
+                    value={formData.opdTimings || ''}
                     onChange={(e) => setFormData({ ...formData, opdTimings: e.target.value })}
                     placeholder="e.g. सुबह 10:00 AM - शाम 8:00 PM"
-                    className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
                 </div>
               </div>
 
               <div>
                 <ImageUploader
-                  value={formData.photoUrl}
+                  value={formData.photoUrl || ''}
                   onChange={(url) => setFormData({ ...formData, photoUrl: url })}
                   label="Doctor Photo (Upload to Cloudinary - oxford-hms)"
                   folder="oxford-hms/doctors"
@@ -327,15 +356,14 @@ export default function AdminDoctors() {
 
               <div>
                 <label className="block text-slate-300 font-semibold mb-1">
-                  Specialties (comma separated) *
+                  Specialties (comma separated)
                 </label>
                 <input
                   type="text"
-                  required
-                  value={formData.specialtiesText !== undefined ? formData.specialtiesText : formData.specialties?.join(', ')}
+                  value={formData.specialtiesText !== undefined ? formData.specialtiesText : (formData.specialties?.join(', ') || '')}
                   onChange={(e) => setFormData({ ...formData, specialtiesText: e.target.value })}
                   placeholder="High Risk Pregnancy, Normal Delivery, Infertility, Color Doppler Sonography"
-                  className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                  className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
 
@@ -346,7 +374,7 @@ export default function AdminDoctors() {
                   value={formData.bio || ''}
                   onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
                   placeholder="Detailed information regarding medical expertise..."
-                  className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none resize-none"
+                  className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
                 />
               </div>
 
@@ -361,7 +389,7 @@ export default function AdminDoctors() {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="px-6 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold flex items-center gap-2 shadow cursor-pointer disabled:opacity-50"
+                  className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#000066] to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white font-bold flex items-center gap-2 shadow-lg shadow-blue-900/30 cursor-pointer disabled:opacity-50"
                 >
                   <Save className="w-4 h-4" />
                   <span>{editingDoctor ? 'Update Doctor' : 'Add Doctor'}</span>

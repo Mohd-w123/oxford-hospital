@@ -163,7 +163,7 @@ export default function AdminHospitalInfo() {
   if (!hospital) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="w-8 h-8 border-4 border-teal-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -173,7 +173,7 @@ export default function AdminHospitalInfo() {
       
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <span className="text-xs font-bold text-teal-400 uppercase tracking-wider">Hospital Settings & Dynamic CMS</span>
+          <span className="text-xs font-bold text-sky-400 uppercase tracking-wider">Hospital Settings & Dynamic CMS</span>
           <h1 className="text-2xl font-extrabold text-white">Manage Hospital Info, Logos, Menus & Maps</h1>
           <p className="text-xs sm:text-sm text-slate-400">
             Control header & footer logos, navigation menus with submenus, Google Maps embed, phone numbers, and timings.
@@ -182,7 +182,7 @@ export default function AdminHospitalInfo() {
       </div>
 
       {message && (
-        <div className="p-4 bg-teal-950/80 border border-teal-800 text-teal-300 rounded-2xl flex items-center gap-2 text-sm">
+        <div className="p-4 bg-blue-950/80 border border-blue-800 text-sky-300 rounded-2xl flex items-center gap-2 text-sm">
           <CheckCircle2 className="w-4 h-4 shrink-0" />
           <span>{message}</span>
         </div>
@@ -200,7 +200,7 @@ export default function AdminHospitalInfo() {
         {/* 1. Hospital Identity & Header Branding */}
         <div className="bg-slate-950 p-6 rounded-3xl border border-slate-800 space-y-4">
           <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
-            <Building2 className="w-5 h-5 text-teal-400" />
+            <Building2 className="w-5 h-5 text-sky-400" />
             <h3 className="font-bold text-base text-white">Hospital Identity & Header Branding</h3>
           </div>
 
@@ -215,7 +215,7 @@ export default function AdminHospitalInfo() {
                 value={hospital.name || ''}
                 onChange={(e) => setHospital({ ...hospital, name: e.target.value })}
                 placeholder="Oxford Hospital"
-                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
               <span className="text-[11px] text-slate-500 mt-1 block">
                 Displayed in the main header (first word in dark, remainder in teal)
@@ -231,7 +231,7 @@ export default function AdminHospitalInfo() {
                 value={hospital.hindiName || ''}
                 onChange={(e) => setHospital({ ...hospital, hindiName: e.target.value })}
                 placeholder="ऑक्सफोर्ड हॉस्पिटल"
-                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
 
@@ -244,23 +244,39 @@ export default function AdminHospitalInfo() {
                 value={hospital.tagline || ''}
                 onChange={(e) => setHospital({ ...hospital, tagline: e.target.value })}
                 placeholder="Multi-Speciality & Critical Care"
-                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
               <span className="text-[11px] text-slate-500 mt-1 block">
                 Displayed directly below the hospital name in the header
               </span>
             </div>
+
+            <div className="md:col-span-3">
+              <label className="block text-xs font-semibold text-slate-300 mb-1">
+                Website Title (Browser Tab & SEO Title)
+              </label>
+              <input
+                type="text"
+                value={hospital.websiteTitle || ''}
+                onChange={(e) => setHospital({ ...hospital, websiteTitle: e.target.value })}
+                placeholder={`${hospital.name}${hospital.hindiName ? ` (${hospital.hindiName})` : ''} | ${hospital.tagline || 'Multi-Speciality Hospital'} - ${hospital.city || 'Jhunjhunu'}`}
+                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              />
+              <span className="text-[11px] text-slate-500 mt-1 block">
+                The main title shown on the browser tab and search engines. (Leave blank to auto-generate from hospital name, tagline and city).
+              </span>
+            </div>
           </div>
         </div>
 
-        {/* 2. Header & Footer Logos */}
+        {/* 2. Header, Footer & Favicon Branding */}
         <div className="bg-slate-950 p-6 rounded-3xl border border-slate-800 space-y-4">
           <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
-            <ImageIcon className="w-5 h-5 text-teal-400" />
-            <h3 className="font-bold text-base text-white">Header & Footer Logo Settings</h3>
+            <ImageIcon className="w-5 h-5 text-sky-400" />
+            <h3 className="font-bold text-base text-white">Header, Footer & Favicon Logo Settings</h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Header Logo */}
             <div className="space-y-3 bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
               <ImageUploader
@@ -300,6 +316,29 @@ export default function AdminHospitalInfo() {
                 </div>
               </div>
             </div>
+
+            {/* Browser Favicon */}
+            <div className="space-y-3 bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
+              <ImageUploader
+                value={hospital.faviconUrl || ''}
+                onChange={(url) => setHospital({ ...hospital, faviconUrl: url })}
+                label="Browser Favicon Icon (.ico, .png, .svg)"
+                folder="oxford-hms/branding"
+              />
+              <div className="pt-2">
+                <span className="text-[11px] text-slate-400 block mb-1">Live Browser Tab Simulation:</span>
+                <div className="bg-slate-900 px-3 py-2 rounded-xl border border-slate-700 flex items-center gap-2 max-w-full">
+                  <img
+                    src={hospital.faviconUrl || hospital.logoUrl || '/favicon.ico'}
+                    alt="Favicon"
+                    className="w-4 h-4 object-contain rounded shrink-0 bg-white/20 p-0.5"
+                  />
+                  <span className="text-xs text-slate-200 font-medium truncate">
+                    {hospital.websiteTitle || `${hospital.name} (${hospital.hindiName}) | ${hospital.city || 'Jhunjhunu'}`}
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -308,7 +347,7 @@ export default function AdminHospitalInfo() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
             <div>
               <div className="flex items-center gap-2">
-                <Navigation className="w-5 h-5 text-teal-400" />
+                <Navigation className="w-5 h-5 text-sky-400" />
                 <h3 className="font-bold text-base text-white">Website Navigation Menus & Submenus</h3>
               </div>
               <p className="text-xs text-slate-400 mt-1">
@@ -319,7 +358,7 @@ export default function AdminHospitalInfo() {
             <button
               type="button"
               onClick={handleAddNavItem}
-              className="bg-slate-900 hover:bg-slate-800 text-teal-300 text-xs font-bold px-3.5 py-2 rounded-xl border border-slate-700 flex items-center gap-1.5 self-start cursor-pointer transition"
+              className="bg-slate-900 hover:bg-slate-800 text-sky-300 text-xs font-bold px-3.5 py-2 rounded-xl border border-slate-700 flex items-center gap-1.5 self-start cursor-pointer transition"
             >
               <Plus className="w-4 h-4" />
               <span>Add Top Menu Link</span>
@@ -360,7 +399,7 @@ export default function AdminHospitalInfo() {
                       type="checkbox"
                       checked={item.enabled !== false}
                       onChange={(e) => handleUpdateNavItem(navIndex, 'enabled', e.target.checked)}
-                      className="w-4 h-4 rounded text-teal-600 focus:ring-teal-500 bg-slate-950 border-slate-700"
+                      className="w-4 h-4 rounded text-blue-600 focus:ring-blue-500 bg-slate-950 border-slate-700"
                     />
                     <span className="text-xs text-slate-400">Show</span>
                   </label>
@@ -372,7 +411,7 @@ export default function AdminHospitalInfo() {
                       value={item.name}
                       onChange={(e) => handleUpdateNavItem(navIndex, 'name', e.target.value)}
                       placeholder="Menu Name (e.g. Specialities & Services)"
-                      className="w-full px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-xl text-xs sm:text-sm text-white font-semibold focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                      className="w-full px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-xl text-xs sm:text-sm text-white font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none"
                     />
                   </div>
 
@@ -383,14 +422,14 @@ export default function AdminHospitalInfo() {
                       value={item.href}
                       onChange={(e) => handleUpdateNavItem(navIndex, 'href', e.target.value)}
                       placeholder="Link URL (/services or /page/...)"
-                      className="w-full px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-xl text-xs sm:text-sm text-teal-300 font-mono focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                      className="w-full px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-xl text-xs sm:text-sm text-sky-300 font-mono focus:ring-2 focus:ring-blue-500 focus:outline-none"
                     />
                   </div>
 
                   <button
                     type="button"
                     onClick={() => handleAddSubItem(navIndex)}
-                    className="text-xs font-semibold bg-teal-950 text-teal-300 hover:bg-teal-900 px-2.5 py-1.5 rounded-lg border border-teal-800 flex items-center gap-1 shrink-0 cursor-pointer"
+                    className="text-xs font-semibold bg-[#000066]/80 text-sky-300 hover:bg-blue-900 px-2.5 py-1.5 rounded-lg border border-blue-800 flex items-center gap-1 shrink-0 cursor-pointer"
                   >
                     <Plus className="w-3 h-3" />
                     <span>+ Submenu</span>
@@ -408,8 +447,8 @@ export default function AdminHospitalInfo() {
 
                 {/* Nested Submenus List */}
                 {item.subItems && item.subItems.length > 0 && (
-                  <div className="pl-6 sm:pl-10 space-y-2 border-l-2 border-teal-500 ml-4 py-2">
-                    <span className="text-[11px] font-bold text-teal-400 uppercase tracking-wider block">
+                  <div className="pl-6 sm:pl-10 space-y-2 border-l-2 border-blue-500 ml-4 py-2">
+                    <span className="text-[11px] font-bold text-sky-400 uppercase tracking-wider block">
                       Dropdown Submenu Items:
                     </span>
                     {item.subItems.map((sub, subIndex) => (
@@ -421,7 +460,7 @@ export default function AdminHospitalInfo() {
                           value={sub.name}
                           onChange={(e) => handleUpdateSubItem(navIndex, subIndex, 'name', e.target.value)}
                           placeholder="Submenu Label (e.g. Normal Delivery)"
-                          className="flex-1 px-3 py-1 bg-slate-950 border border-slate-700 rounded-lg text-xs text-white focus:outline-none focus:ring-1 focus:ring-teal-500"
+                          className="flex-1 px-3 py-1 bg-slate-950 border border-slate-700 rounded-lg text-xs text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
                         />
                         <input
                           type="text"
@@ -429,7 +468,7 @@ export default function AdminHospitalInfo() {
                           value={sub.href}
                           onChange={(e) => handleUpdateSubItem(navIndex, subIndex, 'href', e.target.value)}
                           placeholder="Link URL (/services#serv-obg-gynae)"
-                          className="flex-1 px-3 py-1 bg-slate-950 border border-slate-700 rounded-lg text-xs text-teal-300 font-mono focus:outline-none focus:ring-1 focus:ring-teal-500"
+                          className="flex-1 px-3 py-1 bg-slate-950 border border-slate-700 rounded-lg text-xs text-sky-300 font-mono focus:outline-none focus:ring-1 focus:ring-blue-500"
                         />
                         <button
                           type="button"
@@ -450,9 +489,26 @@ export default function AdminHospitalInfo() {
 
         {/* 3. Google Maps Settings */}
         <div className="bg-slate-950 p-6 rounded-3xl border border-slate-800 space-y-4">
-          <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
-            <Globe className="w-5 h-5 text-teal-400" />
-            <h3 className="font-bold text-base text-white">Google Maps Integration</h3>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-3">
+            <div className="flex items-center gap-2">
+              <Globe className="w-5 h-5 text-sky-400" />
+              <h3 className="font-bold text-base text-white">Google Maps Integration</h3>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => {
+                const query = encodeURIComponent(`${hospital.name} ${hospital.address} ${hospital.city} ${hospital.state} ${hospital.pincode}`.trim());
+                setHospital({
+                  ...hospital,
+                  googleMapEmbedUrl: `https://maps.google.com/maps?q=${query}&output=embed`
+                });
+              }}
+              className="text-xs font-semibold bg-[#000066]/80 text-sky-300 hover:bg-blue-900 border border-blue-800 px-3 py-1.5 rounded-xl flex items-center gap-1.5 self-start cursor-pointer transition"
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Auto-Generate Embed from Address</span>
+            </button>
           </div>
 
           <div className="grid grid-cols-1 gap-4">
@@ -464,9 +520,12 @@ export default function AdminHospitalInfo() {
                 type="text"
                 value={hospital.googleMapUrl || ''}
                 onChange={(e) => setHospital({ ...hospital, googleMapUrl: e.target.value })}
-                placeholder="https://maps.google.com/?q=Fatehpur+Road+Sikar+Rajasthan+332001"
-                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-teal-300 font-mono focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                placeholder="https://maps.google.com/?q=..."
+                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-sky-300 font-mono focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
+              <span className="text-[11px] text-slate-400 mt-1 block">
+                Paste your Google Maps link or share link (e.g. https://maps.google.com/... or https://share.google/...)
+              </span>
             </div>
 
             <div>
@@ -476,10 +535,40 @@ export default function AdminHospitalInfo() {
               <input
                 type="text"
                 value={hospital.googleMapEmbedUrl || ''}
-                onChange={(e) => setHospital({ ...hospital, googleMapEmbedUrl: e.target.value })}
-                placeholder="https://www.google.com/maps/embed?pb=..."
-                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-teal-300 font-mono focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                onChange={(e) => {
+                  let val = e.target.value.trim();
+                  // If admin pasted entire <iframe> code, extract the src
+                  if (val.includes('<iframe')) {
+                    const match = val.match(/src=["']([^"']+)["']/);
+                    if (match) val = match[1];
+                  }
+                  setHospital({ ...hospital, googleMapEmbedUrl: val });
+                }}
+                placeholder="https://maps.google.com/maps?q=...&output=embed"
+                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-sky-300 font-mono focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
+              <span className="text-[11px] text-slate-400 mt-1 block">
+                Supports official Google Embed URL, full &lt;iframe&gt; code, or click &quot;Auto-Generate Embed from Address&quot; above.
+              </span>
+            </div>
+
+            {/* Live Map Preview */}
+            <div className="mt-2 bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
+              <span className="text-xs font-semibold text-slate-300 block mb-2">Live Map Preview:</span>
+              <div className="h-48 w-full rounded-xl overflow-hidden border border-slate-700 bg-slate-950">
+                <iframe
+                  src={
+                    hospital.googleMapEmbedUrl && (hospital.googleMapEmbedUrl.includes('/embed') || hospital.googleMapEmbedUrl.includes('output=embed'))
+                      ? hospital.googleMapEmbedUrl
+                      : `https://maps.google.com/maps?q=${encodeURIComponent(`${hospital.name} ${hospital.address} ${hospital.city}`)}&output=embed`
+                  }
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  title="Admin Map Preview"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -487,7 +576,7 @@ export default function AdminHospitalInfo() {
         {/* 4. Footer Texts & Descriptions */}
         <div className="bg-slate-950 p-6 rounded-3xl border border-slate-800 space-y-4">
           <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
-            <Building2 className="w-5 h-5 text-teal-400" />
+            <Building2 className="w-5 h-5 text-sky-400" />
             <h3 className="font-bold text-base text-white">Footer Content & Copyright</h3>
           </div>
 
@@ -499,7 +588,7 @@ export default function AdminHospitalInfo() {
                 value={hospital.footerAboutText || ''}
                 onChange={(e) => setHospital({ ...hospital, footerAboutText: e.target.value })}
                 placeholder="Oxford Hospital is committed to providing world-class, compassionate healthcare in Sikar..."
-                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-teal-500 focus:outline-none resize-none"
+                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
               />
             </div>
 
@@ -510,7 +599,7 @@ export default function AdminHospitalInfo() {
                 value={hospital.footerCopyrightText || ''}
                 onChange={(e) => setHospital({ ...hospital, footerCopyrightText: e.target.value })}
                 placeholder="All Rights Reserved. Oxford Hospital, Sikar."
-                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
           </div>
@@ -519,7 +608,7 @@ export default function AdminHospitalInfo() {
         {/* 5. Contact Numbers & OPD Timings */}
         <div className="bg-slate-950 p-6 rounded-3xl border border-slate-800 space-y-4">
           <h3 className="font-bold text-base text-white flex items-center gap-2">
-            <Clock className="w-5 h-5 text-teal-400" />
+            <Clock className="w-5 h-5 text-sky-400" />
             <span>OPD Timings & Contact Helplines</span>
           </h3>
 
@@ -531,7 +620,7 @@ export default function AdminHospitalInfo() {
                 value={hospital.opdTimingsHindi}
                 onChange={(e) => setHospital({ ...hospital, opdTimingsHindi: e.target.value })}
                 placeholder="सुबह 9 बजे से शाम 8 बजे"
-                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
 
@@ -542,7 +631,7 @@ export default function AdminHospitalInfo() {
                 value={hospital.opdTimings}
                 onChange={(e) => setHospital({ ...hospital, opdTimings: e.target.value })}
                 placeholder="9:00 AM to 8:00 PM (Daily)"
-                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
 
@@ -558,7 +647,7 @@ export default function AdminHospitalInfo() {
                   })
                 }
                 placeholder="01572 299062, 9571177525, 8769750999"
-                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
 
@@ -569,7 +658,7 @@ export default function AdminHospitalInfo() {
                 value={hospital.whatsappNumber}
                 onChange={(e) => setHospital({ ...hospital, whatsappNumber: e.target.value })}
                 placeholder="9571177525"
-                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
 
@@ -580,7 +669,7 @@ export default function AdminHospitalInfo() {
                 value={hospital.emergencyPhone}
                 onChange={(e) => setHospital({ ...hospital, emergencyPhone: e.target.value })}
                 placeholder="9571177525"
-                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
 
@@ -591,7 +680,7 @@ export default function AdminHospitalInfo() {
                 value={hospital.email}
                 onChange={(e) => setHospital({ ...hospital, email: e.target.value })}
                 placeholder="oxfordhospitalsikar@gmail.com"
-                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
           </div>
@@ -600,7 +689,7 @@ export default function AdminHospitalInfo() {
         {/* 6. Hospital Address & Location */}
         <div className="bg-slate-950 p-6 rounded-3xl border border-slate-800 space-y-4">
           <h3 className="font-bold text-base text-white flex items-center gap-2">
-            <MapPin className="w-5 h-5 text-teal-400" />
+            <MapPin className="w-5 h-5 text-sky-400" />
             <span>Hospital Physical Address</span>
           </h3>
 
@@ -612,7 +701,7 @@ export default function AdminHospitalInfo() {
                 value={hospital.address}
                 onChange={(e) => setHospital({ ...hospital, address: e.target.value })}
                 placeholder="Madani Mahal, Fatehpur Road, Ward No. 1"
-                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
 
@@ -623,7 +712,7 @@ export default function AdminHospitalInfo() {
                 value={hospital.city}
                 onChange={(e) => setHospital({ ...hospital, city: e.target.value })}
                 placeholder="Sikar"
-                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
 
@@ -634,7 +723,7 @@ export default function AdminHospitalInfo() {
                 value={hospital.state}
                 onChange={(e) => setHospital({ ...hospital, state: e.target.value })}
                 placeholder="Rajasthan"
-                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
 
@@ -645,7 +734,7 @@ export default function AdminHospitalInfo() {
                 value={hospital.pincode}
                 onChange={(e) => setHospital({ ...hospital, pincode: e.target.value })}
                 placeholder="332001"
-                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
           </div>
@@ -656,7 +745,7 @@ export default function AdminHospitalInfo() {
           <button
             type="submit"
             disabled={saving}
-            className="bg-teal-600 hover:bg-teal-500 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-teal-600/30 transition flex items-center gap-2 disabled:opacity-50 cursor-pointer text-sm"
+            className="bg-gradient-to-r from-[#000066] to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-blue-900/40 transition flex items-center gap-2 disabled:opacity-50 cursor-pointer text-sm"
           >
             {saving ? (
               <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />

@@ -83,7 +83,7 @@ export default function RichTextEditor({
 
   const insertCallout = () => {
     const calloutHtml = `
-      <div style="background-color: #f0fdfa; border-left: 4px solid #0d9488; padding: 14px 18px; border-radius: 10px; margin: 16px 0; color: #134e4a;">
+      <div style="background-color: #eff6ff; border-left: 4px solid #000066; padding: 14px 18px; border-radius: 10px; margin: 16px 0; color: #1e3a8a;">
         <strong>Important Notice:</strong> Enter highlighted key points here...
       </div>
     `;
@@ -91,7 +91,7 @@ export default function RichTextEditor({
   };
 
   return (
-    <div className="rounded-2xl border border-slate-700 bg-slate-900 overflow-hidden shadow-inner flex flex-col focus-within:border-teal-500 transition-colors">
+    <div className="rounded-2xl border border-slate-700 bg-slate-900 overflow-hidden shadow-inner flex flex-col focus-within:border-blue-500 transition-colors">
       
       {/* Editor Toolbar */}
       <div className="bg-slate-950 px-3 py-2 border-b border-slate-800 flex flex-wrap items-center gap-1">
@@ -221,7 +221,7 @@ export default function RichTextEditor({
           type="button"
           onClick={insertLink}
           title="Insert Link"
-          className="p-1.5 rounded-lg text-slate-400 hover:text-teal-400 hover:bg-slate-800 transition"
+          className="p-1.5 rounded-lg text-slate-400 hover:text-sky-400 hover:bg-slate-800 transition"
         >
           <LinkIcon className="w-4 h-4" />
         </button>
@@ -229,7 +229,7 @@ export default function RichTextEditor({
           type="button"
           onClick={() => executeCommand('formatBlock', '<blockquote>')}
           title="Blockquote"
-          className="p-1.5 rounded-lg text-slate-400 hover:text-teal-400 hover:bg-slate-800 transition"
+          className="p-1.5 rounded-lg text-slate-400 hover:text-sky-400 hover:bg-slate-800 transition"
         >
           <Quote className="w-4 h-4" />
         </button>
@@ -237,7 +237,7 @@ export default function RichTextEditor({
           type="button"
           onClick={insertCallout}
           title="Insert Highlight Callout Box"
-          className="px-2 py-1 rounded-lg text-xs font-semibold bg-teal-950 text-teal-300 border border-teal-800/80 hover:bg-teal-900 transition flex items-center gap-1"
+          className="px-2 py-1 rounded-lg text-xs font-semibold bg-[#000066] text-sky-300 border border-blue-800/80 hover:bg-blue-900 transition flex items-center gap-1"
         >
           <Sparkles className="w-3 h-3 text-yellow-300" />
           <span>Callout Box</span>
@@ -250,7 +250,7 @@ export default function RichTextEditor({
           title={isCodeView ? 'Switch to Visual Editor' : 'Switch to HTML Code View'}
           className={`ml-auto px-2.5 py-1 rounded-lg text-xs font-bold transition flex items-center gap-1 ${
             isCodeView
-              ? 'bg-teal-600 text-white'
+              ? 'bg-gradient-to-r from-[#000066] to-blue-700 text-white'
               : 'bg-slate-800 text-slate-300 hover:text-white'
           }`}
         >
@@ -274,7 +274,7 @@ export default function RichTextEditor({
           value={htmlContent}
           onChange={handleCodeChange}
           placeholder="Type or paste raw HTML here..."
-          className="w-full p-4 bg-slate-950 font-mono text-xs text-teal-300 focus:outline-none resize-y"
+          className="w-full p-4 bg-slate-950 font-mono text-xs text-sky-300 focus:outline-none resize-y"
           style={{ minHeight }}
         />
       ) : (
@@ -284,7 +284,7 @@ export default function RichTextEditor({
           onInput={handleInput}
           onBlur={handleInput}
           dangerouslySetInnerHTML={{ __html: value || '' }}
-          className="p-4 sm:p-5 text-slate-100 text-sm focus:outline-none overflow-y-auto leading-relaxed prose prose-invert max-w-none prose-p:my-2 prose-headings:text-white prose-a:text-teal-400 prose-blockquote:border-l-4 prose-blockquote:border-teal-500 prose-blockquote:bg-slate-950 prose-blockquote:p-3 prose-blockquote:rounded-r-xl"
+          className="p-4 sm:p-5 text-slate-100 text-sm focus:outline-none overflow-y-auto leading-relaxed prose prose-invert max-w-none prose-p:my-2 prose-headings:text-white prose-a:text-sky-400 prose-blockquote:border-l-4 prose-blockquote:border-blue-600 prose-blockquote:bg-slate-950 prose-blockquote:p-3 prose-blockquote:rounded-r-xl"
           style={{ minHeight }}
         />
       )}

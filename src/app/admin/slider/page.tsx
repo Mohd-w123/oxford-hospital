@@ -112,7 +112,7 @@ export default function AdminSlider() {
   if (loading) {
     return (
       <div className="p-8 flex items-center justify-center min-h-[400px]">
-        <div className="w-8 h-8 border-4 border-teal-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -122,7 +122,7 @@ export default function AdminSlider() {
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-6">
         <div>
-          <div className="flex items-center gap-2 text-teal-400 font-bold text-xs uppercase tracking-wider mb-1">
+          <div className="flex items-center gap-2 text-sky-400 font-bold text-xs uppercase tracking-wider mb-1">
             <Sparkles className="w-4 h-4" />
             <span>Homepage CMS</span>
           </div>
@@ -139,14 +139,14 @@ export default function AdminSlider() {
             onClick={handleAddSlide}
             className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold px-4 py-2.5 rounded-xl border border-slate-700 transition text-sm cursor-pointer"
           >
-            <Plus className="w-4 h-4 text-teal-400" />
+            <Plus className="w-4 h-4 text-sky-400" />
             <span>Add Slide</span>
           </button>
 
           <button
             onClick={handleSaveAll}
             disabled={saving}
-            className="flex items-center gap-2 bg-teal-600 hover:bg-teal-500 text-white font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-teal-600/20 transition text-sm disabled:opacity-50 cursor-pointer"
+            className="flex items-center gap-2 bg-gradient-to-r from-[#000066] to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-blue-900/30 transition text-sm disabled:opacity-50 cursor-pointer"
           >
             <Save className="w-4 h-4" />
             <span>{saving ? 'Saving...' : 'Save Changes'}</span>
@@ -156,7 +156,7 @@ export default function AdminSlider() {
 
       {/* Notifications */}
       {message && (
-        <div className="p-4 rounded-xl bg-teal-500/10 border border-teal-500/30 text-teal-300 flex items-center gap-3 text-sm">
+        <div className="p-4 rounded-xl bg-blue-950/80 border border-blue-800 text-sky-300 flex items-center gap-3 text-sm">
           <CheckCircle2 className="w-5 h-5 shrink-0" />
           <span>{message}</span>
         </div>
@@ -178,13 +178,13 @@ export default function AdminSlider() {
             <div
               key={slide.id || index}
               className={`rounded-2xl border ${
-                isEditing ? 'border-teal-500/60 bg-slate-900/90' : 'border-slate-800 bg-slate-900/50'
+                isEditing ? 'border-blue-600/60 bg-slate-900/90' : 'border-slate-800 bg-slate-900/50'
               } overflow-hidden transition-all`}
             >
               {/* Card Summary Header */}
               <div className="p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-800/40">
                 <div className="flex items-center gap-4">
-                  <div className="w-8 h-8 rounded-lg bg-teal-500/20 text-teal-300 font-bold flex items-center justify-center text-sm">
+                  <div className="w-8 h-8 rounded-lg bg-[#000066] text-sky-300 font-bold flex items-center justify-center text-sm border border-blue-800/60">
                     {index + 1}
                   </div>
 
@@ -200,7 +200,7 @@ export default function AdminSlider() {
                     <h3 className="font-bold text-white text-base line-clamp-1">
                       {slide.title}
                     </h3>
-                    <p className="text-xs text-teal-400 font-medium line-clamp-1">
+                    <p className="text-xs text-sky-400 font-medium line-clamp-1">
                       {slide.titleHindi || slide.subtitle}
                     </p>
                   </div>
@@ -227,10 +227,10 @@ export default function AdminSlider() {
 
                   <button
                     onClick={() => setEditingIndex(isEditing ? null : index)}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
+                    className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
                       isEditing
-                        ? 'bg-teal-500 text-slate-950'
-                        : 'bg-slate-800 hover:bg-slate-700 text-teal-300'
+                        ? 'bg-gradient-to-r from-[#000066] to-blue-700 text-white shadow-sm'
+                        : 'bg-slate-800 hover:bg-slate-700 text-sky-300'
                     }`}
                   >
                     <Edit className="w-3.5 h-3.5" />
@@ -261,7 +261,7 @@ export default function AdminSlider() {
                         type="text"
                         value={slide.title}
                         onChange={(e) => handleUpdateSlide(index, 'title', e.target.value)}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                       />
                     </div>
 
@@ -274,7 +274,7 @@ export default function AdminSlider() {
                         type="text"
                         value={slide.titleHindi || ''}
                         onChange={(e) => handleUpdateSlide(index, 'titleHindi', e.target.value)}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                       />
                     </div>
 
@@ -287,7 +287,7 @@ export default function AdminSlider() {
                         type="text"
                         value={slide.badge || ''}
                         onChange={(e) => handleUpdateSlide(index, 'badge', e.target.value)}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                       />
                     </div>
 
@@ -300,7 +300,7 @@ export default function AdminSlider() {
                         type="text"
                         value={slide.ctaLink || '/appointment'}
                         onChange={(e) => handleUpdateSlide(index, 'ctaLink', e.target.value)}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                       />
                     </div>
 
@@ -313,7 +313,7 @@ export default function AdminSlider() {
                         rows={2}
                         value={slide.subtitle}
                         onChange={(e) => handleUpdateSlide(index, 'subtitle', e.target.value)}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                       />
                     </div>
 
@@ -330,7 +330,7 @@ export default function AdminSlider() {
                             value={slide.imageUrl}
                             onChange={(e) => handleUpdateSlide(index, 'imageUrl', e.target.value)}
                             placeholder="/images/slider/... or Cloudinary URL"
-                            className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500 mb-3"
+                            className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500 mb-3"
                           />
                           <ImageUploader
                             value={slide.imageUrl}

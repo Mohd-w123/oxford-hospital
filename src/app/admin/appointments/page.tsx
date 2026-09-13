@@ -87,7 +87,7 @@ export default function AdminAppointments() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <span className="text-xs font-bold text-teal-400 uppercase tracking-wider">Patient Inquiries</span>
+          <span className="text-xs font-bold text-sky-400 uppercase tracking-wider">Patient Inquiries</span>
           <h1 className="text-2xl font-extrabold text-white">Appointments & OPD Bookings</h1>
           <p className="text-xs sm:text-sm text-slate-400">
             Track and manage patient appointment submissions received through the website.
@@ -104,7 +104,7 @@ export default function AdminAppointments() {
       </div>
 
       {message && (
-        <div className="p-3 bg-teal-950/80 border border-teal-800 text-teal-300 rounded-xl text-xs flex items-center gap-2">
+        <div className="p-3 bg-blue-950/80 border border-blue-800 text-sky-300 rounded-xl text-xs flex items-center gap-2">
           <CheckCircle2 className="w-4 h-4" />
           <span>{message}</span>
         </div>
@@ -121,7 +121,7 @@ export default function AdminAppointments() {
               onClick={() => setStatusFilter(st)}
               className={`px-3 py-1.5 rounded-xl text-xs font-bold transition shrink-0 cursor-pointer ${
                 statusFilter === st
-                  ? 'bg-teal-600 text-white'
+                  ? 'bg-gradient-to-r from-[#000066] to-blue-700 text-white shadow-sm'
                   : 'text-slate-400 hover:text-white bg-slate-900'
               }`}
             >
@@ -138,7 +138,7 @@ export default function AdminAppointments() {
             placeholder="Search patient / phone / doctor..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-3.5 py-2 bg-slate-900 border border-slate-800 rounded-xl text-xs sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
+            className="w-full pl-10 pr-3.5 py-2 bg-slate-900 border border-slate-800 rounded-xl text-xs sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
@@ -148,7 +148,7 @@ export default function AdminAppointments() {
       <div className="space-y-3">
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <div className="w-8 h-8 border-4 border-teal-500 border-t-transparent rounded-full animate-spin" />
+            <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
           </div>
         ) : filteredAppointments.length === 0 ? (
           <div className="bg-slate-950 p-12 rounded-3xl border border-slate-800 text-center text-slate-500 space-y-2">
@@ -176,9 +176,9 @@ export default function AdminAppointments() {
                       apt.status === 'Pending'
                         ? 'bg-amber-950/80 text-amber-300 border border-amber-800'
                         : apt.status === 'Confirmed'
-                        ? 'bg-teal-950/80 text-teal-300 border border-teal-800'
+                        ? 'bg-blue-950/80 text-sky-300 border border-blue-800'
                         : apt.status === 'Completed'
-                        ? 'bg-blue-950/80 text-blue-300 border border-blue-800'
+                        ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-800'
                         : 'bg-red-950/80 text-red-300 border border-red-800'
                     }`}
                   >
@@ -191,7 +191,7 @@ export default function AdminAppointments() {
                     <strong className="text-slate-300">Doctor:</strong> {apt.doctorName || 'Consultant'} ({apt.department})
                   </p>
                   <p>
-                    <strong className="text-slate-300">Slot:</strong> {apt.preferredDate} at <strong className="text-teal-400">{apt.preferredTime}</strong>
+                    <strong className="text-slate-300">Slot:</strong> {apt.preferredDate} at <strong className="text-sky-400">{apt.preferredTime}</strong>
                   </p>
                   {apt.message && (
                     <p className="italic text-slate-400 bg-slate-900/60 p-2 rounded-lg mt-1 border border-slate-850">
@@ -207,7 +207,7 @@ export default function AdminAppointments() {
                 {/* Call Button */}
                 <a
                   href={`tel:${apt.patientPhone}`}
-                  className="bg-slate-900 hover:bg-slate-800 text-teal-400 border border-slate-800 font-semibold px-3 py-2 rounded-xl text-xs flex items-center gap-1.5 transition"
+                  className="bg-slate-900 hover:bg-slate-800 text-sky-400 border border-slate-800 font-semibold px-3 py-2 rounded-xl text-xs flex items-center gap-1.5 transition"
                 >
                   <Phone className="w-3.5 h-3.5" />
                   <span>{apt.patientPhone}</span>
@@ -230,7 +230,7 @@ export default function AdminAppointments() {
                 <select
                   value={apt.status}
                   onChange={(e) => handleStatusChange(apt.id, e.target.value)}
-                  className="bg-slate-900 border border-slate-700 text-xs text-white rounded-xl px-2.5 py-2 focus:ring-1 focus:ring-teal-500 focus:outline-none"
+                  className="bg-slate-900 border border-slate-700 text-xs text-white rounded-xl px-2.5 py-2 focus:ring-1 focus:ring-blue-500 focus:outline-none"
                 >
                   <option value="Pending">Pending</option>
                   <option value="Confirmed">Confirmed</option>

@@ -97,7 +97,7 @@ export default function AdminProfileSecurity() {
       
       {/* Header */}
       <div>
-        <span className="text-xs font-bold text-teal-400 uppercase tracking-wider">Account & Access Control</span>
+        <span className="text-xs font-bold text-sky-400 uppercase tracking-wider">Account & Access Control</span>
         <h1 className="text-2xl font-extrabold text-white">Admin Credentials & Security</h1>
         <p className="text-xs sm:text-sm text-slate-400 mt-1">
           Change your Admin Login Email ID, Password, and profile details.
@@ -105,8 +105,8 @@ export default function AdminProfileSecurity() {
       </div>
 
       {message && (
-        <div className="p-4 bg-teal-950/80 border border-teal-800 text-teal-300 rounded-2xl flex items-center gap-2 text-sm animate-in fade-in">
-          <CheckCircle2 className="w-5 h-5 shrink-0 text-teal-400" />
+        <div className="p-4 bg-blue-950/80 border border-blue-800 text-sky-300 rounded-2xl flex items-center gap-2 text-sm animate-in fade-in">
+          <CheckCircle2 className="w-5 h-5 shrink-0 text-sky-400" />
           <span>{message}</span>
         </div>
       )}
@@ -126,7 +126,7 @@ export default function AdminProfileSecurity() {
           {/* Section 1: Admin Identity */}
           <div className="space-y-4 border-b border-slate-800 pb-6">
             <h3 className="font-bold text-base text-white flex items-center gap-2">
-              <User className="w-4 h-4 text-teal-400" />
+              <User className="w-4 h-4 text-sky-400" />
               <span>Admin Profile Details</span>
             </h3>
 
@@ -139,7 +139,7 @@ export default function AdminProfileSecurity() {
                   value={newName}
                   onChange={(e) => setNewName(e.target.value)}
                   placeholder="Oxford Hospital Administrator"
-                  className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                  className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
 
@@ -151,7 +151,7 @@ export default function AdminProfileSecurity() {
                   value={newEmail}
                   onChange={(e) => setNewEmail(e.target.value)}
                   placeholder="admin@gmail.com"
-                  className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                  className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
             </div>
@@ -161,7 +161,7 @@ export default function AdminProfileSecurity() {
           <div className="space-y-4 border-b border-slate-800 pb-6">
             <div className="flex items-center justify-between">
               <h3 className="font-bold text-base text-white flex items-center gap-2">
-                <KeyRound className="w-4 h-4 text-teal-400" />
+                <KeyRound className="w-4 h-4 text-sky-400" />
                 <span>Change Password (Leave blank to keep unchanged)</span>
               </h3>
               <button
@@ -182,7 +182,7 @@ export default function AdminProfileSecurity() {
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                   placeholder="Enter new password (min 6 characters)"
-                  className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                  className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
 
@@ -193,7 +193,7 @@ export default function AdminProfileSecurity() {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="Re-type new password"
-                  className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                  className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
             </div>
@@ -225,7 +225,7 @@ export default function AdminProfileSecurity() {
             <button
               type="submit"
               disabled={saving}
-              className="bg-teal-600 hover:bg-teal-500 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-teal-600/30 transition flex items-center gap-2 disabled:opacity-50 cursor-pointer text-sm"
+              className="bg-gradient-to-r from-[#000066] to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-blue-900/30 transition flex items-center gap-2 disabled:opacity-50 cursor-pointer text-sm"
             >
               {saving ? (
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />

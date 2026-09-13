@@ -80,7 +80,7 @@ export default function AdminLayout({
   if (!authChecked) {
     return (
       <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center space-y-4">
-        <div className="w-10 h-10 border-4 border-teal-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
         <p className="text-xs font-semibold text-slate-400">Verifying Admin Authentication...</p>
       </div>
     );
@@ -105,12 +105,12 @@ export default function AdminLayout({
       {/* Mobile Header Bar */}
       <div className="md:hidden bg-slate-950 border-b border-slate-800 px-4 py-3 flex items-center justify-between z-30 sticky top-0">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-teal-600 flex items-center justify-center font-black text-white text-sm">
+          <div className="w-8 h-8 rounded-lg bg-[#000066] flex items-center justify-center font-black text-white text-sm">
             O
           </div>
           <div>
             <h1 className="font-bold text-sm text-white leading-tight">Oxford Hospital Admin</h1>
-            <p className="text-[10px] text-teal-400">{adminUser?.email || 'admin@oxfordhospital.com'}</p>
+            <p className="text-[10px] text-sky-400">{adminUser?.email || 'admin@oxfordhospital.com'}</p>
           </div>
         </div>
 
@@ -141,12 +141,12 @@ export default function AdminLayout({
         <div className="p-5 space-y-6 overflow-y-auto">
           {/* Logo & Hospital Header */}
           <div className="flex items-center gap-3 border-b border-slate-800 pb-5">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center shadow-lg shadow-teal-500/20 text-white font-black text-lg">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#000066] to-blue-700 flex items-center justify-center shadow-lg shadow-blue-900/40 text-white font-black text-lg border border-blue-500/20">
               O
             </div>
             <div>
               <h2 className="font-extrabold text-white text-base leading-tight">Oxford Hospital</h2>
-              <p className="text-xs text-teal-400 font-semibold">Admin CMS Portal</p>
+              <p className="text-xs text-sky-400 font-semibold">Admin CMS Portal</p>
             </div>
           </div>
 
@@ -162,11 +162,11 @@ export default function AdminLayout({
                   onClick={() => setSidebarOpen(false)}
                   className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all ${
                     isActive
-                      ? 'bg-teal-600 text-white font-bold shadow-lg shadow-teal-600/30'
+                      ? 'bg-gradient-to-r from-[#000066] to-blue-700 text-white font-bold shadow-lg shadow-blue-950/60 border border-blue-500/30'
                       : 'text-slate-400 hover:text-white hover:bg-slate-900'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-400'}`} />
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-sky-300' : 'text-slate-400'}`} />
                   <span>{item.name}</span>
                 </Link>
               );
@@ -182,7 +182,7 @@ export default function AdminLayout({
             className="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-semibold py-2 px-3 rounded-xl text-xs transition"
           >
             <span>View Public Website</span>
-            <ExternalLink className="w-3.5 h-3.5 text-teal-400" />
+            <ExternalLink className="w-3.5 h-3.5 text-sky-400" />
           </Link>
 
           <button

@@ -86,17 +86,17 @@ export default function ImageUploader({
             className={`px-4 py-2.5 rounded-xl border text-xs font-bold flex items-center gap-2 cursor-pointer transition ${
               uploading
                 ? 'bg-slate-800 border-slate-700 text-slate-400 cursor-not-allowed'
-                : 'bg-teal-950/80 hover:bg-teal-900 border-teal-800 text-teal-300 hover:text-white'
+                : 'bg-[#000066]/80 hover:bg-blue-900 border-blue-800 text-sky-300 hover:text-white'
             }`}
           >
             {uploading ? (
               <>
-                <Loader2 className="w-4 h-4 animate-spin text-teal-400" />
+                <Loader2 className="w-4 h-4 animate-spin text-sky-400" />
                 <span>Uploading to Cloudinary ({folder})...</span>
               </>
             ) : (
               <>
-                <UploadCloud className="w-4 h-4 text-teal-400" />
+                <UploadCloud className="w-4 h-4 text-sky-400" />
                 <span>Upload from Device (Cloudinary)</span>
               </>
             )}
@@ -110,7 +110,7 @@ export default function ImageUploader({
             value={value || ''}
             onChange={(e) => onChange(e.target.value)}
             placeholder="Or paste Cloudinary / Image URL here..."
-            className="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            className="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
           />
         </div>
       </div>
@@ -130,7 +130,7 @@ export default function ImageUploader({
             </button>
           </div>
           <div className="text-[11px] text-slate-400 break-all line-clamp-2">
-            <span className="text-teal-400 font-semibold">Active URL:</span> {value}
+            <span className="text-sky-400 font-semibold">Active URL:</span> {value}
           </div>
         </div>
       )}

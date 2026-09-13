@@ -51,7 +51,7 @@ const corePages: CorePageInfo[] = [
     adminLabel: 'Edit About Us Below',
     icon: Building2,
     badge: 'Core Story Page',
-    badgeColor: 'bg-teal-500/10 text-teal-400 border-teal-500/20'
+    badgeColor: 'bg-blue-500/10 text-sky-400 border-blue-500/20'
   },
   {
     title: 'Specialities & Services',
@@ -121,7 +121,7 @@ const corePages: CorePageInfo[] = [
     adminLabel: 'Manage Slider & Home',
     icon: Sparkles,
     badge: 'Main Homepage',
-    badgeColor: 'bg-teal-500/10 text-teal-400 border-teal-500/20'
+    badgeColor: 'bg-blue-500/10 text-sky-400 border-blue-500/20'
   }
 ];
 
@@ -286,7 +286,7 @@ export default function AdminPages() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="w-8 h-8 border-4 border-teal-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -297,7 +297,7 @@ export default function AdminPages() {
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-teal-400 font-bold text-xs uppercase tracking-wider mb-1">
+          <div className="flex items-center gap-2 text-sky-400 font-bold text-xs uppercase tracking-wider mb-1">
             <Globe className="w-4 h-4" />
             <span>Website Pages & CMS</span>
           </div>
@@ -317,12 +317,12 @@ export default function AdminPages() {
             className="bg-slate-800 hover:bg-slate-700 text-white text-xs sm:text-sm font-semibold px-3.5 py-2.5 rounded-xl border border-slate-700 transition flex items-center gap-1.5"
           >
             <span>View /about</span>
-            <ArrowUpRight className="w-4 h-4 text-teal-400" />
+            <ArrowUpRight className="w-4 h-4 text-sky-400" />
           </a>
 
           <button
             onClick={handleOpenAdd}
-            className="bg-teal-600 hover:bg-teal-500 text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl shadow transition flex items-center gap-2 cursor-pointer"
+            className="bg-gradient-to-r from-[#000066] to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl shadow-lg shadow-blue-900/30 transition flex items-center gap-2 cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>Create New Page</span>
@@ -336,7 +336,7 @@ export default function AdminPages() {
           onClick={() => setActiveTab('about')}
           className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition cursor-pointer ${
             activeTab === 'about'
-              ? 'bg-teal-600 text-white shadow-md'
+              ? 'bg-gradient-to-r from-[#000066] to-blue-700 text-white shadow-md'
               : 'bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800'
           }`}
         >
@@ -348,7 +348,7 @@ export default function AdminPages() {
           onClick={() => setActiveTab('core')}
           className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition cursor-pointer ${
             activeTab === 'core'
-              ? 'bg-teal-600 text-white shadow-md'
+              ? 'bg-gradient-to-r from-[#000066] to-blue-700 text-white shadow-md'
               : 'bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800'
           }`}
         >
@@ -360,7 +360,7 @@ export default function AdminPages() {
           onClick={() => setActiveTab('custom')}
           className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition cursor-pointer ${
             activeTab === 'custom'
-              ? 'bg-teal-600 text-white shadow-md'
+              ? 'bg-gradient-to-r from-[#000066] to-blue-700 text-white shadow-md'
               : 'bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800'
           }`}
         >
@@ -371,7 +371,7 @@ export default function AdminPages() {
 
       {/* Notifications */}
       {message && (
-        <div className="p-4 bg-teal-950/80 border border-teal-800 text-teal-300 rounded-2xl flex items-center gap-2 text-sm">
+        <div className="p-4 bg-blue-950/80 border border-blue-800 text-sky-300 rounded-2xl flex items-center gap-2 text-sm">
           <CheckCircle2 className="w-4 h-4 shrink-0" />
           <span>{message}</span>
         </div>
@@ -392,18 +392,18 @@ export default function AdminPages() {
           <div className="bg-slate-950 p-6 rounded-3xl border border-slate-800 space-y-4 shadow-xl">
             <div className="flex items-center justify-between border-b border-slate-800 pb-3">
               <div className="flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-teal-400" />
+                <Sparkles className="w-5 h-5 text-sky-400" />
                 <h3 className="font-bold text-base text-white">About Page Header Banner</h3>
               </div>
-              <span className="text-[11px] text-teal-400 font-semibold bg-teal-500/10 px-2.5 py-1 rounded-full border border-teal-500/20">
+              <span className="text-[11px] text-sky-400 font-semibold bg-blue-500/10 px-2.5 py-1 rounded-full border border-blue-500/20">
                 Live on /about
               </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4">
               <div>
                 <label className="block text-xs font-bold text-slate-300 mb-1.5">
-                  Banner Main Headline *
+                  Banner Headline Title *
                 </label>
                 <input
                   type="text"
@@ -411,7 +411,7 @@ export default function AdminPages() {
                   value={aboutData.bannerTitle}
                   onChange={(e) => setAboutData({ ...aboutData, bannerTitle: e.target.value })}
                   placeholder="Compassionate Care, Advanced Medicine"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -424,7 +424,7 @@ export default function AdminPages() {
                   value={aboutData.bannerSubtitle}
                   onChange={(e) => setAboutData({ ...aboutData, bannerSubtitle: e.target.value })}
                   placeholder="Oxford Hospital is committed to elevating healthcare standards..."
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                 />
               </div>
             </div>
@@ -433,7 +433,7 @@ export default function AdminPages() {
           {/* Section 2: Journey & Healthcare Mission */}
           <div className="bg-slate-950 p-6 rounded-3xl border border-slate-800 space-y-4 shadow-xl">
             <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
-              <Building2 className="w-5 h-5 text-teal-400" />
+              <Building2 className="w-5 h-5 text-sky-400" />
               <h3 className="font-bold text-base text-white">Our Journey & Healthcare Mission</h3>
             </div>
 
@@ -448,7 +448,7 @@ export default function AdminPages() {
                   value={aboutData.missionTitle}
                   onChange={(e) => setAboutData({ ...aboutData, missionTitle: e.target.value })}
                   placeholder="Our Journey & Healthcare Mission"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -461,7 +461,7 @@ export default function AdminPages() {
                   required
                   value={aboutData.storyParagraph1}
                   onChange={(e) => setAboutData({ ...aboutData, storyParagraph1: e.target.value })}
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -474,7 +474,7 @@ export default function AdminPages() {
                   required
                   value={aboutData.storyParagraph2}
                   onChange={(e) => setAboutData({ ...aboutData, storyParagraph2: e.target.value })}
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -492,7 +492,7 @@ export default function AdminPages() {
                       features: e.target.value.split('\n').filter((s) => s.trim() !== '')
                     })
                   }
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white font-mono focus:outline-none focus:border-teal-500"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white font-mono focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -508,7 +508,7 @@ export default function AdminPages() {
                       value={aboutData.imageUrl}
                       onChange={(e) => setAboutData({ ...aboutData, imageUrl: e.target.value })}
                       placeholder="/images/gallery/oxford-reception.jpg or Cloudinary URL"
-                      className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500 mb-3"
+                      className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500 mb-3"
                     />
                     <ImageUploader
                       value={aboutData.imageUrl}
@@ -533,7 +533,7 @@ export default function AdminPages() {
           {/* Section 3: Leadership Message */}
           <div className="bg-slate-950 p-6 rounded-3xl border border-slate-800 space-y-4 shadow-xl">
             <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
-              <Users className="w-5 h-5 text-teal-400" />
+              <Users className="w-5 h-5 text-sky-400" />
               <h3 className="font-bold text-base text-white">Doctor Leadership Message (चिकित्सक सन्देश)</h3>
             </div>
 
@@ -554,7 +554,7 @@ export default function AdminPages() {
                       })
                     }
                     placeholder="Dr. Hussain Khan"
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                   />
                 </div>
 
@@ -573,7 +573,7 @@ export default function AdminPages() {
                       })
                     }
                     placeholder="(MBBS, MD Internal Medicine)"
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                   />
                 </div>
               </div>
@@ -593,7 +593,7 @@ export default function AdminPages() {
                     })
                   }
                   placeholder="वरिष्ठ चिकित्सक (इंटरनल मेडिसिन) एवं मेडिकल टीम नेतृत्व"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -611,7 +611,7 @@ export default function AdminPages() {
                       doctorMessage: { ...aboutData.doctorMessage, message: e.target.value }
                     })
                   }
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -632,7 +632,7 @@ export default function AdminPages() {
                         })
                       }
                       placeholder="/images/doctors/doc-hussain.jpg or Cloudinary URL"
-                      className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500 mb-3"
+                      className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500 mb-3"
                     />
                     <ImageUploader
                       value={aboutData.doctorMessage.photoUrl}
@@ -673,7 +673,7 @@ export default function AdminPages() {
             <button
               type="submit"
               disabled={aboutSaving}
-              className="flex items-center gap-2 bg-teal-600 hover:bg-teal-500 text-white font-bold px-6 py-2.5 rounded-xl shadow-lg shadow-teal-600/30 transition text-sm disabled:opacity-50 cursor-pointer"
+              className="flex items-center gap-2 bg-gradient-to-r from-[#000066] to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white font-bold px-6 py-2.5 rounded-xl shadow-lg shadow-blue-900/30 transition text-sm disabled:opacity-50 cursor-pointer"
             >
               <Save className="w-4 h-4" />
               <span>{aboutSaving ? 'Saving to Database...' : 'Save About Us Page'}</span>
@@ -704,14 +704,14 @@ export default function AdminPages() {
                   <div className="space-y-3">
                     <div className="flex items-center justify-between gap-2">
                       <div className="flex items-center gap-2.5">
-                        <div className="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 text-teal-400 flex items-center justify-center shrink-0">
+                        <div className="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 text-sky-400 flex items-center justify-center shrink-0">
                           <IconComponent className="w-4 h-4" />
                         </div>
                         <div>
-                          <h3 className="font-bold text-white text-base group-hover:text-teal-300 transition-colors">
+                          <h3 className="font-bold text-white text-base group-hover:text-sky-300 transition-colors">
                             {page.title}
                           </h3>
-                          <span className="font-mono text-[11px] text-teal-400">
+                          <span className="font-mono text-[11px] text-sky-400">
                             {page.url}
                           </span>
                         </div>
@@ -741,14 +741,14 @@ export default function AdminPages() {
                     {page.url === '/about' ? (
                       <button
                         onClick={() => setActiveTab('about')}
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-teal-300 hover:text-white transition px-3.5 py-1.5 rounded-lg bg-teal-500/10 hover:bg-teal-600 border border-teal-500/20 cursor-pointer"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-300 hover:text-white transition px-3.5 py-1.5 rounded-lg bg-blue-950/80 hover:bg-blue-700 border border-blue-800 cursor-pointer"
                       >
                         <span>Edit About Us Here &rarr;</span>
                       </button>
                     ) : (
                       <Link
                         href={page.adminLink}
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-teal-300 hover:text-white transition px-3.5 py-1.5 rounded-lg bg-teal-500/10 hover:bg-teal-600 border border-teal-500/20"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-300 hover:text-white transition px-3.5 py-1.5 rounded-lg bg-blue-950/80 hover:bg-blue-700 border border-blue-800"
                       >
                         <span>{page.adminLabel}</span>
                         <ExternalLink className="w-3 h-3" />
@@ -767,7 +767,7 @@ export default function AdminPages() {
         <div className="space-y-4">
           {pages.length === 0 ? (
             <div className="bg-slate-950 rounded-3xl p-12 border border-slate-800 text-center space-y-4 max-w-xl mx-auto shadow-xl">
-              <div className="w-16 h-16 rounded-2xl bg-teal-500/10 text-teal-400 flex items-center justify-center mx-auto border border-teal-500/20">
+              <div className="w-16 h-16 rounded-2xl bg-blue-500/10 text-sky-400 flex items-center justify-center mx-auto border border-blue-500/20">
                 <FileText className="w-8 h-8" />
               </div>
               <div className="space-y-1">
@@ -779,7 +779,7 @@ export default function AdminPages() {
               <div className="pt-2">
                 <button
                   onClick={handleOpenAdd}
-                  className="bg-teal-600 hover:bg-teal-500 text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl shadow transition inline-flex items-center gap-2 cursor-pointer"
+                  className="bg-gradient-to-r from-[#000066] to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-blue-900/30 transition inline-flex items-center gap-2 cursor-pointer"
                 >
                   <Plus className="w-4 h-4" />
                   <span>Create Your First Custom Page</span>
@@ -795,7 +795,7 @@ export default function AdminPages() {
                 >
                   <div>
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-mono text-teal-400 bg-teal-950/70 px-2 py-0.5 rounded border border-teal-800">
+                      <span className="text-xs font-mono text-sky-400 bg-blue-950/70 px-2 py-0.5 rounded border border-blue-800">
                         /page/{page.slug}
                       </span>
                       <span className="text-[11px] text-slate-400">Updated: {page.lastUpdated}</span>
@@ -819,7 +819,7 @@ export default function AdminPages() {
                       href={`/page/${page.slug}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-xs text-teal-400 hover:text-teal-300 font-semibold"
+                      className="inline-flex items-center gap-1 text-xs text-sky-400 hover:text-sky-300 font-semibold"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
                       <span>View Live Page</span>
@@ -828,7 +828,7 @@ export default function AdminPages() {
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => handleOpenEdit(page)}
-                        className="p-2 text-slate-400 hover:text-teal-400 hover:bg-slate-900 rounded-lg transition cursor-pointer"
+                        className="p-2 text-slate-400 hover:text-sky-400 hover:bg-slate-900 rounded-lg transition cursor-pointer"
                         title="Edit Page"
                       >
                         <Edit2 className="w-4 h-4" />
@@ -888,7 +888,7 @@ export default function AdminPages() {
                       });
                     }}
                     placeholder="e.g. Health Schemes & Insurance Policy"
-                    className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-teal-500"
+                    className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-blue-500"
                   />
                 </div>
 
@@ -900,7 +900,7 @@ export default function AdminPages() {
                     value={formData.slug}
                     onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
                     placeholder="health-schemes-policy"
-                    className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-teal-400 font-mono focus:outline-none focus:border-teal-500"
+                    className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-sky-400 font-mono focus:outline-none focus:border-blue-500"
                   />
                 </div>
               </div>
@@ -912,7 +912,7 @@ export default function AdminPages() {
                   value={formData.subtitle}
                   onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })}
                   placeholder="Short summary displayed under the title header"
-                  className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-teal-500"
+                  className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -923,7 +923,7 @@ export default function AdminPages() {
                   value={formData.metaDescription}
                   onChange={(e) => setFormData({ ...formData, metaDescription: e.target.value })}
                   placeholder="Brief description for search engine previews"
-                  className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-teal-500"
+                  className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -941,7 +941,7 @@ export default function AdminPages() {
                   id="published"
                   checked={formData.published}
                   onChange={(e) => setFormData({ ...formData, published: e.target.checked })}
-                  className="w-4 h-4 text-teal-600 rounded bg-slate-950 border-slate-800 focus:ring-teal-500"
+                  className="w-4 h-4 text-blue-600 rounded bg-slate-950 border-slate-800 focus:ring-blue-500"
                 />
                 <label htmlFor="published" className="text-xs text-slate-300 font-semibold cursor-pointer">
                   Publish page immediately to live website
@@ -959,7 +959,7 @@ export default function AdminPages() {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="bg-teal-600 hover:bg-teal-500 text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow transition flex items-center gap-2 disabled:opacity-50"
+                  className="bg-gradient-to-r from-[#000066] to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-blue-900/30 transition flex items-center gap-2 disabled:opacity-50 cursor-pointer"
                 >
                   <Save className="w-4 h-4" />
                   <span>{saving ? 'Saving...' : 'Save & Publish'}</span>

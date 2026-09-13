@@ -9,30 +9,40 @@ import WhatsAppButton from '@/components/shared/WhatsAppButton';
 export async function generateMetadata(): Promise<Metadata> {
   try {
     const content = await getSiteContent();
+    const h = content.hospital;
+    const title = h.websiteTitle?.trim() || `${h.name}${h.hindiName ? ` (${h.hindiName})` : ''} | ${h.tagline || 'Multi-Speciality Hospital'} - ${h.city}`;
+    const description = `${h.name} (${h.hindiName || ''}) ${h.city} - 24×7 Emergency, ICU, HDU, Modular Operation Theatre, Diagnostic Lab, Pharmacy, Ambulance, Cashless ECHS/RGHS & Speciality Doctor Panel.`;
+    const favicon = h.faviconUrl || h.logoUrl || '/favicon.ico';
+
     return {
-      title: `${content.hospital.name} (${content.hospital.hindiName}) | Multi-Speciality Hospital in Sikar`,
-      description: `Oxford Hospital Sikar - 24×7 Emergency, ICU, HDU, Modular Operation Theatre, Diagnostic Lab, CT/X-Ray/Ultrasound, Pharmacy, Ambulance, Cashless ECHS/RGHS & 13+ Speciality Doctor Panel.`,
+      title,
+      description,
+      icons: {
+        icon: [{ url: favicon }],
+        shortcut: [favicon],
+        apple: [favicon]
+      },
       keywords: [
-        'Oxford Hospital Sikar',
-        'Oxford Hospital Fatehpur Road',
-        'Best hospital in Sikar Rajasthan',
-        '24x7 Emergency Hospital Sikar',
-        'ICU Critical Care Sikar',
-        'RGHS Hospital Sikar',
-        'ECHS Empanelled Hospital Sikar',
-        'Cashless Hospital Sikar',
-        'ऑक्सफोर्ड हॉस्पिटल सीकर'
+        `${h.name} ${h.city}`,
+        `${h.name} ${h.address}`,
+        `Best hospital in ${h.city} ${h.state}`,
+        `24x7 Emergency Hospital ${h.city}`,
+        `ICU Critical Care ${h.city}`,
+        `RGHS Hospital ${h.city}`,
+        `ECHS Empanelled Hospital ${h.city}`,
+        `Cashless Hospital ${h.city}`,
+        `${h.hindiName} ${h.city}`
       ],
       openGraph: {
-        title: `${content.hospital.name} - 24×7 Multi-Speciality Hospital in Sikar`,
-        description: `24x7 Emergency, ICU, HDU, Modular OT, Cashless Insurance (ECHS/RGHS) & Senior Specialist Doctor Panel.`,
-        images: ['/images/gallery/oxford-reception.jpg']
+        title,
+        description,
+        images: [h.logoUrl || '/images/gallery/oxford-reception.jpg']
       }
     };
   } catch (error) {
     return {
-      title: 'Oxford Hospital | Sikar Rajasthan',
-      description: '24×7 Multi-Speciality & Critical Care Hospital with Excellence in Sikar.'
+      title: 'Oxford Hospital | Multi-Speciality Hospital',
+      description: '24×7 Multi-Speciality & Critical Care Hospital with Excellence.'
     };
   }
 }
@@ -42,11 +52,18 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const content = await getSiteContent();
+  let favicon = '/favicon.ico';
+  try {
+    const content = await getSiteContent();
+    favicon = content.hospital.faviconUrl || content.hospital.logoUrl || '/favicon.ico';
+  } catch (e) {}
 
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        <link rel="icon" href={favicon} />
+        <link rel="shortcut icon" href={favicon} />
+        <link rel="apple-touch-icon" href={favicon} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

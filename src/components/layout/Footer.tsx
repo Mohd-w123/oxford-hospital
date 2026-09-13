@@ -90,7 +90,7 @@ export default function Footer({ hospital }: FooterProps) {
             <p className="text-sm text-slate-400 leading-relaxed">
               {hospital.footerAboutText || (
                 <>
-                  <strong className="text-white">{hospital.name}</strong> ({hospital.hindiName}) is committed to providing world-class, compassionate healthcare in Sikar, specializing in Emergency, ICU, HDU, Modular OT, and Multi-Speciality Medical Care.
+                  <strong className="text-white">{hospital.name}</strong> ({hospital.hindiName}) is committed to providing world-class, compassionate healthcare in {hospital.city}, specializing in Emergency, ICU, HDU, Modular OT, and Multi-Speciality Medical Care.
                 </>
               )}
             </p>
@@ -198,7 +198,6 @@ export default function Footer({ hospital }: FooterProps) {
                 <div>
                   <p className="font-semibold text-white">{hospital.address}</p>
                   <p className="text-slate-400">{hospital.city}, {hospital.state} - {hospital.pincode}</p>
-                  <p className="text-xs text-slate-500 mt-0.5">(मदनी महल, फ़तेहपुर रोड, वार्ड नं 1, सीकर)</p>
                 </div>
               </div>
 

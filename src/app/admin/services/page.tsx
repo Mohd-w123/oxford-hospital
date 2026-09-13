@@ -112,7 +112,7 @@ export default function AdminServices() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="w-8 h-8 border-4 border-teal-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -123,7 +123,7 @@ export default function AdminServices() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <span className="text-xs font-bold text-teal-400 uppercase tracking-wider">Clinical Departments</span>
+          <span className="text-xs font-bold text-sky-400 uppercase tracking-wider">Clinical Departments</span>
           <h1 className="text-2xl font-extrabold text-white">Services & Specialties Management</h1>
           <p className="text-xs sm:text-sm text-slate-400">
             Manage hospital departments and their rich clinical descriptions with WYSIWYG editor.
@@ -132,7 +132,7 @@ export default function AdminServices() {
 
         <button
           onClick={handleOpenAdd}
-          className="bg-teal-600 hover:bg-teal-500 text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl shadow transition flex items-center gap-2 self-start cursor-pointer"
+          className="bg-gradient-to-r from-[#000066] to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl shadow-lg shadow-blue-900/30 transition flex items-center gap-2 self-start cursor-pointer"
         >
           <Plus className="w-4 h-4" />
           <span>Add Medical Service</span>
@@ -140,7 +140,7 @@ export default function AdminServices() {
       </div>
 
       {message && (
-        <div className="p-4 bg-teal-950/80 border border-teal-800 text-teal-300 rounded-2xl flex items-center gap-2 text-sm">
+        <div className="p-4 bg-blue-950/80 border border-blue-800 text-sky-300 rounded-2xl flex items-center gap-2 text-sm">
           <CheckCircle2 className="w-4 h-4 shrink-0" />
           <span>{message}</span>
         </div>
@@ -166,7 +166,7 @@ export default function AdminServices() {
                 alt={serv.title}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute top-3 left-3 bg-slate-950/80 text-teal-400 text-xs font-bold px-2.5 py-1 rounded-lg border border-slate-800">
+              <div className="absolute top-3 left-3 bg-slate-950/80 text-sky-400 text-xs font-bold px-2.5 py-1 rounded-lg border border-slate-800">
                 {serv.category}
               </div>
             </div>
@@ -175,14 +175,14 @@ export default function AdminServices() {
               <div>
                 <h3 className="font-bold text-base text-white">{serv.title}</h3>
                 {serv.titleHindi && (
-                  <p className="text-xs font-semibold text-teal-400">{serv.titleHindi}</p>
+                  <p className="text-xs font-semibold text-sky-400">{serv.titleHindi}</p>
                 )}
                 <p className="text-xs text-slate-400 mt-2 line-clamp-2">{serv.shortDesc}</p>
 
                 <div className="mt-3 space-y-1">
                   {serv.features?.slice(0, 3).map((f, i) => (
                     <p key={i} className="text-[11px] text-slate-400 flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-teal-500 shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0" />
                       <span className="line-clamp-1">{f}</span>
                     </p>
                   ))}
@@ -193,7 +193,7 @@ export default function AdminServices() {
               <div className="pt-3 border-t border-slate-800 flex items-center justify-between">
                 <button
                   onClick={() => handleOpenEdit(serv)}
-                  className="text-xs font-semibold text-teal-400 hover:text-teal-300 flex items-center gap-1 cursor-pointer"
+                  className="text-xs font-semibold text-sky-400 hover:text-sky-300 flex items-center gap-1 cursor-pointer"
                 >
                   <Edit2 className="w-3.5 h-3.5" />
                   <span>Edit Service</span>
@@ -238,7 +238,7 @@ export default function AdminServices() {
                     value={formData.title}
                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                     placeholder="e.g. Obstetrics & Gynaecology"
-                    className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
                 </div>
 
@@ -249,7 +249,7 @@ export default function AdminServices() {
                     value={formData.titleHindi || ''}
                     onChange={(e) => setFormData({ ...formData, titleHindi: e.target.value })}
                     placeholder="e.g. स्त्री एवं प्रसूति रोग विभाग"
-                    className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
                 </div>
 
@@ -258,7 +258,7 @@ export default function AdminServices() {
                   <select
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value as any })}
-                    className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   >
                     <option value="clinical">Clinical Department</option>
                     <option value="diagnostic">Diagnostic & Lab</option>
@@ -272,7 +272,7 @@ export default function AdminServices() {
                   <select
                     value={formData.icon}
                     onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   >
                     <option value="HeartHandshake">Heart / Gynaecology</option>
                     <option value="Stethoscope">Stethoscope / Physician</option>
@@ -301,7 +301,7 @@ export default function AdminServices() {
                   value={formData.shortDesc}
                   onChange={(e) => setFormData({ ...formData, shortDesc: e.target.value })}
                   placeholder="Summary shown on cards..."
-                  className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                  className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
 
@@ -312,7 +312,7 @@ export default function AdminServices() {
                   value={formData.featuresText !== undefined ? formData.featuresText : formData.features?.join('\n')}
                   onChange={(e) => setFormData({ ...formData, featuresText: e.target.value })}
                   placeholder="Normal Delivery & Maternity Care&#10;High-Risk Pregnancy Management&#10;Color Doppler Sonography"
-                  className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none font-mono text-xs"
+                  className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:outline-none font-mono text-xs"
                 />
               </div>
 
@@ -320,7 +320,7 @@ export default function AdminServices() {
               <div>
                 <label className="block text-slate-300 font-semibold mb-1.5 flex items-center justify-between">
                   <span>Full Detailed Clinical Description *</span>
-                  <span className="text-teal-400 font-normal text-xs">Rich Text WYSIWYG</span>
+                  <span className="text-sky-400 font-normal text-xs">Rich Text WYSIWYG</span>
                 </label>
                 <RichTextEditor
                   value={formData.fullDesc || ''}
@@ -341,7 +341,7 @@ export default function AdminServices() {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="px-6 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold flex items-center gap-2 shadow cursor-pointer disabled:opacity-50"
+                  className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#000066] to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white font-bold flex items-center gap-2 shadow-lg shadow-blue-900/30 cursor-pointer disabled:opacity-50"
                 >
                   <Save className="w-4 h-4" />
                   <span>{editingService ? 'Save Service' : 'Add Service'}</span>

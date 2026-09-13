@@ -190,7 +190,7 @@ export default function AdminBranches() {
   if (loading) {
     return (
       <div className="p-8 flex items-center justify-center min-h-[400px]">
-        <div className="w-8 h-8 border-4 border-teal-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -200,7 +200,7 @@ export default function AdminBranches() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-6">
         <div>
-          <div className="flex items-center gap-2 text-teal-400 font-bold text-xs uppercase tracking-wider mb-1">
+          <div className="flex items-center gap-2 text-sky-400 font-bold text-xs uppercase tracking-wider mb-1">
             <Building2 className="w-4 h-4" />
             <span>Hospital Network CMS</span>
           </div>
@@ -217,14 +217,14 @@ export default function AdminBranches() {
             onClick={handleAddBranch}
             className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold px-4 py-2.5 rounded-xl border border-slate-700 transition text-sm cursor-pointer"
           >
-            <Plus className="w-4 h-4 text-teal-400" />
+            <Plus className="w-4 h-4 text-sky-400" />
             <span>Add Branch</span>
           </button>
 
           <button
             onClick={handleSaveAll}
             disabled={saving}
-            className="flex items-center gap-2 bg-teal-600 hover:bg-teal-500 text-white font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-teal-600/20 transition text-sm disabled:opacity-50 cursor-pointer"
+            className="flex items-center gap-2 bg-gradient-to-r from-[#000066] to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-blue-900/30 transition text-sm disabled:opacity-50 cursor-pointer"
           >
             <Save className="w-4 h-4" />
             <span>{saving ? 'Saving...' : 'Save All Changes'}</span>
@@ -234,7 +234,7 @@ export default function AdminBranches() {
 
       {/* Toast notifications */}
       {message && (
-        <div className="p-4 rounded-xl bg-teal-500/10 border border-teal-500/30 text-teal-300 flex items-center gap-3 text-sm">
+        <div className="p-4 rounded-xl bg-blue-950/80 border border-blue-800 text-sky-300 flex items-center gap-3 text-sm">
           <CheckCircle2 className="w-5 h-5 shrink-0" />
           <span>{message}</span>
         </div>
@@ -256,13 +256,13 @@ export default function AdminBranches() {
             <div
               key={branch.id || index}
               className={`rounded-2xl border ${
-                isEditing ? 'border-teal-500/60 bg-slate-900/90' : 'border-slate-800 bg-slate-900/50'
+                isEditing ? 'border-blue-600/60 bg-slate-900/90' : 'border-slate-800 bg-slate-900/50'
               } overflow-hidden transition-all`}
             >
               {/* Branch Header Row */}
               <div className="p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-800/40">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-teal-500/20 text-teal-300 font-bold flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-[#000066] text-sky-300 font-bold flex items-center justify-center shrink-0 border border-blue-800/60">
                     <Building2 className="w-5 h-5" />
                   </div>
 
@@ -282,7 +282,7 @@ export default function AdminBranches() {
                         <MapPin className="w-3.5 h-3.5" />
                         {branch.addressHindi}
                       </span>
-                      <span className="flex items-center gap-1 text-teal-400">
+                      <span className="flex items-center gap-1 text-sky-400">
                         <PhoneCall className="w-3.5 h-3.5" />
                         {branch.phone}
                       </span>
@@ -301,8 +301,8 @@ export default function AdminBranches() {
                     onClick={() => setEditingIndex(isEditing ? null : index)}
                     className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
                       isEditing
-                        ? 'bg-teal-500 text-slate-950'
-                        : 'bg-slate-800 hover:bg-slate-700 text-teal-300'
+                        ? 'bg-gradient-to-r from-[#000066] to-blue-700 text-white shadow-sm'
+                        : 'bg-slate-800 hover:bg-slate-700 text-sky-300'
                     }`}
                   >
                     <Edit className="w-3.5 h-3.5" />
@@ -333,7 +333,7 @@ export default function AdminBranches() {
                         type="text"
                         value={branch.name}
                         onChange={(e) => handleUpdateBranch(index, 'name', e.target.value)}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                       />
                     </div>
 
@@ -346,7 +346,7 @@ export default function AdminBranches() {
                         type="text"
                         value={branch.hindiName}
                         onChange={(e) => handleUpdateBranch(index, 'hindiName', e.target.value)}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                       />
                     </div>
 
@@ -359,7 +359,7 @@ export default function AdminBranches() {
                         type="text"
                         value={branch.badge}
                         onChange={(e) => handleUpdateBranch(index, 'badge', e.target.value)}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                       />
                     </div>
 
@@ -372,7 +372,7 @@ export default function AdminBranches() {
                         type="text"
                         value={branch.tagline || ''}
                         onChange={(e) => handleUpdateBranch(index, 'tagline', e.target.value)}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                       />
                     </div>
 
@@ -385,7 +385,7 @@ export default function AdminBranches() {
                         type="text"
                         value={branch.phone}
                         onChange={(e) => handleUpdateBranch(index, 'phone', e.target.value)}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                       />
                     </div>
 
@@ -397,7 +397,7 @@ export default function AdminBranches() {
                         type="text"
                         value={branch.whatsapp || ''}
                         onChange={(e) => handleUpdateBranch(index, 'whatsapp', e.target.value)}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                       />
                     </div>
 
@@ -411,7 +411,7 @@ export default function AdminBranches() {
                         value={branch.doctorName || ''}
                         onChange={(e) => handleUpdateBranch(index, 'doctorName', e.target.value)}
                         placeholder="e.g. Dr H. ALTAF or डॉ प्रमोद शेखावत"
-                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                       />
                     </div>
 
@@ -424,7 +424,7 @@ export default function AdminBranches() {
                         value={branch.doctorDegree || ''}
                         onChange={(e) => handleUpdateBranch(index, 'doctorDegree', e.target.value)}
                         placeholder="e.g. MBBS, MD (Internal Medicine)"
-                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                       />
                     </div>
 
@@ -437,7 +437,7 @@ export default function AdminBranches() {
                         type="text"
                         value={branch.addressHindi}
                         onChange={(e) => handleUpdateBranch(index, 'addressHindi', e.target.value)}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                       />
                     </div>
 
@@ -449,7 +449,7 @@ export default function AdminBranches() {
                         type="text"
                         value={branch.address}
                         onChange={(e) => handleUpdateBranch(index, 'address', e.target.value)}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                       />
                     </div>
 
@@ -462,7 +462,7 @@ export default function AdminBranches() {
                         type="text"
                         value={branch.timingsHindi}
                         onChange={(e) => handleUpdateBranch(index, 'timingsHindi', e.target.value)}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                       />
                     </div>
 
@@ -474,7 +474,7 @@ export default function AdminBranches() {
                         type="text"
                         value={branch.timings}
                         onChange={(e) => handleUpdateBranch(index, 'timings', e.target.value)}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                       />
                     </div>
 
@@ -487,7 +487,7 @@ export default function AdminBranches() {
                         type="text"
                         value={branch.googleMapsUrl}
                         onChange={(e) => handleUpdateBranch(index, 'googleMapsUrl', e.target.value)}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                       />
                     </div>
 
@@ -506,7 +506,7 @@ export default function AdminBranches() {
                             e.target.value.split('\n').filter((s) => s.trim() !== '')
                           )
                         }
-                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white font-mono focus:outline-none focus:border-teal-500"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white font-mono focus:outline-none focus:border-blue-500"
                       />
                     </div>
 
@@ -525,7 +525,7 @@ export default function AdminBranches() {
                             e.target.value.split(',').map((s) => s.trim()).filter(Boolean)
                           )
                         }
-                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
                       />
                     </div>
 
@@ -536,7 +536,7 @@ export default function AdminBranches() {
                         id={`main-branch-${index}`}
                         checked={!!branch.isMainBranch}
                         onChange={(e) => handleUpdateBranch(index, 'isMainBranch', e.target.checked)}
-                        className="w-4 h-4 text-teal-600 rounded bg-slate-900 border-slate-700 focus:ring-teal-500"
+                        className="w-4 h-4 text-blue-600 rounded bg-slate-900 border-slate-700 focus:ring-blue-500"
                       />
                       <label htmlFor={`main-branch-${index}`} className="text-sm font-semibold text-slate-300">
                         Mark as Hospital Main Branch / Headquarter (HQ)

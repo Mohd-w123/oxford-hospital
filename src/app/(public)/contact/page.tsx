@@ -6,6 +6,19 @@ export default async function ContactPage() {
   const content = await getSiteContent();
   const { hospital } = content;
 
+  // Compute robust map embed URL
+  let mapEmbedUrl = hospital.googleMapEmbedUrl?.trim() || '';
+  if (mapEmbedUrl.includes('<iframe')) {
+    const match = mapEmbedUrl.match(/src=["']([^"']+)["']/);
+    if (match) mapEmbedUrl = match[1];
+  }
+  if (!mapEmbedUrl || (!mapEmbedUrl.includes('/embed') && !mapEmbedUrl.includes('output=embed'))) {
+    const query = encodeURIComponent(`${hospital.name} ${hospital.address} ${hospital.city} ${hospital.state} ${hospital.pincode}`.trim());
+    mapEmbedUrl = `https://maps.google.com/maps?q=${query}&output=embed`;
+  }
+
+  const directMapUrl = hospital.googleMapUrl || `https://maps.google.com/?q=${encodeURIComponent(`${hospital.name} ${hospital.address} ${hospital.city}`)}`;
+
   return (
     <div className="bg-slate-50 py-12">
       {/* Header Banner */}
@@ -19,7 +32,7 @@ export default async function ContactPage() {
             Contact {hospital.name}
           </h1>
           <p className="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto">
-            Get in touch with our 24x7 medical reception, book emergency ambulance, or reach our doctors at Fatehpur Road, Sikar.
+            Get in touch with our 24x7 medical reception, book emergency ambulance, or reach our doctors at {hospital.address}, {hospital.city}.
           </p>
         </div>
       </div>
@@ -37,8 +50,7 @@ export default async function ContactPage() {
             <h3 className="font-bold text-slate-900 text-base">Hospital Address</h3>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               <strong>{hospital.address}</strong><br />
-              {hospital.city}, {hospital.state} - {hospital.pincode}<br />
-              <span className="text-xs text-slate-500">(फ़तेहपुर रोड, सीकर)</span>
+              {hospital.city}, {hospital.state} - {hospital.pincode}
             </p>
           </div>
 
@@ -96,40 +108,32 @@ export default async function ContactPage() {
             <div className="space-y-4">
               <div className="inline-flex items-center gap-2 bg-blue-950/80 text-sky-300 text-xs font-bold px-3 py-1 rounded-full border border-blue-400/30">
                 <MapPin className="w-4 h-4" />
-                <span>Prime Location on Fatehpur Road Sikar</span>
+                <span>Prime Location in {hospital.city}</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold">
-                Easy to Reach from Any Corner of Sikar
+                Easy to Reach from Any Corner of {hospital.city}
               </h2>
               <p className="text-sm text-slate-300 leading-relaxed">
-                {hospital.name} is conveniently located on Fatehpur Road. Equipped with dedicated 24-hour ambulance access, patient parking, lift facilities, and round-the-clock emergency medical desk.
+                {hospital.name} is conveniently located at {hospital.address}, {hospital.city}. Equipped with dedicated 24-hour ambulance access, patient parking, lift facilities, and round-the-clock emergency medical desk.
               </p>
             </div>
 
             <div className="rounded-2xl overflow-hidden border border-slate-800 h-64 w-full bg-slate-950">
-              {hospital.googleMapEmbedUrl ? (
-                <iframe
-                  src={hospital.googleMapEmbedUrl}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title={`${hospital.name} Google Map Location`}
-                />
-              ) : (
-                <img
-                  src="/images/gallery/oxford-reception.jpg"
-                  alt={hospital.name}
-                  className="w-full h-full object-cover"
-                />
-              )}
+              <iframe
+                src={mapEmbedUrl}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title={`${hospital.name} Google Map Location`}
+              />
             </div>
 
             <div className="pt-2">
               <a
-                href={hospital.googleMapUrl}
+                href={directMapUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full bg-[#000066] hover:bg-blue-900 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg transition text-sm text-center border border-blue-400/20"

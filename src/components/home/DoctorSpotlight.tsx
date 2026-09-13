@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Award, Clock, Calendar, CheckCircle2, ChevronRight, Stethoscope, Sparkles } from 'lucide-react';
+import { Award, Clock, Calendar, CheckCircle2, ChevronRight, Stethoscope, Sparkles, User } from 'lucide-react';
 import { Doctor } from '@/lib/types';
 
 interface DoctorSpotlightProps {
@@ -67,42 +67,50 @@ export default function DoctorSpotlight({ doctors }: DoctorSpotlightProps) {
                       </span>
                     )}
                   </div>
-                  <p className="text-sm sm:text-base font-bold text-sky-300">
-                    {primaryDoc.degrees} • {primaryDoc.designation}
-                  </p>
+                  {(primaryDoc.degrees || primaryDoc.designation) && (
+                    <p className="text-sm sm:text-base font-bold text-sky-300">
+                      {[primaryDoc.degrees, primaryDoc.designation].filter(Boolean).join(' • ')}
+                    </p>
+                  )}
                   <p className="text-xs sm:text-sm text-slate-300 mt-1">
                     स्त्री, प्रसूति एवं निःसंतान रोग विशेषज्ञ, पूर्व चिकित्सक, एस. एम. एस. हॉस्पिटल, जयपुर
                   </p>
                 </div>
 
-                <p className="text-sm text-slate-300 leading-relaxed">
-                  {primaryDoc.bio}
-                </p>
+                {primaryDoc.bio && (
+                  <p className="text-sm text-slate-300 leading-relaxed">
+                    {primaryDoc.bio}
+                  </p>
+                )}
 
                 {/* Key clinical areas */}
-                <div className="space-y-2">
-                  <h4 className="text-xs font-bold text-sky-400 uppercase tracking-wider">
-                    Key Specialties & Procedures (विशेष परामर्श व उपचार):
-                  </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-200">
-                    {primaryDoc.specialties.map((spec, i) => (
-                      <div key={i} className="flex items-center gap-2 bg-white/5 p-2 rounded-lg border border-white/5">
-                        <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0" />
-                        <span>{spec}</span>
-                      </div>
-                    ))}
+                {primaryDoc.specialties && primaryDoc.specialties.length > 0 && (
+                  <div className="space-y-2">
+                    <h4 className="text-xs font-bold text-sky-400 uppercase tracking-wider">
+                      Key Specialties & Procedures (विशेष परामर्श व उपचार):
+                    </h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-200">
+                      {primaryDoc.specialties.map((spec, i) => (
+                        <div key={i} className="flex items-center gap-2 bg-white/5 p-2 rounded-lg border border-white/5">
+                          <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0" />
+                          <span>{spec}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* OPD Timings Strip & Action Button */}
                 <div className="pt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4">
-                  <div className="flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 px-4 py-2.5 rounded-xl">
-                    <Clock className="w-5 h-5 text-sky-400" />
-                    <div>
-                      <p className="text-[11px] text-sky-300 font-semibold uppercase">OPD Consultation Timings</p>
-                      <p className="text-sm font-bold text-white">{primaryDoc.opdTimings}</p>
+                  {primaryDoc.opdTimings && (
+                    <div className="flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 px-4 py-2.5 rounded-xl">
+                      <Clock className="w-5 h-5 text-sky-400" />
+                      <div>
+                        <p className="text-[11px] text-sky-300 font-semibold uppercase">OPD Consultation Timings</p>
+                        <p className="text-sm font-bold text-white">{primaryDoc.opdTimings}</p>
+                      </div>
                     </div>
-                  </div>
+                  )}
 
                   <Link
                     href={`/appointment?doctorId=${primaryDoc.id}`}
@@ -146,12 +154,16 @@ export default function DoctorSpotlight({ doctors }: DoctorSpotlightProps) {
                   key={doc.id}
                   className="bg-white rounded-3xl p-6 border border-slate-200/80 hover:border-blue-400 hover:shadow-xl transition-all duration-300 flex flex-col sm:flex-row gap-6 items-start group shadow-md"
                 >
-                  <div className="w-28 h-36 sm:w-36 sm:h-44 rounded-2xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200 shadow-inner group-hover:scale-102 transition-transform duration-300">
-                    <img
-                      src={doc.photoUrl}
-                      alt={doc.name}
-                      className="w-full h-full object-cover object-top"
-                    />
+                  <div className="w-28 h-36 sm:w-36 sm:h-44 rounded-2xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200 shadow-inner group-hover:scale-102 transition-transform duration-300 flex items-center justify-center">
+                    {doc.photoUrl ? (
+                      <img
+                        src={doc.photoUrl}
+                        alt={doc.name}
+                        className="w-full h-full object-cover object-top"
+                      />
+                    ) : (
+                      <User className="w-10 h-10 text-slate-300" />
+                    )}
                   </div>
 
                   <div className="flex-1 space-y-3 w-full">
@@ -160,23 +172,33 @@ export default function DoctorSpotlight({ doctors }: DoctorSpotlightProps) {
                         <h4 className="text-lg sm:text-xl font-extrabold text-slate-900 group-hover:text-[#000066] transition-colors">
                           {doc.name}
                         </h4>
-                        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-blue-50 text-[#000066] border border-blue-100">
-                          {doc.experience}
-                        </span>
+                        {doc.experience && (
+                          <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-blue-50 text-[#000066] border border-blue-100">
+                            {doc.experience}
+                          </span>
+                        )}
                       </div>
                       {doc.nameHindi && <p className="text-xs font-bold text-[#000066] mt-0.5">{doc.nameHindi}</p>}
-                      <p className="text-xs font-semibold text-slate-600 mt-1">{doc.degrees} • {doc.designation}</p>
+                      {(doc.degrees || doc.designation) && (
+                        <p className="text-xs font-semibold text-slate-600 mt-1">
+                          {[doc.degrees, doc.designation].filter(Boolean).join(' • ')}
+                        </p>
+                      )}
                     </div>
 
-                    <div className="text-xs text-slate-600 space-y-1">
-                      <p className="font-bold text-slate-800 uppercase tracking-wider text-[10px]">Clinical Focus:</p>
-                      <p className="line-clamp-2 text-slate-600">{doc.specialties.join(', ')}</p>
-                    </div>
+                    {doc.specialties && doc.specialties.length > 0 && (
+                      <div className="text-xs text-slate-600 space-y-1">
+                        <p className="font-bold text-slate-800 uppercase tracking-wider text-[10px]">Clinical Focus:</p>
+                        <p className="line-clamp-2 text-slate-600">{doc.specialties.join(', ')}</p>
+                      </div>
+                    )}
 
-                    <div className="text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-200/80 flex items-center gap-2 text-slate-700">
-                      <Clock className="w-3.5 h-3.5 text-[#000066] shrink-0" />
-                      <span className="font-semibold text-slate-800">{doc.opdTimings}</span>
-                    </div>
+                    {doc.opdTimings && (
+                      <div className="text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-200/80 flex items-center gap-2 text-slate-700">
+                        <Clock className="w-3.5 h-3.5 text-[#000066] shrink-0" />
+                        <span className="font-semibold text-slate-800">{doc.opdTimings}</span>
+                      </div>
+                    )}
 
                     <div className="pt-2 flex items-center justify-between">
                       <Link

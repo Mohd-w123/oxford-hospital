@@ -1,7 +1,7 @@
 import React from 'react';
 import { getSiteContent } from '@/lib/content-store';
 import Link from 'next/link';
-import { Award, Clock, Calendar, CheckCircle2, PhoneCall, Sparkles, MessageCircle, ArrowRight } from 'lucide-react';
+import { Award, Clock, Calendar, CheckCircle2, PhoneCall, Sparkles, MessageCircle, ArrowRight, User } from 'lucide-react';
 
 export default async function DoctorsPage() {
   const content = await getSiteContent();
@@ -35,12 +35,19 @@ export default async function DoctorsPage() {
               className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:border-blue-400 hover:shadow-xl transition-all duration-300 flex flex-col sm:flex-row gap-6 items-start"
             >
               {/* Doctor Photo */}
-              <div className="relative w-full sm:w-48 h-64 rounded-2xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200">
-                <img
-                  src={doctor.photoUrl}
-                  alt={doctor.name}
-                  className="w-full h-full object-cover object-top"
-                />
+              <div className="relative w-full sm:w-48 h-64 rounded-2xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200 flex items-center justify-center">
+                {doctor.photoUrl ? (
+                  <img
+                    src={doctor.photoUrl}
+                    alt={doctor.name}
+                    className="w-full h-full object-cover object-top"
+                  />
+                ) : (
+                  <div className="flex flex-col items-center justify-center text-slate-400 p-4 text-center">
+                    <User className="w-14 h-14 text-slate-300 mb-1" />
+                    <span className="text-[11px] font-semibold text-slate-400">Oxford Hospital</span>
+                  </div>
+                )}
                 {doctor.featured && (
                   <div className="absolute top-2 left-2 bg-[#000066] text-white text-[10px] font-bold px-2.5 py-0.5 rounded shadow">
                     Senior Consultant
@@ -57,37 +64,47 @@ export default async function DoctorsPage() {
                       <span className="text-sm font-bold text-[#000066]">({doctor.nameHindi})</span>
                     )}
                   </div>
-                  <p className="text-xs sm:text-sm font-bold text-blue-700 mt-0.5">
-                    {doctor.degrees}
-                  </p>
-                  <p className="text-xs font-semibold text-slate-600">
-                    {doctor.designation}
-                  </p>
-                  <p className="text-xs text-slate-500 font-medium mt-1">
-                    {doctor.experience}
-                  </p>
+                  {doctor.degrees && (
+                    <p className="text-xs sm:text-sm font-bold text-blue-700 mt-0.5">
+                      {doctor.degrees}
+                    </p>
+                  )}
+                  {doctor.designation && (
+                    <p className="text-xs font-semibold text-slate-600">
+                      {doctor.designation}
+                    </p>
+                  )}
+                  {doctor.experience && (
+                    <p className="text-xs text-slate-500 font-medium mt-1">
+                      {doctor.experience}
+                    </p>
+                  )}
                 </div>
 
                 {/* Specialties */}
-                <div>
-                  <p className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Specialties & Procedures:</p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {doctor.specialties.map((spec, i) => (
-                      <span
-                        key={i}
-                        className="text-[11px] font-medium bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg border border-slate-200"
-                      >
-                        {spec}
-                      </span>
-                    ))}
+                {doctor.specialties && doctor.specialties.length > 0 && (
+                  <div>
+                    <p className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Specialties & Procedures:</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {doctor.specialties.map((spec, i) => (
+                        <span
+                          key={i}
+                          className="text-[11px] font-medium bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg border border-slate-200"
+                        >
+                          {spec}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Timings */}
-                <div className="bg-blue-50/70 p-2.5 rounded-xl border border-blue-200/60 flex items-center gap-2 text-xs text-[#000066] font-medium">
-                  <Clock className="w-4 h-4 text-blue-700 shrink-0" />
-                  <span>OPD Hours: <strong>{doctor.opdTimings}</strong></span>
-                </div>
+                {doctor.opdTimings && (
+                  <div className="bg-blue-50/70 p-2.5 rounded-xl border border-blue-200/60 flex items-center gap-2 text-xs text-[#000066] font-medium">
+                    <Clock className="w-4 h-4 text-blue-700 shrink-0" />
+                    <span>OPD Hours: <strong>{doctor.opdTimings}</strong></span>
+                  </div>
+                )}
 
                 {/* Action Buttons */}
                 <div className="pt-2 flex flex-wrap items-center gap-3">
