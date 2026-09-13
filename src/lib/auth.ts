@@ -2,7 +2,7 @@ import { cookies } from 'next/headers';
 import { connectToDatabase } from './mongodb';
 import { AdminAuthModel } from './models';
 
-export const AUTH_COOKIE_NAME = 'pacific_hospital_admin_session';
+export const AUTH_COOKIE_NAME = 'oxford_hospital_admin_session';
 
 export interface AdminUser {
   email: string;

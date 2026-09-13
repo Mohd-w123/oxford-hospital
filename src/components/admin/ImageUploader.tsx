@@ -14,7 +14,7 @@ export default function ImageUploader({
   value,
   onChange,
   label = 'Upload Image to Cloudinary',
-  folder = 'pacific-hms'
+  folder = 'oxford-hms'
 }: ImageUploaderProps) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
@@ -92,7 +92,7 @@ export default function ImageUploader({
             {uploading ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin text-teal-400" />
-                <span>Uploading to Cloudinary (pacific-hms)...</span>
+                <span>Uploading to Cloudinary ({folder})...</span>
               </>
             ) : (
               <>

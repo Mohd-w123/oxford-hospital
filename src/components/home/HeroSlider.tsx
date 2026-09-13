@@ -2,7 +2,17 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Calendar, PhoneCall, Stethoscope, ChevronLeft, ChevronRight, ShieldAlert, Sparkles, Award, ArrowRight, HeartPulse, Clock } from 'lucide-react';
+import {
+  Calendar,
+  PhoneCall,
+  ChevronLeft,
+  ChevronRight,
+  Sparkles,
+  ArrowRight,
+  MapPin,
+  ShieldCheck,
+  Stethoscope
+} from 'lucide-react';
 import { HeroSlide, HospitalInfo } from '@/lib/types';
 
 interface HeroSliderProps {
@@ -12,206 +22,318 @@ interface HeroSliderProps {
 
 export default function HeroSlider({ slides, hospital }: HeroSliderProps) {
   const [current, setCurrent] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
-    if (slides.length <= 1) return;
+    if (slides.length <= 1 || isPaused) return;
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
-    }, 6000);
+    }, 5500);
     return () => clearInterval(timer);
-  }, [slides.length]);
+  }, [slides.length, isPaused]);
 
   const slide = slides[current] || slides[0];
 
   return (
-    <div className="relative bg-slate-900 overflow-hidden">
-      {/* Background Image / Slider with subtle overlay */}
-      <div className="relative min-h-[520px] lg:min-h-[580px] flex items-center">
-        {slides.map((s, idx) => (
-          <div
-            key={s.id || idx}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-              idx === current ? 'opacity-100 z-10' : 'opacity-0 z-0'
-            }`}
-          >
-            <img
-              src={s.imageUrl}
-              alt={s.title}
-              className="w-full h-full object-cover object-center"
-            />
-            {/* Rich gradient overlays for crisp readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 to-slate-900/40" />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/50" />
-          </div>
-        ))}
+    <div
+      className="relative bg-slate-950 overflow-hidden"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      {/* Slide Carousel Track */}
+      <div className="relative min-h-[500px] sm:min-h-[560px] lg:min-h-[620px] flex items-center justify-center">
+        {slides.map((s, idx) => {
+          const isActive = idx === current;
+          const isSquare = s.imageUrl.includes('altaf') || s.imageUrl.includes('shekhawat');
 
-        {/* Hero Content Area */}
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 w-full">
-          <div className="max-w-2xl text-white space-y-6">
-            
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/20 border border-teal-400/40 text-teal-300 text-xs sm:text-sm font-semibold backdrop-blur-md animate-in fade-in slide-in-from-bottom-2 duration-300">
-              <Sparkles className="w-4 h-4 text-teal-300" />
-              <span>{slide.badge || 'Multi-Speciality Hospital in Sikar'}</span>
-            </div>
+          return (
+            <div
+              key={s.id || idx}
+              className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out ${
+                isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+              }`}
+            >
+              {/* Background ambient decorative glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-[#03091e] to-slate-950" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
 
-            {/* Title (English & Hindi) */}
-            <div className="space-y-2">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                {slide.title}
-              </h1>
-              {slide.titleHindi && (
-                <h2 className="text-xl sm:text-2xl font-bold text-teal-300/90 leading-snug">
-                  {slide.titleHindi}
-                </h2>
-              )}
-            </div>
+              {/* Slide Content Container */}
+              <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 w-full h-full flex items-center justify-center">
+                {isSquare ? (
+                  /* Split Layout for Square Promotional Flyers */
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full max-w-6xl">
+                    {/* Left/Graphic: Poster Image */}
+                    <div className="lg:col-span-6 flex justify-center">
+                      <Link
+                        href={s.ctaLink || '/appointment'}
+                        className="group relative block rounded-3xl overflow-hidden shadow-2xl border border-blue-900/60 bg-slate-900 transition-transform duration-300 hover:scale-[1.02] max-w-[420px] sm:max-w-[460px] w-full cursor-pointer ring-1 ring-white/10"
+                      >
+                        <img
+                          src={s.imageUrl}
+                          alt={s.title}
+                          className="w-full h-auto object-contain rounded-3xl"
+                        />
+                        <div className="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/10 transition-colors pointer-events-none" />
+                      </Link>
+                    </div>
 
-            {/* Subtitle / Description */}
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-xl">
-              {slide.subtitle}
-            </p>
+                    {/* Right: Companion Quick Consultation Card */}
+                    <div className="lg:col-span-6 text-white space-y-6">
+                      <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-950/80 border border-blue-400/30 text-sky-300 text-xs sm:text-sm font-semibold backdrop-blur-md shadow-sm">
+                        <Sparkles className="w-4 h-4 text-sky-300" />
+                        <span>{s.badge || 'Oxford Specialist Consultation'}</span>
+                      </div>
 
-            {/* Primary Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
-              <Link
-                href="/appointment"
-                className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white font-bold px-6 py-3.5 rounded-xl shadow-xl shadow-teal-600/30 hover:shadow-teal-600/50 transition-all flex items-center gap-2.5 transform hover:-translate-y-0.5"
-              >
-                <Calendar className="w-5 h-5 text-teal-100" />
-                <span>Book Doctor Appointment</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+                      <div className="space-y-2">
+                        <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+                          {s.title}
+                        </h2>
+                        {s.titleHindi && (
+                          <h3 className="text-lg sm:text-xl font-bold text-sky-300">
+                            {s.titleHindi}
+                          </h3>
+                        )}
+                      </div>
 
-              <a
-                href={`tel:${hospital.emergencyPhone}`}
-                className="bg-slate-800/80 hover:bg-slate-800 text-white border border-slate-700 font-semibold px-5 py-3.5 rounded-xl backdrop-blur-md transition flex items-center gap-2"
-              >
-                <PhoneCall className="w-4 h-4 text-red-400 animate-pulse" />
-                <span>24/7 Helpline: {hospital.emergencyPhone}</span>
-              </a>
-            </div>
+                      <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                        {s.subtitle}
+                      </p>
 
-            {/* Trust Highlights */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-800/80 text-xs sm:text-sm text-slate-300">
-              <div className="flex items-center gap-2">
-                <Award className="w-4 h-4 text-teal-400 shrink-0" />
-                <span>SMS Hospital Trained Experts</span>
+                      <div className="p-3.5 rounded-2xl bg-slate-900/90 border border-blue-900/40 flex items-center gap-2 text-xs text-amber-300 font-semibold shadow-inner">
+                        <ShieldCheck className="w-4 h-4 text-sky-400 shrink-0" />
+                        <span>ECHS • RGHS • ESIC • CAPF • MAA Yojana Cashless Treatment</span>
+                      </div>
+
+                      {/* Action CTAs */}
+                      <div className="flex flex-wrap items-center gap-4 pt-2">
+                        <Link
+                          href={s.ctaLink || '/appointment'}
+                          className="bg-gradient-to-r from-[#000066] via-blue-900 to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white font-bold px-6 py-3.5 rounded-2xl shadow-xl shadow-[#000066]/40 transition-all flex items-center gap-2.5 transform hover:-translate-y-0.5 text-sm border border-blue-400/20"
+                        >
+                          <Calendar className="w-4 h-4 text-sky-200" />
+                          <span>{s.ctaText || 'Book Appointment Online'}</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </Link>
+
+                        <a
+                          href={`tel:${hospital.emergencyPhone}`}
+                          className="bg-slate-800/90 hover:bg-slate-800 text-white border border-slate-700 font-bold px-5 py-3.5 rounded-2xl backdrop-blur-md transition flex items-center gap-2 text-sm"
+                        >
+                          <PhoneCall className="w-4 h-4 text-rose-400 animate-pulse" />
+                          <span>24/7 Helpline: {hospital.emergencyPhone}</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  /* Full-Width Landscape Promotional Banner Layout */
+                  <div className="w-full max-w-6xl space-y-4">
+                    <Link
+                      href={s.ctaLink || '/appointment'}
+                      className="group relative block rounded-3xl overflow-hidden shadow-2xl border border-blue-900/60 bg-slate-900 transition-transform duration-300 hover:scale-[1.01] cursor-pointer ring-1 ring-white/10"
+                    >
+                      <img
+                        src={s.imageUrl}
+                        alt={s.title}
+                        className="w-full h-auto object-contain rounded-3xl max-h-[480px]"
+                      />
+                      <div className="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/10 transition-colors pointer-events-none" />
+                    </Link>
+
+                    {/* Quick Info Bar Below Wide Banner */}
+                    <div className="bg-slate-900/95 backdrop-blur-md border border-slate-800 rounded-2xl p-4 flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm shadow-xl">
+                      <div className="flex items-center gap-2 text-slate-300">
+                        <MapPin className="w-4 h-4 text-rose-400 shrink-0" />
+                        <span className="font-semibold">चूरू बाईपास तिराहा, झुंझुनूं (Churu Baipass Tiraha, Jhunjhunu)</span>
+                      </div>
+                      
+                      <div className="flex items-center gap-4 font-bold">
+                        <a href="tel:9460841406" className="text-sky-400 hover:text-sky-300 flex items-center gap-1.5">
+                          <PhoneCall className="w-3.5 h-3.5 text-sky-400" />
+                          <span>9460841406</span>
+                        </a>
+                        <Link
+                          href="/appointment"
+                          className="bg-[#000066] hover:bg-blue-900 text-white px-4 py-2 rounded-xl transition flex items-center gap-1.5 shadow-md"
+                        >
+                          <span>Book Appointment &rarr;</span>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-teal-400 shrink-0" />
-                <span>OPD: 9:00 AM - 8:00 PM</span>
-              </div>
-              <div className="flex items-center gap-2 col-span-2 sm:col-span-1">
-                <HeartPulse className="w-4 h-4 text-teal-400 shrink-0" />
-                <span>24x7 Lab & Pharmacy</span>
-              </div>
             </div>
+          );
+        })}
 
-          </div>
-        </div>
-
-        {/* Slide navigation controls */}
+        {/* Slide Navigation Arrows */}
         {slides.length > 1 && (
-          <div className="absolute right-6 bottom-8 z-30 hidden sm:flex items-center gap-2">
+          <>
             <button
               onClick={() => setCurrent((prev) => (prev - 1 + slides.length) % slides.length)}
-              className="p-2.5 rounded-full bg-slate-900/80 hover:bg-teal-600 text-white border border-slate-700 backdrop-blur-md transition"
+              className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-slate-900/80 hover:bg-[#000066] text-white border border-slate-700/80 backdrop-blur-md transition shadow-xl cursor-pointer"
               aria-label="Previous Slide"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
             <button
               onClick={() => setCurrent((prev) => (prev + 1) % slides.length)}
-              className="p-2.5 rounded-full bg-slate-900/80 hover:bg-teal-600 text-white border border-slate-700 backdrop-blur-md transition"
+              className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-slate-900/80 hover:bg-[#000066] text-white border border-slate-700/80 backdrop-blur-md transition shadow-xl cursor-pointer"
               aria-label="Next Slide"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
+          </>
+        )}
+
+        {/* Slide Dots / Pagination Indicators */}
+        {slides.length > 1 && (
+          <div className="absolute bottom-16 sm:bottom-20 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2.5">
+            {slides.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrent(idx)}
+                className={`transition-all duration-300 rounded-full cursor-pointer ${
+                  idx === current
+                    ? 'w-8 h-2.5 bg-sky-400 shadow-lg shadow-sky-400/50'
+                    : 'w-2.5 h-2.5 bg-slate-600 hover:bg-slate-400'
+                }`}
+                aria-label={`Slide ${idx + 1}`}
+              />
+            ))}
           </div>
         )}
       </div>
 
-      {/* Sparsh Hospital Style Floating Action Cards Strip */}
-      <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 pb-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* Trust & Accreditations Highlights Strip */}
+      <div className="relative z-25 bg-slate-900/90 border-y border-slate-800/80 backdrop-blur-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <div className="flex flex-wrap items-center justify-between gap-y-2 gap-x-6 text-xs text-slate-300">
+            <div className="flex items-center gap-2">
+              <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
+              <span className="font-bold text-white">⭐ 4.9/5 Rating</span>
+              <span className="text-slate-400 hidden sm:inline">• 15,000+ Families Treated</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-sky-400 shrink-0" />
+              <span className="font-semibold text-sky-200">100% Cashless Treatment:</span>
+              <span className="font-bold text-amber-300">ECHS • RGHS • MAA Yojana • ESIC</span>
+            </div>
+            <div className="hidden md:flex items-center gap-2">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-blue-400" />
+              <span className="font-semibold text-slate-200">3 Hospital Centers: Jhunjhunu • Rajgarh • Sultana</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Hospital Quick Action Cards Strip */}
+      <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           
           {/* Card 1: Book Appointment */}
           <Link
             href="/appointment"
-            className="bg-white rounded-2xl p-5 shadow-xl border border-slate-100 hover:border-teal-400 hover:shadow-2xl transition-all transform hover:-translate-y-1 group"
+            className="relative bg-white rounded-3xl p-6 shadow-xl border border-slate-100 hover:border-blue-400 hover:shadow-2xl hover:shadow-[#000066]/10 transition-all duration-300 transform hover:-translate-y-1.5 group overflow-hidden"
           >
-            <div className="w-12 h-12 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center mb-3 group-hover:bg-teal-600 group-hover:text-white transition-colors">
-              <Calendar className="w-6 h-6" />
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#000066] to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="flex items-center justify-between mb-4">
+              <div className="w-13 h-13 rounded-2xl bg-blue-50 text-[#000066] flex items-center justify-center group-hover:bg-[#000066] group-hover:text-white transition-all duration-300 shadow-sm ring-4 ring-blue-50/50">
+                <Calendar className="w-6 h-6" />
+              </div>
+              <span className="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full bg-blue-50 text-[#000066] border border-blue-100 group-hover:bg-blue-100 transition-colors">
+                Instant Slot
+              </span>
             </div>
-            <h3 className="font-bold text-slate-900 text-base group-hover:text-teal-700 transition-colors">
+            <h3 className="font-black text-slate-900 text-lg group-hover:text-[#000066] transition-colors leading-tight">
               Book Appointment
             </h3>
-            <p className="text-xs text-slate-500 mt-1">
-              Select doctor & instant slot confirmation online
+            <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+              Select doctor, branch & get instant SMS/WhatsApp confirmation online
             </p>
-            <span className="inline-flex items-center gap-1 text-xs font-bold text-teal-600 mt-3 group-hover:translate-x-1 transition-transform">
-              Book Now &rarr;
-            </span>
+            <div className="flex items-center gap-1 text-xs font-bold text-[#000066] mt-4 group-hover:gap-2 transition-all">
+              <span>Book Doctor OPD</span>
+              <ArrowRight className="w-4 h-4" />
+            </div>
           </Link>
 
           {/* Card 2: Find a Doctor */}
           <Link
             href="/doctors"
-            className="bg-white rounded-2xl p-5 shadow-xl border border-slate-100 hover:border-teal-400 hover:shadow-2xl transition-all transform hover:-translate-y-1 group"
+            className="relative bg-white rounded-3xl p-6 shadow-xl border border-slate-100 hover:border-sky-400 hover:shadow-2xl hover:shadow-sky-600/10 transition-all duration-300 transform hover:-translate-y-1.5 group overflow-hidden"
           >
-            <div className="w-12 h-12 rounded-xl bg-sky-50 text-sky-700 flex items-center justify-center mb-3 group-hover:bg-sky-600 group-hover:text-white transition-colors">
-              <Stethoscope className="w-6 h-6" />
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-sky-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="flex items-center justify-between mb-4">
+              <div className="w-13 h-13 rounded-2xl bg-sky-50 text-sky-700 flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-all duration-300 shadow-sm ring-4 ring-sky-50/50">
+                <Stethoscope className="w-6 h-6" />
+              </div>
+              <span className="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full bg-sky-50 text-sky-700 border border-sky-100 group-hover:bg-sky-100 transition-colors">
+                Senior Panel
+              </span>
             </div>
-            <h3 className="font-bold text-slate-900 text-base group-hover:text-sky-700 transition-colors">
+            <h3 className="font-black text-slate-900 text-lg group-hover:text-sky-700 transition-colors leading-tight">
               Find Our Doctors
             </h3>
-            <p className="text-xs text-slate-500 mt-1">
-              Dr. Anjuman Sayyad & medical specialists
+            <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+              Physicians, Gynecologists, Surgeons, Dental & Critical care consultants
             </p>
-            <span className="inline-flex items-center gap-1 text-xs font-bold text-sky-600 mt-3 group-hover:translate-x-1 transition-transform">
-              View Profiles &rarr;
-            </span>
+            <div className="flex items-center gap-1 text-xs font-bold text-sky-700 mt-4 group-hover:gap-2 transition-all">
+              <span>View Specialists</span>
+              <ArrowRight className="w-4 h-4" />
+            </div>
           </Link>
 
           {/* Card 3: 24/7 Emergency & ICU */}
           <a
             href={`tel:${hospital.emergencyPhone}`}
-            className="bg-white rounded-2xl p-5 shadow-xl border border-slate-100 hover:border-red-400 hover:shadow-2xl transition-all transform hover:-translate-y-1 group"
+            className="relative bg-white rounded-3xl p-6 shadow-xl border border-slate-100 hover:border-rose-400 hover:shadow-2xl hover:shadow-rose-600/10 transition-all duration-300 transform hover:-translate-y-1.5 group overflow-hidden"
           >
-            <div className="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center mb-3 group-hover:bg-red-600 group-hover:text-white transition-colors">
-              <ShieldAlert className="w-6 h-6" />
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-rose-600 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="flex items-center justify-between mb-4">
+              <div className="w-13 h-13 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center group-hover:bg-rose-600 group-hover:text-white transition-all duration-300 shadow-sm ring-4 ring-rose-50/50">
+                <PhoneCall className="w-6 h-6 animate-pulse" />
+              </div>
+              <span className="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full bg-rose-50 text-rose-600 border border-rose-100 group-hover:bg-rose-100 transition-colors">
+                24×7 Rapid Care
+              </span>
             </div>
-            <h3 className="font-bold text-slate-900 text-base group-hover:text-red-600 transition-colors">
-              24/7 Emergency Care
+            <h3 className="font-black text-slate-900 text-lg group-hover:text-rose-600 transition-colors leading-tight">
+              Emergency & ICU
             </h3>
-            <p className="text-xs text-slate-500 mt-1">
-              Call: {hospital.emergencyPhone} for immediate response
+            <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+              Immediate trauma resuscitation, ICU admission & ambulance hotline
             </p>
-            <span className="inline-flex items-center gap-1 text-xs font-bold text-red-600 mt-3 group-hover:translate-x-1 transition-transform">
-              Emergency Call &rarr;
-            </span>
+            <div className="flex items-center gap-1 text-xs font-bold text-rose-600 mt-4 group-hover:gap-2 transition-all">
+              <span>Call {hospital.emergencyPhone}</span>
+              <ArrowRight className="w-4 h-4" />
+            </div>
           </a>
 
-          {/* Card 4: WhatsApp Consultation */}
+          {/* Card 4: Our Branches */}
           <a
-            href={`https://wa.me/91${hospital.whatsappNumber}?text=${encodeURIComponent('Hello Pacific Care Hospital, I want to inquire about hospital services and doctor appointments.')}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-white rounded-2xl p-5 shadow-xl border border-slate-100 hover:border-emerald-400 hover:shadow-2xl transition-all transform hover:-translate-y-1 group"
+            href="#branches"
+            className="relative bg-white rounded-3xl p-6 shadow-xl border border-slate-100 hover:border-indigo-400 hover:shadow-2xl hover:shadow-indigo-600/10 transition-all duration-300 transform hover:-translate-y-1.5 group overflow-hidden"
           >
-            <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-              <HeartPulse className="w-6 h-6" />
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#000066] to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="flex items-center justify-between mb-4">
+              <div className="w-13 h-13 rounded-2xl bg-indigo-50 text-[#000066] flex items-center justify-center group-hover:bg-[#000066] group-hover:text-white transition-all duration-300 shadow-sm ring-4 ring-indigo-50/50">
+                <MapPin className="w-6 h-6" />
+              </div>
+              <span className="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full bg-indigo-50 text-[#000066] border border-indigo-100 group-hover:bg-indigo-100 transition-colors">
+                3 Branches
+              </span>
             </div>
-            <h3 className="font-bold text-slate-900 text-base group-hover:text-emerald-600 transition-colors">
-              WhatsApp Helpdesk
+            <h3 className="font-black text-slate-900 text-lg group-hover:text-[#000066] transition-colors leading-tight">
+              Hospital Branches
             </h3>
-            <p className="text-xs text-slate-500 mt-1">
-              Direct chat on +91 {hospital.whatsappNumber}
+            <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+              Jhunjhunu (HQ), Rajgarh & Sultana branches with OPD & diagnostics
             </p>
-            <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-600 mt-3 group-hover:translate-x-1 transition-transform">
-              Chat on WhatsApp &rarr;
-            </span>
+            <div className="flex items-center gap-1 text-xs font-bold text-[#000066] mt-4 group-hover:gap-2 transition-all">
+              <span>Locate Nearest Branch</span>
+              <ArrowRight className="w-4 h-4" />
+            </div>
           </a>
 
         </div>

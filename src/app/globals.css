@@ -1,9 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
+@theme {
+  --color-oxford: #000066;
+  --color-oxford-dark: #00004d;
+  --color-oxford-light: #001f99;
+  --color-oxford-subtle: #eff4ff;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #0f172a;
+  --oxford-blue: #000066;
 }
 
 body {
@@ -18,3 +26,4 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
   letter-spacing: -0.02em;
 }
+

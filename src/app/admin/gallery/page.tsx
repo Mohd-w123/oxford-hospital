@@ -243,8 +243,8 @@ export default function AdminGallery() {
                 <ImageUploader
                   value={formData.imageUrl}
                   onChange={(url) => setFormData({ ...formData, imageUrl: url })}
-                  label="Upload Hospital Photo (Cloudinary - pacific-hms) *"
-                  folder="pacific-hms/gallery"
+                  label="Upload Hospital Photo (Cloudinary - oxford-hms) *"
+                  folder="oxford-hms/gallery"
                 />
               </div>
 

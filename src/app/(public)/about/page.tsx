@@ -5,22 +5,54 @@ import { Award, ShieldCheck, HeartPulse, Clock, Sparkles, CheckCircle2, PhoneCal
 
 export default async function AboutPage() {
   const content = await getSiteContent();
-  const { hospital } = content;
+  const { hospital, aboutPage } = content;
+
+  // 100% Dynamic Content with seamless defaults
+  const bannerTitle = aboutPage?.bannerTitle || 'Compassionate Care, Advanced Medicine';
+  const bannerSubtitle =
+    aboutPage?.bannerSubtitle ||
+    `${hospital.name} (${hospital.hindiName}) is committed to elevating healthcare standards through expert clinical leadership and patient-centric services.`;
+  const missionTitle = aboutPage?.missionTitle || 'Our Journey & Healthcare Mission';
+  const storyParagraph1 =
+    aboutPage?.storyParagraph1 ||
+    `Founded with the vision to provide world-class multi-speciality, critical care, surgical, and emergency medical services to families, ${hospital.name} brings together experienced specialists across 13+ clinical disciplines.`;
+  const storyParagraph2 =
+    aboutPage?.storyParagraph2 ||
+    'We specialize in 24×7 Emergency & Trauma Care, Intensive Care (ICU), High Dependency Unit (HDU), Modular Operation Theatres, CT Scan, Color Doppler Sonography, Diagnostic Lab, 24/7 Pharmacy, Ambulance, and cashless empanelments under ECHS, RGHS, MAA Yojana, ESIC, and GIC.';
+  const features =
+    aboutPage?.features && aboutPage.features.length > 0
+      ? aboutPage.features
+      : [
+          '13+ Speciality Medical Panel',
+          '24x7 Emergency, ICU & HDU',
+          'Modern CT & 4D Color Doppler',
+          'Modular Operation Theatres'
+        ];
+  const imageUrl = aboutPage?.imageUrl || '/images/gallery/oxford-reception.jpg';
+  const doctorName = aboutPage?.doctorMessage?.doctorName || 'Dr. Hussain Khan';
+  const designation = aboutPage?.doctorMessage?.designation || '(MBBS, MD Internal Medicine)';
+  const subDesignation =
+    aboutPage?.doctorMessage?.subDesignation ||
+    `वरिष्ठ चिकित्सक (इंटरनल मेडिसिन) एवं मेडिकल टीम नेतृत्व | ${hospital.name}`;
+  const leadershipQuote =
+    aboutPage?.doctorMessage?.message ||
+    `"Our single-minded aim at ${hospital.name} is to deliver top-tier multi-speciality healthcare, prompt trauma resuscitation, and advanced critical care for every patient. With our round-the-clock emergency, ICU, modular surgical suites, diagnostic facilities, and cashless insurance partnerships, we ensure that the people receive the highest standard of ethical medical care."`;
+  const photoUrl = aboutPage?.doctorMessage?.photoUrl || '/images/doctors/doc-hussain.jpg';
 
   return (
     <div className="bg-slate-50 py-12">
       {/* Header Banner */}
-      <div className="bg-slate-900 text-white py-16 mb-12">
+      <div className="bg-gradient-to-r from-[#000066] via-blue-950 to-slate-950 text-white py-16 mb-12 border-b border-blue-900/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-900/60 text-sky-300 text-xs font-bold uppercase tracking-wider border border-blue-400/30 shadow-2xs">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>About Pacific Care Hospital</span>
+            <span>About {hospital.name}</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
-            Compassionate Care, Advanced Medicine
+            {bannerTitle}
           </h1>
           <p className="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto">
-            {hospital.name} ({hospital.hindiName}) is committed to elevating healthcare standards in Sikar, Rajasthan through expert clinical leadership and patient-centric services.
+            {bannerSubtitle}
           </p>
         </div>
       </div>
@@ -31,41 +63,31 @@ export default async function AboutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-6 space-y-6">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-              Our Journey & Healthcare Mission
+              {missionTitle}
             </h2>
             <p className="text-slate-600 leading-relaxed text-sm sm:text-base">
-              Founded with the noble vision to provide world-class maternal, obstetrical, and general medical care to families in Sikar and Shekhawati region, <strong>Pacific Care Hospital</strong> brings together experienced specialists trained at premier institutions like SMS Medical College & Hospital Jaipur.
+              {storyParagraph1}
             </p>
             <p className="text-slate-600 leading-relaxed text-sm sm:text-base">
-              We specialize in <strong>High-Risk Pregnancy management, normal and painless deliveries, infertility counseling, color Doppler sonography, modular laparoscopic surgeries</strong>, and round-the-clock emergency support.
+              {storyParagraph2}
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-              <div className="flex items-center gap-2 text-sm font-semibold text-slate-800 bg-white p-3 rounded-xl border border-slate-200">
-                <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0" />
-                <span>Ex-SMS Hospital Specialists</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm font-semibold text-slate-800 bg-white p-3 rounded-xl border border-slate-200">
-                <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0" />
-                <span>24x7 Emergency & Pharmacy</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm font-semibold text-slate-800 bg-white p-3 rounded-xl border border-slate-200">
-                <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0" />
-                <span>Modern Color Doppler Ultrasound</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm font-semibold text-slate-800 bg-white p-3 rounded-xl border border-slate-200">
-                <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0" />
-                <span>Modular Operation Theatres</span>
-              </div>
+              {features.map((feature, fIdx) => (
+                <div key={fIdx} className="flex items-center gap-2 text-sm font-semibold text-slate-800 bg-white p-3 rounded-xl border border-slate-200">
+                  <CheckCircle2 className="w-4 h-4 text-[#000066] shrink-0" />
+                  <span>{feature}</span>
+                </div>
+              ))}
             </div>
           </div>
 
           <div className="lg:col-span-6">
             <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
               <img
-                src="/images/hospital-building.jpg"
-                alt="Pacific Care Hospital Sikar"
-                className="w-full h-auto object-cover"
+                src={imageUrl}
+                alt={`${hospital.name} About`}
+                className="w-full h-auto object-cover max-h-[440px]"
               />
             </div>
           </div>
@@ -75,39 +97,39 @@ export default async function AboutPage() {
         <div className="bg-white rounded-3xl p-8 sm:p-12 shadow-sm border border-slate-200">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
             <div className="md:col-span-4 flex justify-center">
-              <div className="w-48 h-60 sm:w-56 sm:h-72 rounded-2xl overflow-hidden shadow-xl border-4 border-teal-500/30 bg-slate-100">
+              <div className="w-48 h-60 sm:w-56 sm:h-72 rounded-2xl overflow-hidden shadow-xl border-4 border-blue-400/30 bg-slate-100">
                 <img
-                  src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80"
-                  alt="Dr. Anjuman Sayyad"
-                  className="w-full h-full object-cover"
+                  src={photoUrl}
+                  alt={doctorName}
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
             </div>
 
             <div className="md:col-span-8 space-y-4">
-              <div className="inline-block bg-teal-100 text-teal-800 font-bold px-3 py-1 rounded-full text-xs uppercase">
-                Doctor's Message (चिकित्सक सन्देश)
+              <div className="inline-block bg-blue-100 text-[#000066] font-bold px-3 py-1 rounded-full text-xs uppercase shadow-2xs">
+                Leadership Message (चिकित्सक सन्देश)
               </div>
               <h3 className="text-2xl font-bold text-slate-900">
-                Dr. Anjuman Sayyad <span className="text-slate-500 text-lg font-normal">(MBBS, MS OBG & GYNAE)</span>
+                {doctorName} <span className="text-slate-500 text-lg font-normal">{designation}</span>
               </h3>
-              <p className="text-xs font-bold text-teal-700">
-                स्त्री, प्रसूति एवं निःसंतान रोग विशेषज्ञ | पूर्व चिकित्सक, SMS हॉस्पिटल, जयपुर
+              <p className="text-xs font-bold text-[#000066]">
+                {subDesignation}
               </p>
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed italic">
-                "Our single-minded aim at Pacific Care Hospital is to ensure the safest pregnancy and delivery experience for every mother, coupled with ethical, modern medical care for all illnesses. We believe in transparency, empathy, and providing high quality diagnostics right here in Sikar."
+                {leadershipQuote}
               </p>
               
               <div className="pt-2 flex items-center gap-4">
                 <Link
                   href="/appointment"
-                  className="bg-teal-600 hover:bg-teal-700 text-white font-bold px-5 py-2.5 rounded-xl shadow text-sm transition"
+                  className="bg-gradient-to-r from-[#000066] to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white font-bold px-5 py-2.5 rounded-xl shadow-md text-sm transition"
                 >
-                  Consult Dr. Anjuman Sayyad
+                  Book Consultation
                 </Link>
                 <Link
                   href="/doctors"
-                  className="text-slate-700 hover:text-teal-700 font-semibold text-sm"
+                  className="text-slate-700 hover:text-[#000066] font-semibold text-sm"
                 >
                   View Full Medical Team &rarr;
                 </Link>

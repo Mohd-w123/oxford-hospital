@@ -18,7 +18,9 @@ export async function getSiteContent(): Promise<SiteContent> {
     gallery: record.gallery || [],
     customPages: record.customPages || [],
     navigation: record.navigation || [],
-    specialCampaigns: record.specialCampaigns || []
+    specialCampaigns: record.specialCampaigns || [],
+    branches: record.branches || [],
+    aboutPage: record.aboutPage
   };
 }
 
@@ -35,7 +37,9 @@ export async function saveSiteContent(content: SiteContent): Promise<void> {
       gallery: content.gallery,
       customPages: content.customPages,
       navigation: content.navigation,
-      specialCampaigns: content.specialCampaigns
+      specialCampaigns: content.specialCampaigns,
+      branches: content.branches || [],
+      aboutPage: content.aboutPage
     },
     { upsert: true, returnDocument: 'after' }
   );

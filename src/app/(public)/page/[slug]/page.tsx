@@ -20,11 +20,11 @@ export default async function DynamicCustomPage({
   return (
     <div className="bg-slate-50 py-12">
       {/* Header */}
-      <div className="bg-slate-900 text-white py-16 mb-12">
+      <div className="bg-gradient-to-r from-[#000066] via-blue-950 to-slate-950 text-white py-16 mb-12 border-b border-blue-900/30">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-xs text-teal-400 hover:text-teal-300 font-semibold mb-2"
+            className="inline-flex items-center gap-1.5 text-xs text-sky-400 hover:text-sky-300 font-semibold mb-2"
           >
             <ChevronLeft className="w-4 h-4" />
             <span>Back to Home</span>
@@ -45,7 +45,7 @@ export default async function DynamicCustomPage({
           
           {/* Render formatted Rich Text HTML */}
           <div
-            className="prose prose-slate max-w-none prose-headings:text-slate-900 prose-headings:font-bold prose-a:text-teal-600 prose-blockquote:border-l-4 prose-blockquote:border-teal-500 prose-blockquote:bg-teal-50/70 prose-blockquote:p-4 prose-blockquote:rounded-r-xl prose-img:rounded-2xl"
+            className="prose prose-slate max-w-none prose-headings:text-slate-900 prose-headings:font-bold prose-a:text-[#000066] prose-blockquote:border-l-4 prose-blockquote:border-[#000066] prose-blockquote:bg-blue-50/70 prose-blockquote:p-4 prose-blockquote:rounded-r-xl prose-img:rounded-2xl"
             dangerouslySetInnerHTML={{ __html: page.content }}
           />
 
@@ -55,7 +55,7 @@ export default async function DynamicCustomPage({
             </p>
             <Link
               href="/appointment"
-              className="bg-teal-600 hover:bg-teal-700 text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl shadow transition"
+              className="bg-gradient-to-r from-[#000066] to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl shadow-md transition"
             >
               Book Doctor Consultation &rarr;
             </Link>

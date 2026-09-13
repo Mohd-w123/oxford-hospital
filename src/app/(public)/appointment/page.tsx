@@ -17,9 +17,9 @@ export default async function AppointmentPage({
   return (
     <div className="bg-slate-50 py-12">
       {/* Header Banner */}
-      <div className="bg-slate-900 text-white py-14 mb-12">
+      <div className="bg-gradient-to-r from-[#000066] via-blue-950 to-slate-950 text-white py-14 mb-12 border-b border-blue-900/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-900/60 text-sky-300 text-xs font-bold uppercase tracking-wider border border-blue-400/30 shadow-2xs">
             <Calendar className="w-3.5 h-3.5" />
             <span>Online OPD Registration</span>
           </div>
@@ -58,12 +58,12 @@ export default async function AppointmentPage({
             
             {/* Timings Card */}
             <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-2xl bg-blue-50 text-[#000066] flex items-center justify-center">
                 <Clock className="w-6 h-6" />
               </div>
               <div>
                 <h3 className="font-bold text-slate-900 text-lg">OPD Consultation Hours</h3>
-                <p className="text-sm font-bold text-teal-700 mt-0.5">{hospital.opdTimingsHindi}</p>
+                <p className="text-sm font-bold text-[#000066] mt-0.5">{hospital.opdTimingsHindi}</p>
                 <p className="text-xs text-slate-500">{hospital.opdTimings}</p>
               </div>
               <p className="text-xs text-slate-600 border-t border-slate-100 pt-3">
@@ -94,7 +94,7 @@ export default async function AppointmentPage({
               <div className="space-y-3 text-xs sm:text-sm">
                 <div>
                   <p className="text-slate-400 text-xs">Reception Phone:</p>
-                  <a href={`tel:${hospital.phoneNumbers[0]}`} className="font-bold text-teal-300 hover:underline">
+                  <a href={`tel:${hospital.phoneNumbers[0]}`} className="font-bold text-sky-300 hover:underline">
                     {hospital.phoneNumbers[0]}
                   </a>
                 </div>

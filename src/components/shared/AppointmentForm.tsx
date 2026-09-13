@@ -84,7 +84,7 @@ export default function AppointmentForm({
   const getWhatsAppBookingUrl = () => {
     const selectedDoc = doctors.find((d) => d.id === formData.doctorId);
     const docName = selectedDoc ? selectedDoc.name : 'Consultant Doctor';
-    const text = `*New Appointment Request - Pacific Care Hospital*\n\n` +
+    const text = `*New Appointment Request - Oxford Hospital*\n\n` +
       `*Patient Name:* ${formData.patientName}\n` +
       `*Phone:* ${formData.patientPhone}\n` +
       `*Doctor:* ${docName}\n` +
@@ -98,8 +98,8 @@ export default function AppointmentForm({
 
   if (submitted) {
     return (
-      <div className="bg-white rounded-2xl p-8 text-center border border-teal-100 shadow-xl space-y-5 animate-in fade-in zoom-in-95 duration-200">
-        <div className="w-16 h-16 bg-teal-50 text-teal-600 rounded-full flex items-center justify-center mx-auto border border-teal-100 shadow-inner">
+      <div className="bg-white rounded-2xl p-8 text-center border border-blue-100 shadow-xl space-y-5 animate-in fade-in zoom-in-95 duration-200">
+        <div className="w-16 h-16 bg-blue-50 text-[#000066] rounded-full flex items-center justify-center mx-auto border border-blue-100 shadow-inner">
           <CheckCircle2 className="w-10 h-10" />
         </div>
         <div>
@@ -109,7 +109,7 @@ export default function AppointmentForm({
           </p>
         </div>
 
-        <div className="bg-teal-50/70 p-4 rounded-xl text-left border border-teal-200/60 text-xs sm:text-sm space-y-1.5 text-slate-800">
+        <div className="bg-blue-50/70 p-4 rounded-xl text-left border border-blue-200/60 text-xs sm:text-sm space-y-1.5 text-slate-800">
           <p><strong>Patient:</strong> {formData.patientName}</p>
           <p><strong>Date & Time:</strong> {formData.preferredDate} at {formData.preferredTime}</p>
           <p><strong>Department:</strong> {formData.department}</p>
@@ -160,7 +160,7 @@ export default function AppointmentForm({
               placeholder="e.g. Sunita Devi / Ramesh"
               value={formData.patientName}
               onChange={(e) => setFormData({ ...formData, patientName: e.target.value })}
-              className="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
+              className="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#000066] focus:border-transparent transition"
             />
           </div>
         </div>
@@ -177,7 +177,7 @@ export default function AppointmentForm({
               placeholder="e.g. 9571177525"
               value={formData.patientPhone}
               onChange={(e) => setFormData({ ...formData, patientPhone: e.target.value })}
-              className="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
+              className="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#000066] focus:border-transparent transition"
             />
           </div>
         </div>
@@ -194,7 +194,7 @@ export default function AppointmentForm({
             placeholder="e.g. 28"
             value={formData.patientAge}
             onChange={(e) => setFormData({ ...formData, patientAge: e.target.value })}
-            className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
+            className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#000066] focus:border-transparent transition"
           />
         </div>
 
@@ -205,7 +205,7 @@ export default function AppointmentForm({
           <select
             value={formData.patientGender}
             onChange={(e) => setFormData({ ...formData, patientGender: e.target.value as any })}
-            className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
+            className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#000066] focus:border-transparent transition"
           >
             <option value="Female">Female (महिला)</option>
             <option value="Male">Male (पुरुष)</option>
@@ -222,7 +222,7 @@ export default function AppointmentForm({
             placeholder="name@email.com"
             value={formData.patientEmail}
             onChange={(e) => setFormData({ ...formData, patientEmail: e.target.value })}
-            className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
+            className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#000066] focus:border-transparent transition"
           />
         </div>
       </div>
@@ -239,7 +239,7 @@ export default function AppointmentForm({
               required
               value={formData.department}
               onChange={(e) => setFormData({ ...formData, department: e.target.value })}
-              className="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
+              className="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#000066] focus:border-transparent transition"
             >
               <option value="Obstetrics & Gynaecology (Obs & Gynae)">Obstetrics & Gynaecology (स्त्री एवं प्रसूति रोग)</option>
               <option value="High Risk Pregnancy Care">High Risk Pregnancy Care (उच्च जोखिम गर्भावस्था)</option>
@@ -259,7 +259,7 @@ export default function AppointmentForm({
           <select
             value={formData.doctorId}
             onChange={(e) => setFormData({ ...formData, doctorId: e.target.value })}
-            className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
+            className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#000066] focus:border-transparent transition"
           >
             {doctors.length > 0 ? (
               doctors.map((doc) => (
@@ -292,7 +292,7 @@ export default function AppointmentForm({
               min={new Date().toISOString().split('T')[0]}
               value={formData.preferredDate}
               onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
-              className="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
+              className="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#000066] focus:border-transparent transition"
             />
           </div>
         </div>
@@ -306,7 +306,7 @@ export default function AppointmentForm({
             <select
               value={formData.preferredTime}
               onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
-              className="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
+              className="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#000066] focus:border-transparent transition"
             >
               {timeSlots.map((slot) => (
                 <option key={slot} value={slot}>
@@ -328,7 +328,7 @@ export default function AppointmentForm({
           placeholder="Brief description of symptoms, previous checkups or questions..."
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-          className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition resize-none"
+          className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#000066] focus:border-transparent transition resize-none"
         />
       </div>
 
@@ -336,15 +336,15 @@ export default function AppointmentForm({
       <button
         type="submit"
         disabled={loading}
-        className="w-full py-3.5 bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white font-bold rounded-xl shadow-lg shadow-teal-700/25 hover:shadow-xl transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 disabled:opacity-70 cursor-pointer"
+        className="w-full py-3.5 bg-gradient-to-r from-[#000066] via-blue-900 to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white font-bold rounded-xl shadow-lg shadow-[#000066]/25 hover:shadow-xl transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 disabled:opacity-70 cursor-pointer border border-blue-400/20"
       >
         {loading ? (
           <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
         ) : (
           <>
-            <Calendar className="w-5 h-5 text-teal-200" />
+            <Calendar className="w-5 h-5 text-sky-200" />
             <span>Confirm & Book Appointment (अपॉइंटमेंट बुक करें)</span>
-            <ArrowRight className="w-4 h-4 text-teal-200" />
+            <ArrowRight className="w-4 h-4 text-sky-200" />
           </>
         )}
       </button>

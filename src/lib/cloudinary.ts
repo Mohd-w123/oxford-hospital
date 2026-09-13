@@ -7,7 +7,7 @@ cloudinary.config({
   secure: true
 });
 
-export const CLOUDINARY_FOLDER = process.env.CLOUDINARY_FOLDER || 'pacific-hms';
+export const CLOUDINARY_FOLDER = process.env.CLOUDINARY_FOLDER || 'oxford-hms';
 
 export async function uploadToCloudinary(
   fileBuffer: Buffer,

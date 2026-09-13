@@ -83,6 +83,7 @@ export interface HeroSlide {
   ctaText: string;
   ctaLink: string;
   imageUrl: string;
+  isBannerOnly?: boolean;
 }
 
 export interface SubNavItem {
@@ -100,6 +101,44 @@ export interface NavItem {
   subItems?: SubNavItem[];
 }
 
+export interface Branch {
+  id: string;
+  name: string;
+  hindiName: string;
+  badge: string;
+  tagline?: string;
+  doctorName?: string;
+  doctorDegree?: string;
+  doctorRole?: string;
+  address: string;
+  addressHindi: string;
+  phone: string;
+  whatsapp?: string;
+  timings: string;
+  timingsHindi: string;
+  services: string[];
+  schemes: string[];
+  googleMapsUrl: string;
+  isMainBranch?: boolean;
+}
+
+export interface AboutPageContent {
+  bannerTitle: string;
+  bannerSubtitle: string;
+  missionTitle: string;
+  storyParagraph1: string;
+  storyParagraph2: string;
+  features: string[];
+  imageUrl: string;
+  doctorMessage: {
+    doctorName: string;
+    designation: string;
+    subDesignation: string;
+    message: string;
+    photoUrl: string;
+  };
+}
+
 export interface SiteContent {
   hospital: HospitalInfo;
   heroSlides: HeroSlide[];
@@ -108,6 +147,8 @@ export interface SiteContent {
   gallery: GalleryItem[];
   customPages: CustomPage[];
   navigation?: NavItem[];
+  branches?: Branch[];
+  aboutPage?: AboutPageContent;
   specialCampaigns: {
     title: string;
     titleHindi: string;

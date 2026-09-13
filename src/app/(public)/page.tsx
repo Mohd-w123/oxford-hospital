@@ -1,6 +1,7 @@
 import React from 'react';
 import { getSiteContent } from '@/lib/content-store';
 import HeroSlider from '@/components/home/HeroSlider';
+import OurBranches from '@/components/home/OurBranches';
 import CampaignBanner from '@/components/home/CampaignBanner';
 import SpecialitiesGrid from '@/components/home/SpecialitiesGrid';
 import DoctorSpotlight from '@/components/home/DoctorSpotlight';
@@ -16,10 +17,13 @@ export default async function HomePage() {
   return (
     <div className="space-y-0">
       
-      {/* 1. Hero Slider & Sparsh Style Quick Action Cards */}
+      {/* 1. Hero Slider & Quick Action Cards */}
       <HeroSlider slides={content.heroSlides} hospital={content.hospital} />
 
-      {/* 2. Special Campaign Banner (9th & 10th Free Consultation) */}
+      {/* 2. Our Branches Section (3 Cards from Hospital Banners) */}
+      <OurBranches branches={content.branches} />
+
+      {/* 3. Official Hospital Announcement Banner */}
       <CampaignBanner hospital={content.hospital} />
 
       {/* 3. Medical Specialties & Clinical Departments */}
@@ -35,50 +39,53 @@ export default async function HomePage() {
       <WhyChooseUs hospital={content.hospital} />
 
       {/* 7. Dedicated Appointment Section on Homepage */}
-      <section className="py-20 bg-slate-900 text-white relative overflow-hidden" id="book-appointment">
+      <section className="py-20 sm:py-24 bg-gradient-to-b from-[#00004d] via-[#000066] to-[#020b1e] text-white relative overflow-hidden" id="book-appointment">
+        {/* Ambient background glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-blue-500/15 rounded-full blur-3xl pointer-events-none" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             {/* Left Column: Booking Info */}
             <div className="lg:col-span-5 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 text-xs font-bold uppercase tracking-wider border border-teal-500/30">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-950/80 text-sky-300 text-xs font-bold uppercase tracking-wider border border-blue-400/30 shadow-2xs">
                 <Calendar className="w-3.5 h-3.5" />
-                <span>Fast & Easy Consultation</span>
+                <span>Fast & Easy OPD Consultation</span>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
-                Book Your Doctor Appointment in Sikar
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                Book Your Doctor Consultation
               </h2>
 
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                Consult with <strong>डॉ. अन्जुमन सैय्यद</strong> (MBBS, MS OBG & GYNAE) or our senior general physicians. Fill the form to get instant appointment confirmation.
+              <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
+                Consult with our senior specialists across our <strong>Jhunjhunu, Rajgarh & Sultana</strong> centers. Fill out the quick form below for prompt confirmation via phone/WhatsApp.
               </p>
 
               <div className="space-y-4 pt-2">
-                <div className="flex items-center gap-3 bg-slate-800/80 p-4 rounded-xl border border-slate-700">
-                  <Clock className="w-6 h-6 text-teal-400 shrink-0" />
+                <div className="flex items-center gap-4 bg-slate-900/90 p-4.5 rounded-2xl border border-blue-900/50 shadow-md">
+                  <Clock className="w-6 h-6 text-sky-400 shrink-0" />
                   <div>
-                    <p className="text-xs text-teal-300 font-semibold uppercase">Daily OPD Hours</p>
-                    <p className="text-sm font-bold text-white">{content.hospital.opdTimingsHindi}</p>
-                    <p className="text-xs text-slate-400">{content.hospital.opdTimings}</p>
+                    <p className="text-xs text-sky-300 font-bold uppercase tracking-wider">Daily OPD Hours</p>
+                    <p className="text-sm font-extrabold text-white">{content.hospital.opdTimingsHindi || 'प्रातः 9:00 से सायं 8:00 बजे तक'}</p>
+                    <p className="text-xs text-slate-300">{content.hospital.opdTimings || 'Monday - Sunday: 9:00 AM - 8:00 PM'}</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 bg-slate-800/80 p-4 rounded-xl border border-slate-700">
-                  <PhoneCall className="w-6 h-6 text-teal-400 shrink-0" />
+                <div className="flex items-center gap-4 bg-slate-900/90 p-4.5 rounded-2xl border border-blue-900/50 shadow-md">
+                  <PhoneCall className="w-6 h-6 text-sky-400 shrink-0" />
                   <div>
-                    <p className="text-xs text-teal-300 font-semibold uppercase">Direct Helpdesk</p>
-                    <p className="text-sm font-bold text-white">01572 299062 / 9571177525</p>
-                    <p className="text-xs text-slate-400">Available all 7 days for inquiries</p>
+                    <p className="text-xs text-sky-300 font-bold uppercase tracking-wider">Direct Hospital Helpline</p>
+                    <p className="text-sm font-extrabold text-white">{content.hospital.phoneNumbers.join(' / ')}</p>
+                    <p className="text-xs text-slate-300">24×7 Trauma Helpline: {content.hospital.emergencyPhone}</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 bg-slate-800/80 p-4 rounded-xl border border-slate-700">
-                  <MapPin className="w-6 h-6 text-teal-400 shrink-0" />
+                <div className="flex items-center gap-4 bg-slate-900/90 p-4.5 rounded-2xl border border-blue-900/50 shadow-md">
+                  <MapPin className="w-6 h-6 text-sky-400 shrink-0" />
                   <div>
-                    <p className="text-xs text-teal-300 font-semibold uppercase">Hospital Location</p>
-                    <p className="text-sm font-bold text-white">{content.hospital.address}</p>
-                    <p className="text-xs text-slate-400">{content.hospital.city}, {content.hospital.state} - {content.hospital.pincode}</p>
+                    <p className="text-xs text-sky-300 font-bold uppercase tracking-wider">Headquarters & Network</p>
+                    <p className="text-sm font-extrabold text-white">{content.hospital.address}</p>
+                    <p className="text-xs text-slate-300">{content.hospital.city}, {content.hospital.state} - {content.hospital.pincode}</p>
                   </div>
                 </div>
               </div>
@@ -87,8 +94,13 @@ export default async function HomePage() {
             {/* Right Column: Interactive Appointment Form Card */}
             <div className="lg:col-span-7 bg-white text-slate-900 rounded-3xl p-6 sm:p-10 shadow-2xl border border-slate-100">
               <div className="mb-6 pb-4 border-b border-slate-100">
-                <h3 className="text-xl font-bold text-slate-900">Patient Appointment Request</h3>
-                <p className="text-xs text-slate-500 mt-1">Please enter patient details for instant OPD scheduling</p>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-xl sm:text-2xl font-black text-slate-900">Patient Appointment Request</h3>
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full bg-blue-50 text-[#000066]">
+                    Instant Online OPD
+                  </span>
+                </div>
+                <p className="text-xs text-slate-500 mt-1">Please enter patient details for instant OPD scheduling & SMS confirmation</p>
               </div>
 
               <AppointmentForm
@@ -103,16 +115,16 @@ export default async function HomePage() {
       </section>
 
       {/* 8. Google Maps & Location Directions Strip */}
-      <section className="bg-slate-100 py-12 border-t border-slate-200">
+      <section className="bg-slate-100 py-14 border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="space-y-1">
-              <span className="text-xs font-bold text-teal-700 uppercase tracking-wider">How to reach us</span>
-              <h4 className="text-lg font-bold text-slate-900">
-                Pacific Care Hospital, Madani Mahal, Fatehpur Road, Ward No. 1, Sikar - 332001
+          <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="space-y-1.5 text-center md:text-left">
+              <span className="text-xs font-bold text-[#000066] uppercase tracking-wider">Hospital Location & Map Directions</span>
+              <h4 className="text-lg sm:text-xl font-black text-slate-900">
+                {content.hospital.name}, {content.hospital.address}, {content.hospital.city}
               </h4>
-              <p className="text-xs text-slate-500">
-                Centrally located on Fatehpur Road with spacious patient parking, stretcher lifts, and 24-hour pharmacy.
+              <p className="text-xs sm:text-sm text-slate-500">
+                Prime location at Churu Baipass Tiraha, Jhunjhunu with spacious parking, stretcher ramp, and 24-hour pharmacy & lab.
               </p>
             </div>
             <div className="flex items-center gap-3 shrink-0">
@@ -120,14 +132,14 @@ export default async function HomePage() {
                 href={content.hospital.googleMapUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-slate-900 hover:bg-teal-700 text-white font-bold px-5 py-3 rounded-xl shadow transition text-sm flex items-center gap-2"
+                className="bg-gradient-to-r from-[#000066] to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white font-extrabold px-6 py-3.5 rounded-2xl shadow-lg transition text-xs sm:text-sm flex items-center gap-2"
               >
-                <MapPin className="w-4 h-4 text-teal-300" />
+                <MapPin className="w-4 h-4 text-sky-300" />
                 <span>Open Google Maps</span>
               </a>
               <Link
                 href="/contact"
-                className="bg-teal-50 text-teal-800 hover:bg-teal-100 font-bold px-5 py-3 rounded-xl transition text-sm"
+                className="bg-blue-50 text-[#000066] hover:bg-blue-100 font-bold px-5 py-3.5 rounded-2xl transition text-xs sm:text-sm border border-blue-200"
               >
                 Contact Details
               </Link>

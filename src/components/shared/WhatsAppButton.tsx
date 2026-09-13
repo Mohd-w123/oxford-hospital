@@ -9,7 +9,7 @@ interface WhatsAppButtonProps {
 
 export default function WhatsAppButton({ whatsappNumber }: WhatsAppButtonProps) {
   const url = `https://wa.me/91${whatsappNumber}?text=${encodeURIComponent(
-    'Hello Pacific Care Hospital, I want to book an appointment / ask about hospital services.'
+    'Hello Oxford Hospital, I want to book an appointment / ask about hospital services.'
   )}`;
 
   return (

@@ -10,9 +10,9 @@ export default async function DoctorsPage() {
   return (
     <div className="bg-slate-50 py-12">
       {/* Header Banner */}
-      <div className="bg-slate-900 text-white py-16 mb-12">
+      <div className="bg-gradient-to-r from-[#000066] via-blue-950 to-slate-950 text-white py-16 mb-12 border-b border-blue-900/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-900/60 text-sky-300 text-xs font-bold uppercase tracking-wider border border-blue-400/30 shadow-2xs">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Experienced Medical Faculty</span>
           </div>
@@ -20,7 +20,7 @@ export default async function DoctorsPage() {
             Our Specialist Doctors in Sikar
           </h1>
           <p className="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto">
-            Experienced consultants with background at SMS Hospital Jaipur, providing dedicated OPD consultations from 9:00 AM to 8:00 PM.
+            Experienced consultants across 13+ specialities, providing dedicated OPD consultations from 9:00 AM to 8:00 PM and 24x7 emergency cover.
           </p>
         </div>
       </div>
@@ -32,7 +32,7 @@ export default async function DoctorsPage() {
           {doctors.map((doctor) => (
             <div
               key={doctor.id}
-              className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col sm:flex-row gap-6 items-start"
+              className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:border-blue-400 hover:shadow-xl transition-all duration-300 flex flex-col sm:flex-row gap-6 items-start"
             >
               {/* Doctor Photo */}
               <div className="relative w-full sm:w-48 h-64 rounded-2xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200">
@@ -41,9 +41,9 @@ export default async function DoctorsPage() {
                   alt={doctor.name}
                   className="w-full h-full object-cover object-top"
                 />
-                {doctor.id === 'doc-anjuman-sayyad' && (
-                  <div className="absolute top-2 left-2 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">
-                    Ex-SMS Hospital Jaipur
+                {doctor.featured && (
+                  <div className="absolute top-2 left-2 bg-[#000066] text-white text-[10px] font-bold px-2.5 py-0.5 rounded shadow">
+                    Senior Consultant
                   </div>
                 )}
               </div>
@@ -54,10 +54,10 @@ export default async function DoctorsPage() {
                   <div className="flex items-center gap-2">
                     <h3 className="text-xl font-bold text-slate-900">{doctor.name}</h3>
                     {doctor.nameHindi && (
-                      <span className="text-sm font-bold text-teal-700">({doctor.nameHindi})</span>
+                      <span className="text-sm font-bold text-[#000066]">({doctor.nameHindi})</span>
                     )}
                   </div>
-                  <p className="text-xs sm:text-sm font-bold text-teal-600 mt-0.5">
+                  <p className="text-xs sm:text-sm font-bold text-blue-700 mt-0.5">
                     {doctor.degrees}
                   </p>
                   <p className="text-xs font-semibold text-slate-600">
@@ -84,8 +84,8 @@ export default async function DoctorsPage() {
                 </div>
 
                 {/* Timings */}
-                <div className="bg-teal-50/70 p-2.5 rounded-xl border border-teal-200/60 flex items-center gap-2 text-xs text-teal-900 font-medium">
-                  <Clock className="w-4 h-4 text-teal-700 shrink-0" />
+                <div className="bg-blue-50/70 p-2.5 rounded-xl border border-blue-200/60 flex items-center gap-2 text-xs text-[#000066] font-medium">
+                  <Clock className="w-4 h-4 text-blue-700 shrink-0" />
                   <span>OPD Hours: <strong>{doctor.opdTimings}</strong></span>
                 </div>
 
@@ -93,9 +93,9 @@ export default async function DoctorsPage() {
                 <div className="pt-2 flex flex-wrap items-center gap-3">
                   <Link
                     href={`/appointment?doctorId=${doctor.id}`}
-                    className="flex-1 bg-teal-600 hover:bg-teal-700 text-white font-bold py-2.5 px-4 rounded-xl shadow transition text-xs sm:text-sm text-center flex items-center justify-center gap-1.5"
+                    className="flex-1 bg-gradient-to-r from-[#000066] to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white font-bold py-2.5 px-4 rounded-xl shadow-md transition text-xs sm:text-sm text-center flex items-center justify-center gap-1.5"
                   >
-                    <Calendar className="w-4 h-4" />
+                    <Calendar className="w-4 h-4 text-sky-200" />
                     <span>Book Appointment</span>
                   </Link>
 
@@ -120,7 +120,7 @@ export default async function DoctorsPage() {
           <div className="space-y-2 text-center md:text-left">
             <h3 className="text-2xl font-bold">Have an urgent health question or emergency?</h3>
             <p className="text-sm text-slate-300">
-              Our 24x7 emergency medical officer is on duty around the clock. Walk in anytime at Madani Mahal, Fatehpur Road Sikar.
+              Our 24x7 emergency medical team is on duty around the clock. Walk in anytime at {hospital.address}, {hospital.city}.
             </p>
           </div>
           <div className="flex items-center gap-4 shrink-0">

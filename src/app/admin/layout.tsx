@@ -17,7 +17,9 @@ import {
   ShieldCheck,
   LogOut,
   KeyRound,
-  UserCheck
+  UserCheck,
+  Sparkles,
+  MapPin
 } from 'lucide-react';
 
 export default function AdminLayout({
@@ -86,6 +88,8 @@ export default function AdminLayout({
 
   const navigation = [
     { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
+    { name: 'Hero Slider', href: '/admin/slider', icon: Sparkles },
+    { name: 'Hospital Branches', href: '/admin/branches', icon: MapPin },
     { name: 'Appointments & Inquiries', href: '/admin/appointments', icon: Calendar },
     { name: 'Doctors Panel', href: '/admin/doctors', icon: Users },
     { name: 'Services & Specialties', href: '/admin/services', icon: Stethoscope },
@@ -102,11 +106,11 @@ export default function AdminLayout({
       <div className="md:hidden bg-slate-950 border-b border-slate-800 px-4 py-3 flex items-center justify-between z-30 sticky top-0">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-teal-600 flex items-center justify-center font-black text-white text-sm">
-            P
+            O
           </div>
           <div>
-            <h1 className="font-bold text-sm text-white leading-tight">Pacific Care Admin</h1>
-            <p className="text-[10px] text-teal-400">{adminUser?.email || 'admin@gmail.com'}</p>
+            <h1 className="font-bold text-sm text-white leading-tight">Oxford Hospital Admin</h1>
+            <p className="text-[10px] text-teal-400">{adminUser?.email || 'admin@oxfordhospital.com'}</p>
           </div>
         </div>
 
@@ -138,10 +142,10 @@ export default function AdminLayout({
           {/* Logo & Hospital Header */}
           <div className="flex items-center gap-3 border-b border-slate-800 pb-5">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center shadow-lg shadow-teal-500/20 text-white font-black text-lg">
-              P
+              O
             </div>
             <div>
-              <h2 className="font-extrabold text-white text-base leading-tight">Pacific Care</h2>
+              <h2 className="font-extrabold text-white text-base leading-tight">Oxford Hospital</h2>
               <p className="text-xs text-teal-400 font-semibold">Admin CMS Portal</p>
             </div>
           </div>

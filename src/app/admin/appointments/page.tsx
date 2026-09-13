@@ -216,7 +216,7 @@ export default function AdminAppointments() {
                 {/* WhatsApp Button */}
                 <a
                   href={`https://wa.me/91${apt.patientPhone}?text=${encodeURIComponent(
-                    `Hello ${apt.patientName}, Greetings from Pacific Care Hospital Sikar. Your appointment request for ${apt.department} on ${apt.preferredDate} at ${apt.preferredTime} has been received.`
+                    `Hello ${apt.patientName}, Greetings from Oxford Hospital Sikar. Your appointment request for ${apt.department} on ${apt.preferredDate} at ${apt.preferredTime} has been received.`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"

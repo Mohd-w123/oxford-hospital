@@ -57,14 +57,14 @@ export default function AdminLoginPage() {
             <div className="bg-white p-3 rounded-2xl inline-block shadow-md border border-slate-200">
               <img
                 src="/images/logo.png"
-                alt="Pacific Care Hospital"
+                alt="Oxford Hospital"
                 className="h-10 w-auto object-contain mx-auto"
               />
             </div>
 
             <div>
               <h1 className="text-2xl font-extrabold text-white tracking-tight">Admin CMS Portal</h1>
-              <p className="text-xs text-slate-400 mt-1">Pacific Care Hospital Content Management System</p>
+              <p className="text-xs text-slate-400 mt-1">Oxford Hospital Content Management System</p>
             </div>
           </div>
 
@@ -87,7 +87,8 @@ export default function AdminLoginPage() {
                 <input
                   type="email"
                   required
-                  autoFocus
+                  autoComplete="username"
+                  suppressHydrationWarning
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your admin email address"
@@ -105,6 +106,8 @@ export default function AdminLoginPage() {
                 <input
                   type={showPassword ? 'text' : 'password'}
                   required
+                  autoComplete="current-password"
+                  suppressHydrationWarning
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your password"

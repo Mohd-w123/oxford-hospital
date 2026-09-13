@@ -13,7 +13,9 @@ const SiteContentSchema = new Schema(
     gallery: { type: Array, default: [] },
     customPages: { type: Array, default: [] },
     navigation: { type: Array, default: [] },
-    specialCampaigns: { type: Array, default: [] }
+    specialCampaigns: { type: Array, default: [] },
+    branches: { type: Array, default: [] },
+    aboutPage: { type: Schema.Types.Mixed }
   },
   {
     timestamps: true,
@@ -60,7 +62,7 @@ const AdminAuthSchema = new Schema(
   {
     email: { type: String, required: true, unique: true, lowercase: true, trim: true },
     password: { type: String, required: true },
-    name: { type: String, default: 'Pacific Care Administrator' },
+    name: { type: String, default: 'Oxford Hospital Administrator' },
     role: { type: String, default: 'Super Admin' },
     lastUpdated: { type: String, default: () => new Date().toISOString() }
   },

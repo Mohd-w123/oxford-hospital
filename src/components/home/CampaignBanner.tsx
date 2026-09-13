@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Sparkles, Calendar, CheckCircle2, PhoneCall, ArrowRight, HeartHandshake } from 'lucide-react';
+import { Calendar, PhoneCall, MapPin, Sparkles, MessageCircle, ArrowRight } from 'lucide-react';
 import { HospitalInfo } from '@/lib/types';
 
 interface CampaignBannerProps {
@@ -10,124 +10,109 @@ interface CampaignBannerProps {
 }
 
 export default function CampaignBanner({ hospital }: CampaignBannerProps) {
-  const benefits = [
-    'हमारा उद्देश्य: नॉर्मल डिलीवरी और सुरक्षित मातृत्व',
-    'निःसंतानता (Infertility) एवं बार-बार अबॉर्शन का सफल उपचार',
-    'माहवारी की अनियमितता एवं सफेद पानी (ल्यूकोरिया) का इलाज',
-    'बच्चेदानी व अण्डेदानी में गाँठ का अत्याधुनिक ऑपरेशन',
-    'गर्भावस्था में रंगीन सोनोग्राफी, NTNB Scan (11-13 सप्ताह) व Color Doppler',
-    'कैंसर की समय पर जाँच व रोकथाम'
+  const specialties = [
+    'Physician',
+    'Dental',
+    'Eye Care',
+    'Physiotherapy',
+    'Gynae & Obstetric',
+    'General Surgery'
   ];
 
   return (
-    <section className="py-12 bg-gradient-to-br from-amber-500 via-rose-600 to-red-600 text-white relative overflow-hidden shadow-2xl">
-      {/* Decorative background shapes */}
-      <div className="absolute top-0 right-0 -mt-10 -mr-10 w-80 h-80 bg-white/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-80 h-80 bg-black/10 rounded-full blur-3xl pointer-events-none" />
+    <section className="py-8 sm:py-12 bg-slate-900 text-white relative overflow-hidden">
+      {/* Decorative gradient glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="bg-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-10 border border-white/20 shadow-2xl">
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
+        
+        {/* Banner Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-950/80 text-sky-300 text-xs font-bold uppercase tracking-wider border border-blue-400/30 shadow-2xs">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Official Hospital Announcement</span>
+            </div>
+            <span className="hidden sm:inline-block text-xs text-slate-400 font-medium">
+              चूरू बाईपास तिराहा, झुंझुनूं
+            </span>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <a
+              href="tel:9460841406"
+              className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-sky-400 hover:text-sky-300 transition"
+            >
+              <PhoneCall className="w-3.5 h-3.5 text-sky-400 animate-pulse" />
+              <span>हेल्पलाइन: 9460841406</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Graphical Hospital Banner Card */}
+        <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-slate-700 bg-white group">
+          <Link href="/appointment" className="block relative cursor-pointer" title="Click to book an appointment">
+            <img
+              src="/images/oxford-banner.jpg"
+              alt="Oxford Multispeciality Hospital - बेहतर इलाज की शुरुआत, सही जगह से।"
+              className="w-full h-auto object-cover sm:object-contain transition-transform duration-500 group-hover:scale-[1.01]"
+            />
+            <div className="absolute inset-0 bg-slate-950/0 group-hover:bg-slate-950/10 transition-colors pointer-events-none" />
+          </Link>
+
+          {/* Bottom Interactive Action Strip */}
+          <div className="bg-slate-950/95 border-t border-slate-800 px-4 sm:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
             
-            {/* Left Column: Offer Details */}
-            <div className="lg:col-span-8 space-y-6">
-              
-              <div className="inline-flex items-center gap-2 bg-yellow-400 text-slate-950 font-black px-4 py-1.5 rounded-full text-xs sm:text-sm uppercase tracking-wider shadow-lg animate-bounce">
-                <Sparkles className="w-4 h-4 fill-slate-950" />
-                <span>विशेष मासिक स्वास्थ्य सेवा शिविर</span>
+            {/* Specialties & Location */}
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 text-xs">
+              <div className="flex items-center gap-1 text-slate-400 font-semibold mr-1">
+                <MapPin className="w-3.5 h-3.5 text-rose-400 shrink-0" />
+                <span>चूरू बाईपास तिराहा, झुंझुनूं</span>
               </div>
-
-              <div className="space-y-2">
-                <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
-                  हर माह की <span className="text-yellow-300 underline decoration-yellow-400 font-black">9 और 10 तारीख</span> को गर्भवती महिलाओं की निःशुल्क परामर्श व जांच!
-                </h2>
-                <p className="text-sm sm:text-base text-rose-100 font-medium">
-                  Get Expert Advice & Tips To Manage High Risk Pregnancy Under <strong>डॉ. अन्जुमन सैय्यद</strong> (MBBS, MS OBG & GYNAE, पूर्व चिकित्सक, SMS हॉस्पिटल जयपुर).
-                </p>
-              </div>
-
-              {/* Service list bullets from poster */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                {benefits.map((benefit, i) => (
-                  <div key={i} className="flex items-start gap-2 bg-black/15 p-2.5 rounded-xl text-xs sm:text-sm">
-                    <CheckCircle2 className="w-4 h-4 text-yellow-300 shrink-0 mt-0.5" />
-                    <span className="font-medium text-white">{benefit}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* CTAs */}
-              <div className="flex flex-wrap items-center gap-4 pt-3">
-                <Link
-                  href="/appointment"
-                  className="bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold px-6 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center gap-2 text-sm sm:text-base"
+              <div className="h-4 w-px bg-slate-800 hidden sm:block" />
+              {specialties.map((spec) => (
+                <span
+                  key={spec}
+                  className="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-medium text-[11px] sm:text-xs"
                 >
-                  <Calendar className="w-5 h-5 text-slate-950" />
-                  <span>शिविर में नाम दर्ज करवाएं (Book Free Slot)</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-
-                <a
-                  href={`tel:${hospital.phoneNumbers[0]}`}
-                  className="bg-white/20 hover:bg-white/30 text-white font-semibold px-5 py-3.5 rounded-xl border border-white/30 transition flex items-center gap-2 text-sm sm:text-base"
-                >
-                  <PhoneCall className="w-4 h-4 text-yellow-300" />
-                  <span>फ़ोन करें: {hospital.phoneNumbers[0]}</span>
-                </a>
-              </div>
-
+                  {spec}
+                </span>
+              ))}
             </div>
 
-            {/* Right Column: Doctor Spotlight Card */}
-            <div className="lg:col-span-4 bg-white text-slate-900 rounded-2xl p-6 shadow-2xl border-4 border-yellow-400 relative">
-              <div className="absolute -top-3 right-4 bg-red-600 text-white text-[11px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider shadow">
-                महिला डॉक्टर द्वारा
-              </div>
+            {/* CTAs */}
+            <div className="flex items-center gap-3 shrink-0 w-full sm:w-auto justify-center">
+              <Link
+                href="/appointment"
+                className="bg-gradient-to-r from-[#000066] to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white font-bold text-xs sm:text-sm px-5 py-2.5 rounded-xl shadow-lg transition-all flex items-center gap-2 border border-blue-400/20"
+              >
+                <Calendar className="w-4 h-4 text-sky-200" />
+                <span>Book Appointment</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
 
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-teal-500 shadow-md shrink-0 bg-slate-100">
-                  <img
-                    src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=300&q=80"
-                    alt="Dr. Anjuman Sayyad"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div>
-                  <h3 className="font-extrabold text-lg text-slate-950 leading-tight">डॉ. अन्जुमन सैय्यद</h3>
-                  <p className="text-xs font-bold text-red-600">MBBS, MS (OBG & GYNAE)</p>
-                  <p className="text-[11px] text-slate-600 font-medium">स्त्री, प्रसूति एवं निःसंतान रोग विशेषज्ञ</p>
-                </div>
-              </div>
+              <a
+                href="tel:9460841406"
+                className="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl transition flex items-center gap-2"
+              >
+                <PhoneCall className="w-4 h-4 text-sky-400" />
+                <span>Call: 9460841406</span>
+              </a>
 
-              <div className="space-y-2 text-xs text-slate-700 border-t border-slate-100 pt-3">
-                <p className="flex items-center gap-1.5 font-semibold text-teal-700">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-teal-600" />
-                  पूर्व चिकित्सक, एस. एम. एस. हॉस्पिटल, जयपुर
-                </p>
-                <p className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-teal-600" />
-                  रंगीन सोनोग्राफी (Color Doppler & NTNB Scan)
-                </p>
-                <p className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-teal-600" />
-                  ओपीडी समय: <strong>सुबह 9:00 से शाम 8:00 बजे</strong>
-                </p>
-              </div>
-
-              <div className="mt-4 pt-3 border-t border-slate-100">
-                <Link
-                  href="/doctors"
-                  className="w-full bg-slate-900 hover:bg-teal-700 text-white text-xs font-bold py-2.5 rounded-xl transition text-center block"
-                >
-                  डॉक्टर प्रोफाइल और अपॉइंटमेंट देखें
-                </Link>
-              </div>
+              <a
+                href="https://wa.me/919460841406"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm p-2.5 rounded-xl transition hidden sm:flex items-center justify-center"
+                title="Chat on WhatsApp"
+              >
+                <MessageCircle className="w-4 h-4" />
+              </a>
             </div>
 
           </div>
-
         </div>
+
       </div>
     </section>
   );

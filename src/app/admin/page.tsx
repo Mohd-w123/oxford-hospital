@@ -15,7 +15,9 @@ import {
   ExternalLink,
   Plus,
   Phone,
-  MessageCircle
+  MessageCircle,
+  Sparkles,
+  MapPin
 } from 'lucide-react';
 import { SiteContent, Appointment } from '@/lib/types';
 
@@ -168,6 +170,22 @@ export default function AdminDashboard() {
         <h3 className="font-bold text-base text-white">Quick Content Actions</h3>
         <div className="flex flex-wrap items-center gap-3">
           <Link
+            href="/admin/slider"
+            className="bg-slate-900 hover:bg-slate-800 text-teal-300 border border-teal-500/40 text-xs font-bold px-4 py-2.5 rounded-xl flex items-center gap-2 transition"
+          >
+            <Sparkles className="w-4 h-4 text-teal-400" />
+            <span>Manage Hero Slider ({content.heroSlides?.length || 0} Slides)</span>
+          </Link>
+
+          <Link
+            href="/admin/branches"
+            className="bg-slate-900 hover:bg-slate-800 text-emerald-300 border border-emerald-500/40 text-xs font-bold px-4 py-2.5 rounded-xl flex items-center gap-2 transition"
+          >
+            <MapPin className="w-4 h-4 text-emerald-400" />
+            <span>Manage Branches ({content.branches?.length || 0} Branches)</span>
+          </Link>
+
+          <Link
             href="/admin/doctors"
             className="bg-slate-900 hover:bg-slate-800 text-teal-300 border border-slate-700 text-xs font-bold px-4 py-2.5 rounded-xl flex items-center gap-2 transition"
           >
@@ -306,7 +324,7 @@ export default function AdminDashboard() {
                           </button>
                         )}
                         <a
-                          href={`https://wa.me/91${apt.patientPhone}?text=${encodeURIComponent(`Hello ${apt.patientName}, regarding your appointment at Pacific Care Hospital on ${apt.preferredDate} at ${apt.preferredTime}...`)}`}
+                          href={`https://wa.me/91${apt.patientPhone}?text=${encodeURIComponent(`Hello ${apt.patientName}, regarding your appointment at Oxford Hospital on ${apt.preferredDate} at ${apt.preferredTime}...`)}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="p-1.5 bg-emerald-950 hover:bg-emerald-900 text-emerald-400 border border-emerald-800 rounded-lg"

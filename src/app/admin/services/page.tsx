@@ -288,8 +288,8 @@ export default function AdminServices() {
                 <ImageUploader
                   value={formData.imageUrl}
                   onChange={(url) => setFormData({ ...formData, imageUrl: url })}
-                  label="Service Featured Image (Cloudinary - pacific-hms)"
-                  folder="pacific-hms/services"
+                  label="Service Featured Image (Cloudinary - oxford-hms)"
+                  folder="oxford-hms/services"
                 />
               </div>
 

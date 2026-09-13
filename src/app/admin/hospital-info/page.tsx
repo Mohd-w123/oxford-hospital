@@ -197,7 +197,63 @@ export default function AdminHospitalInfo() {
 
       <form onSubmit={handleSave} className="space-y-6">
         
-        {/* 1. Header & Footer Logos */}
+        {/* 1. Hospital Identity & Header Branding */}
+        <div className="bg-slate-950 p-6 rounded-3xl border border-slate-800 space-y-4">
+          <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
+            <Building2 className="w-5 h-5 text-teal-400" />
+            <h3 className="font-bold text-base text-white">Hospital Identity & Header Branding</h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <label className="block text-xs font-semibold text-slate-300 mb-1">
+                Hospital Name (English)
+              </label>
+              <input
+                type="text"
+                required
+                value={hospital.name || ''}
+                onChange={(e) => setHospital({ ...hospital, name: e.target.value })}
+                placeholder="Oxford Hospital"
+                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+              />
+              <span className="text-[11px] text-slate-500 mt-1 block">
+                Displayed in the main header (first word in dark, remainder in teal)
+              </span>
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-300 mb-1">
+                Hospital Name (Hindi)
+              </label>
+              <input
+                type="text"
+                value={hospital.hindiName || ''}
+                onChange={(e) => setHospital({ ...hospital, hindiName: e.target.value })}
+                placeholder="ऑक्सफोर्ड हॉस्पिटल"
+                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-300 mb-1">
+                Header Tagline / Subtitle
+              </label>
+              <input
+                type="text"
+                value={hospital.tagline || ''}
+                onChange={(e) => setHospital({ ...hospital, tagline: e.target.value })}
+                placeholder="Multi-Speciality & Critical Care"
+                className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+              />
+              <span className="text-[11px] text-slate-500 mt-1 block">
+                Displayed directly below the hospital name in the header
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* 2. Header & Footer Logos */}
         <div className="bg-slate-950 p-6 rounded-3xl border border-slate-800 space-y-4">
           <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
             <ImageIcon className="w-5 h-5 text-teal-400" />
@@ -210,8 +266,8 @@ export default function AdminHospitalInfo() {
               <ImageUploader
                 value={hospital.logoUrl || ''}
                 onChange={(url) => setHospital({ ...hospital, logoUrl: url })}
-                label="Header Logo (Cloudinary - pacific-hms/branding)"
-                folder="pacific-hms/branding"
+                label="Header Logo (Cloudinary - oxford-hms/branding)"
+                folder="oxford-hms/branding"
               />
               <div className="pt-2">
                 <span className="text-[11px] text-slate-400 block mb-1">Live Header Preview:</span>
@@ -230,8 +286,8 @@ export default function AdminHospitalInfo() {
               <ImageUploader
                 value={hospital.footerLogoUrl || hospital.logoUrl || ''}
                 onChange={(url) => setHospital({ ...hospital, footerLogoUrl: url })}
-                label="Footer Logo (Cloudinary - pacific-hms/branding)"
-                folder="pacific-hms/branding"
+                label="Footer Logo (Cloudinary - oxford-hms/branding)"
+                folder="oxford-hms/branding"
               />
               <div className="pt-2">
                 <span className="text-[11px] text-slate-400 block mb-1">Live Footer Preview:</span>
@@ -442,7 +498,7 @@ export default function AdminHospitalInfo() {
                 rows={3}
                 value={hospital.footerAboutText || ''}
                 onChange={(e) => setHospital({ ...hospital, footerAboutText: e.target.value })}
-                placeholder="Pacific Care Hospital is committed to providing world-class, compassionate healthcare in Sikar..."
+                placeholder="Oxford Hospital is committed to providing world-class, compassionate healthcare in Sikar..."
                 className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-teal-500 focus:outline-none resize-none"
               />
             </div>
@@ -453,7 +509,7 @@ export default function AdminHospitalInfo() {
                 type="text"
                 value={hospital.footerCopyrightText || ''}
                 onChange={(e) => setHospital({ ...hospital, footerCopyrightText: e.target.value })}
-                placeholder="All Rights Reserved. Pacific Care Hospital, Sikar."
+                placeholder="All Rights Reserved. Oxford Hospital, Sikar."
                 className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
               />
             </div>
@@ -534,7 +590,7 @@ export default function AdminHospitalInfo() {
                 type="email"
                 value={hospital.email}
                 onChange={(e) => setHospital({ ...hospital, email: e.target.value })}
-                placeholder="Pacifichospital2021@gmail.com"
+                placeholder="oxfordhospitalsikar@gmail.com"
                 className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
               />
             </div>

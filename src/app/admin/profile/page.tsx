@@ -138,7 +138,7 @@ export default function AdminProfileSecurity() {
                   required
                   value={newName}
                   onChange={(e) => setNewName(e.target.value)}
-                  placeholder="Pacific Care Administrator"
+                  placeholder="Oxford Hospital Administrator"
                   className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
                 />
               </div>

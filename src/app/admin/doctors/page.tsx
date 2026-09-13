@@ -232,7 +232,7 @@ export default function AdminDoctors() {
           <div className="bg-slate-950 border border-slate-800 rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-6 shadow-2xl my-8">
             <div className="flex items-center justify-between border-b border-slate-800 pb-4">
               <h3 className="text-xl font-bold text-white">
-                {editingDoctor ? 'Edit Doctor Profile' : 'Add New Doctor to Pacific Care'}
+                {editingDoctor ? 'Edit Doctor Profile' : 'Add New Doctor to Oxford Hospital'}
               </h3>
               <button
                 onClick={() => setIsModalOpen(false)}
@@ -251,7 +251,7 @@ export default function AdminDoctors() {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="e.g. Dr. Anjuman Sayyad"
+                    placeholder="e.g. Dr. Hussain Khan"
                     className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
                   />
                 </div>
@@ -262,7 +262,7 @@ export default function AdminDoctors() {
                     type="text"
                     value={formData.nameHindi || ''}
                     onChange={(e) => setFormData({ ...formData, nameHindi: e.target.value })}
-                    placeholder="e.g. डॉ. अन्जुमन सैय्यद"
+                    placeholder="e.g. डॉ. हुसैन खान"
                     className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
                   />
                 </div>
@@ -274,7 +274,7 @@ export default function AdminDoctors() {
                     required
                     value={formData.degrees}
                     onChange={(e) => setFormData({ ...formData, degrees: e.target.value })}
-                    placeholder="e.g. MBBS, MS (OBG & GYNAE)"
+                    placeholder="e.g. MBBS, MD (Internal Medicine)"
                     className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
                   />
                 </div>
@@ -286,7 +286,7 @@ export default function AdminDoctors() {
                     required
                     value={formData.designation}
                     onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
-                    placeholder="e.g. Senior Consultant - Obstetrics & Gynaecology"
+                    placeholder="e.g. Senior Consultant - General Medicine"
                     className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
                   />
                 </div>
@@ -298,7 +298,7 @@ export default function AdminDoctors() {
                     required
                     value={formData.experience}
                     onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                    placeholder="e.g. 10+ Years (Ex-Doctor SMS Hospital Jaipur)"
+                    placeholder="e.g. 12+ Years Experience"
                     className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
                   />
                 </div>
@@ -310,7 +310,7 @@ export default function AdminDoctors() {
                     required
                     value={formData.opdTimings}
                     onChange={(e) => setFormData({ ...formData, opdTimings: e.target.value })}
-                    placeholder="e.g. सुबह 9:00 AM - शाम 8:00 PM"
+                    placeholder="e.g. सुबह 10:00 AM - शाम 8:00 PM"
                     className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
                   />
                 </div>
@@ -320,8 +320,8 @@ export default function AdminDoctors() {
                 <ImageUploader
                   value={formData.photoUrl}
                   onChange={(url) => setFormData({ ...formData, photoUrl: url })}
-                  label="Doctor Photo (Upload to Cloudinary - pacific-hms)"
-                  folder="pacific-hms/doctors"
+                  label="Doctor Photo (Upload to Cloudinary - oxford-hms)"
+                  folder="oxford-hms/doctors"
                 />
               </div>
 

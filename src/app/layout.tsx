@@ -11,27 +11,28 @@ export async function generateMetadata(): Promise<Metadata> {
     const content = await getSiteContent();
     return {
       title: `${content.hospital.name} (${content.hospital.hindiName}) | Multi-Speciality Hospital in Sikar`,
-      description: `Best hospital in Sikar for Obstetrics & Gynaecology (Dr. Anjuman Sayyad, Ex-SMS Hospital Jaipur), High Risk Pregnancy, Normal Delivery, General Medicine, Sonography & 24x7 Emergency Care.`,
+      description: `Oxford Hospital Sikar - 24×7 Emergency, ICU, HDU, Modular Operation Theatre, Diagnostic Lab, CT/X-Ray/Ultrasound, Pharmacy, Ambulance, Cashless ECHS/RGHS & 13+ Speciality Doctor Panel.`,
       keywords: [
-        'Pacific Care Hospital Sikar',
-        'Dr Anjuman Sayyad Sikar',
-        'Gynaecologist in Sikar',
-        'Normal delivery hospital Sikar',
-        'Pregnancy doctor Fatehpur Road Sikar',
+        'Oxford Hospital Sikar',
+        'Oxford Hospital Fatehpur Road',
         'Best hospital in Sikar Rajasthan',
-        'High risk pregnancy care',
-        'पेसिफ़िक केयर हॉस्पिटल सीकर'
+        '24x7 Emergency Hospital Sikar',
+        'ICU Critical Care Sikar',
+        'RGHS Hospital Sikar',
+        'ECHS Empanelled Hospital Sikar',
+        'Cashless Hospital Sikar',
+        'ऑक्सफोर्ड हॉस्पिटल सीकर'
       ],
       openGraph: {
-        title: `${content.hospital.name} - Multi-Speciality Hospital in Sikar`,
-        description: `Comprehensive healthcare by Dr. Anjuman Sayyad and team. OPD: 9 AM - 8 PM. 24x7 Emergency.`,
-        images: ['/images/hospital-building.jpg']
+        title: `${content.hospital.name} - 24×7 Multi-Speciality Hospital in Sikar`,
+        description: `24x7 Emergency, ICU, HDU, Modular OT, Cashless Insurance (ECHS/RGHS) & Senior Specialist Doctor Panel.`,
+        images: ['/images/gallery/oxford-reception.jpg']
       }
     };
   } catch (error) {
     return {
-      title: 'Pacific Care Hospital | Sikar Rajasthan',
-      description: 'Advanced Healthcare with Compassion & Excellence in Sikar.'
+      title: 'Oxford Hospital | Sikar Rajasthan',
+      description: '24×7 Multi-Speciality & Critical Care Hospital with Excellence in Sikar.'
     };
   }
 }
@@ -53,7 +54,7 @@ export default async function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="antialiased bg-white text-slate-900 font-sans flex flex-col min-h-screen selection:bg-teal-500 selection:text-white">
+      <body className="antialiased bg-white text-slate-900 font-sans flex flex-col min-h-screen selection:bg-[#000066] selection:text-white">
         {children}
       </body>
     </html>

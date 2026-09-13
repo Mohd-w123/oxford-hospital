@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://codewithwazid:Khankhan1234@cluster0.vzvw2so.mongodb.net/pacific-hms?retryWrites=true&w=majority&appName=Cluster0';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://codewithwazid:Khankhan1234@cluster0.vzvw2so.mongodb.net/oxford-hms?retryWrites=true&w=majority&appName=Cluster0';
 
 if (!MONGODB_URI) {
   throw new Error('Please define the MONGODB_URI environment variable');
@@ -27,11 +27,11 @@ export async function connectToDatabase() {
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
-      dbName: 'pacific-hms'
+      dbName: 'oxford-hms'
     };
 
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongooseInstance) => {
-      console.log('✅ Connected to MongoDB Atlas (pacific-hms)');
+      console.log('✅ Connected to MongoDB Atlas (oxford-hms)');
       return mongooseInstance;
     }).catch((err) => {
       console.error('❌ MongoDB connection error:', err);
