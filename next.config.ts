@@ -1,12 +1,13 @@
 import type { NextConfig } from "next";
 
+const isVercel = Boolean(process.env.VERCEL);
+
 const nextConfig: NextConfig = {
-  output: "standalone",
+  ...(isVercel ? {} : { output: "standalone" }),
   experimental: {
     workerThreads: false,
     cpus: 1,
   },
-  /* config options here */
 };
 
 export default nextConfig;
