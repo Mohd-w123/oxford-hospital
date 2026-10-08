@@ -293,7 +293,7 @@ export default function AdminPages() {
 
   return (
     <div className="space-y-6">
-      
+
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
@@ -334,11 +334,10 @@ export default function AdminPages() {
       <div className="flex flex-wrap items-center gap-2.5 border-b border-slate-800 pb-3">
         <button
           onClick={() => setActiveTab('about')}
-          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition cursor-pointer ${
-            activeTab === 'about'
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition cursor-pointer ${activeTab === 'about'
               ? 'bg-gradient-to-r from-[#000066] to-blue-700 text-white shadow-md'
               : 'bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800'
-          }`}
+            }`}
         >
           <Building2 className="w-4 h-4" />
           <span>About Us Page (Direct Dynamic CMS)</span>
@@ -346,11 +345,10 @@ export default function AdminPages() {
 
         <button
           onClick={() => setActiveTab('core')}
-          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition cursor-pointer ${
-            activeTab === 'core'
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition cursor-pointer ${activeTab === 'core'
               ? 'bg-gradient-to-r from-[#000066] to-blue-700 text-white shadow-md'
               : 'bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800'
-          }`}
+            }`}
         >
           <Layers className="w-4 h-4" />
           <span>All Website Core Pages ({corePages.length})</span>
@@ -358,11 +356,10 @@ export default function AdminPages() {
 
         <button
           onClick={() => setActiveTab('custom')}
-          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition cursor-pointer ${
-            activeTab === 'custom'
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition cursor-pointer ${activeTab === 'custom'
               ? 'bg-gradient-to-r from-[#000066] to-blue-700 text-white shadow-md'
               : 'bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800'
-          }`}
+            }`}
         >
           <FileText className="w-4 h-4" />
           <span>Custom Dynamic Pages ({pages.length})</span>
@@ -387,7 +384,7 @@ export default function AdminPages() {
       {/* TAB 1: 100% Dynamic About Us Page Editor */}
       {activeTab === 'about' && (
         <form onSubmit={handleSaveAboutPage} className="space-y-6">
-          
+
           {/* Section 1: Header Banner */}
           <div className="bg-slate-950 p-6 rounded-3xl border border-slate-800 space-y-4 shadow-xl">
             <div className="flex items-center justify-between border-b border-slate-800 pb-3">
@@ -853,7 +850,7 @@ export default function AdminPages() {
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
           <div className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-y-auto p-6 sm:p-8 space-y-6 shadow-2xl">
-            
+
             <div className="flex items-center justify-between border-b border-slate-800 pb-4">
               <div>
                 <h2 className="text-xl font-bold text-white">
