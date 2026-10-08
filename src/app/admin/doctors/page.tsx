@@ -34,9 +34,15 @@ export default function AdminDoctors() {
   const fetchDoctors = async () => {
     try {
       setLoading(true);
-      const res = await fetch('/api/content');
+      const res = await fetch(`/api/doctors?t=${Date.now()}`, { cache: 'no-store' });
       const data = await res.json();
-      setDoctors(data.doctors || []);
+      if (Array.isArray(data.doctors)) {
+        setDoctors(data.doctors);
+      } else {
+        const fallbackRes = await fetch(`/api/content?t=${Date.now()}`, { cache: 'no-store' });
+        const fallbackData = await fallbackRes.json();
+        setDoctors(fallbackData.doctors || []);
+      }
     } catch (e) {
       setError('Failed to load doctors');
     } finally {

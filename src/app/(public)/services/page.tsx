@@ -14,6 +14,9 @@ import {
   ArrowRight
 } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function ServicesPage() {
   const content = await getSiteContent();
   const { services, hospital } = content;

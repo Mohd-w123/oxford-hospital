@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { getSiteContent, updateSiteContent } from '@/lib/content-store';
 import { ServiceItem } from '@/lib/types';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function POST(request: Request) {
   try {
@@ -12,6 +16,11 @@ export async function POST(request: Request) {
     };
     content.services.push(service);
     await updateSiteContent(content);
+
+    revalidatePath('/', 'layout');
+    revalidatePath('/');
+    revalidatePath('/services');
+
     return NextResponse.json({ success: true, service }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: 'Failed to add service' }, { status: 500 });
@@ -28,6 +37,11 @@ export async function PUT(request: Request) {
     }
     content.services[index] = updatedService;
     await updateSiteContent(content);
+
+    revalidatePath('/', 'layout');
+    revalidatePath('/');
+    revalidatePath('/services');
+
     return NextResponse.json({ success: true, service: updatedService });
   } catch (error) {
     return NextResponse.json({ error: 'Failed to update service' }, { status: 500 });
@@ -42,6 +56,11 @@ export async function DELETE(request: Request) {
     const content = await getSiteContent();
     content.services = content.services.filter((s) => s.id !== id);
     await updateSiteContent(content);
+
+    revalidatePath('/', 'layout');
+    revalidatePath('/');
+    revalidatePath('/services');
+
     return NextResponse.json({ success: true, message: 'Service deleted' });
   } catch (error) {
     return NextResponse.json({ error: 'Failed to delete service' }, { status: 500 });

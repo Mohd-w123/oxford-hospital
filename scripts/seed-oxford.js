@@ -437,32 +437,6 @@ const siteContent = {
       featured: true
     },
     {
-      id: 'doc-ophthalmology',
-      name: 'Dr. Rajesh K. Agarwal',
-      nameHindi: 'डॉ. राजेश के. अग्रवाल',
-      designation: 'Senior Consultant - Ophthalmology (Eye Specialist)',
-      degrees: 'MBBS, MS (Ophthalmology)',
-      specialties: [
-        'Micro-Incision Phaco Cataract Surgery',
-        'Glaucoma Screening & Medical Management',
-        'Diabetic Retinopathy & Macular Evaluation',
-        'Refractive Errors, LASIK Counseling & Dry Eye',
-        'Pterygium & Corneal Surface Disorders'
-      ],
-      specialtiesHindi: [
-        'नेत्र रोग विशेषज्ञ (आई स्पेशलिस्ट)',
-        'फेको विधि द्वारा मोतियाबिंद का बिना टांके का ऑपरेशन',
-        'काला पानी (ग्लूकोमा) एवं रेटिना जांच',
-        'आंखों का नंबर, चश्मा व ड्राई आई उपचार'
-      ],
-      experience: '14+ Years Experience',
-      opdTimings: '11:00 AM - 3:00 PM (Mon - Sat)',
-      photoUrl: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=80',
-      bio: 'Dr. Rajesh K. Agarwal provides advanced eye microsurgery, stitchless cataract removal with premium intraocular lens implantation, and preventive ophthalmology.',
-      availableDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      featured: false
-    },
-    {
       id: 'doc-urologist',
       name: 'Dr. Arvind Singhal',
       nameHindi: 'डॉ. अरविंद सिंघल',

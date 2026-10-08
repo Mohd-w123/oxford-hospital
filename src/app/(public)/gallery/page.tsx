@@ -3,6 +3,9 @@ import { getSiteContent } from '@/lib/content-store';
 import FacilitiesTour from '@/components/home/FacilitiesTour';
 import { Sparkles, Image as ImageIcon } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function GalleryPage() {
   const content = await getSiteContent();
   const { gallery, hospital } = content;

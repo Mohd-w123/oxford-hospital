@@ -4,6 +4,9 @@ import Link from 'next/link';
 import { Building2, Sparkles, CheckCircle2, ShieldCheck, HeartPulse, ArrowRight } from 'lucide-react';
 import FacilitiesTour from '@/components/home/FacilitiesTour';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function FacilitiesPage() {
   const content = await getSiteContent();
   const { gallery, hospital } = content;

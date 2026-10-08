@@ -10,7 +10,11 @@ interface DoctorSpotlightProps {
 }
 
 export default function DoctorSpotlight({ doctors }: DoctorSpotlightProps) {
-  const primaryDoc = doctors.find((d) => d.id === 'doc-anjuman-sayyad') || doctors[0];
+  if (!doctors || doctors.length === 0) {
+    return null;
+  }
+
+  const primaryDoc = doctors.find((d) => d.featured) || doctors[0];
   const otherDocs = doctors.filter((d) => d.id !== primaryDoc?.id);
 
   return (
@@ -31,25 +35,40 @@ export default function DoctorSpotlight({ doctors }: DoctorSpotlightProps) {
           </p>
         </div>
 
-        {/* Primary Doctor Featured Spotlight (Dr. Anjuman Sayyad) */}
+        {/* Primary Doctor Featured Spotlight */}
         {primaryDoc && (
           <div className="bg-gradient-to-br from-[#000066] via-blue-950 to-slate-950 rounded-3xl overflow-hidden shadow-2xl border border-blue-800/50 text-white mb-16">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-6 sm:p-10 lg:p-12">
               
               {/* Doctor Photo Column */}
               <div className="lg:col-span-4 flex flex-col items-center">
-                <div className="relative w-64 h-80 sm:w-72 sm:h-96 rounded-2xl overflow-hidden shadow-2xl border-4 border-blue-400/40 bg-slate-800">
-                  <img
-                    src={primaryDoc.photoUrl}
-                    alt={primaryDoc.name}
-                    className="w-full h-full object-cover object-top"
-                  />
-                  <div className="absolute top-3 left-3 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
-                    Ex-SMS Hospital Jaipur
-                  </div>
-                  <div className="absolute bottom-3 left-3 right-3 bg-slate-950/80 backdrop-blur-md p-2 rounded-xl text-center border border-white/10">
-                    <p className="text-xs text-sky-300 font-semibold">{primaryDoc.experience}</p>
-                  </div>
+                <div className="relative w-64 h-80 sm:w-72 sm:h-96 rounded-2xl overflow-hidden shadow-2xl border-4 border-blue-400/40 bg-slate-800 flex items-center justify-center">
+                  {primaryDoc.photoUrl ? (
+                    <img
+                      src={primaryDoc.photoUrl}
+                      alt={primaryDoc.name}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  ) : (
+                    <div className="flex flex-col items-center justify-center text-slate-400 p-4 text-center">
+                      <User className="w-20 h-20 text-slate-400 mb-2" />
+                      <span className="text-xs font-semibold text-slate-300">Oxford Hospital</span>
+                    </div>
+                  )}
+                  {primaryDoc.featured ? (
+                    <div className="absolute top-3 left-3 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
+                      Featured Specialist
+                    </div>
+                  ) : (
+                    <div className="absolute top-3 left-3 bg-blue-700 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
+                      Senior Consultant
+                    </div>
+                  )}
+                  {primaryDoc.experience && (
+                    <div className="absolute bottom-3 left-3 right-3 bg-slate-950/80 backdrop-blur-md p-2 rounded-xl text-center border border-white/10">
+                      <p className="text-xs text-sky-300 font-semibold">{primaryDoc.experience}</p>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -72,9 +91,6 @@ export default function DoctorSpotlight({ doctors }: DoctorSpotlightProps) {
                       {[primaryDoc.degrees, primaryDoc.designation].filter(Boolean).join(' • ')}
                     </p>
                   )}
-                  <p className="text-xs sm:text-sm text-slate-300 mt-1">
-                    स्त्री, प्रसूति एवं निःसंतान रोग विशेषज्ञ, पूर्व चिकित्सक, एस. एम. एस. हॉस्पिटल, जयपुर
-                  </p>
                 </div>
 
                 {primaryDoc.bio && (

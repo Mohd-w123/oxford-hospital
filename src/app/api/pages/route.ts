@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { getSiteContent, updateSiteContent } from '@/lib/content-store';
 import { CustomPage } from '@/lib/types';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function POST(request: Request) {
   try {
@@ -13,6 +17,10 @@ export async function POST(request: Request) {
     };
     content.customPages.push(page);
     await updateSiteContent(content);
+
+    revalidatePath('/', 'layout');
+    revalidatePath(`/page/${page.slug}`);
+
     return NextResponse.json({ success: true, page }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: 'Failed to create page' }, { status: 500 });
@@ -32,6 +40,10 @@ export async function PUT(request: Request) {
       lastUpdated: new Date().toISOString().split('T')[0]
     };
     await updateSiteContent(content);
+
+    revalidatePath('/', 'layout');
+    revalidatePath(`/page/${updatedPage.slug}`);
+
     return NextResponse.json({ success: true, page: content.customPages[index] });
   } catch (error) {
     return NextResponse.json({ error: 'Failed to update page' }, { status: 500 });
@@ -46,6 +58,9 @@ export async function DELETE(request: Request) {
     const content = await getSiteContent();
     content.customPages = content.customPages.filter((p) => p.id !== id);
     await updateSiteContent(content);
+
+    revalidatePath('/', 'layout');
+
     return NextResponse.json({ success: true, message: 'Page deleted' });
   } catch (error) {
     return NextResponse.json({ error: 'Failed to delete page' }, { status: 500 });

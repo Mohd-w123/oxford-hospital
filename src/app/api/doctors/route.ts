@@ -1,6 +1,26 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { getSiteContent, updateSiteContent } from '@/lib/content-store';
 import { Doctor } from '@/lib/types';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
+export async function GET() {
+  try {
+    const content = await getSiteContent();
+    return NextResponse.json(
+      { doctors: content.doctors || [] },
+      {
+        headers: {
+          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate'
+        }
+      }
+    );
+  } catch (error) {
+    return NextResponse.json({ error: 'Failed to fetch doctors' }, { status: 500 });
+  }
+}
 
 export async function POST(request: Request) {
   try {
@@ -12,6 +32,12 @@ export async function POST(request: Request) {
     };
     content.doctors.push(doctor);
     await updateSiteContent(content);
+
+    revalidatePath('/', 'layout');
+    revalidatePath('/');
+    revalidatePath('/doctors');
+    revalidatePath('/appointment');
+
     return NextResponse.json({ success: true, doctor }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: 'Failed to add doctor' }, { status: 500 });
@@ -28,6 +54,12 @@ export async function PUT(request: Request) {
     }
     content.doctors[index] = updatedDoc;
     await updateSiteContent(content);
+
+    revalidatePath('/', 'layout');
+    revalidatePath('/');
+    revalidatePath('/doctors');
+    revalidatePath('/appointment');
+
     return NextResponse.json({ success: true, doctor: updatedDoc });
   } catch (error) {
     return NextResponse.json({ error: 'Failed to update doctor' }, { status: 500 });
@@ -42,6 +74,12 @@ export async function DELETE(request: Request) {
     const content = await getSiteContent();
     content.doctors = content.doctors.filter((d) => d.id !== id);
     await updateSiteContent(content);
+
+    revalidatePath('/', 'layout');
+    revalidatePath('/');
+    revalidatePath('/doctors');
+    revalidatePath('/appointment');
+
     return NextResponse.json({ success: true, message: 'Doctor deleted' });
   } catch (error) {
     return NextResponse.json({ error: 'Failed to delete doctor' }, { status: 500 });

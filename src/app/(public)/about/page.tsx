@@ -3,6 +3,9 @@ import { getSiteContent } from '@/lib/content-store';
 import Link from 'next/link';
 import { Award, ShieldCheck, HeartPulse, Clock, Sparkles, CheckCircle2, PhoneCall, Calendar, MapPin, Users } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function AboutPage() {
   const content = await getSiteContent();
   const { hospital, aboutPage } = content;

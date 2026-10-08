@@ -2,6 +2,9 @@ import React from 'react';
 import { getSiteContent } from '@/lib/content-store';
 import { Phone, Mail, MapPin, Clock, MessageCircle, ShieldAlert, Sparkles, Send } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function ContactPage() {
   const content = await getSiteContent();
   const { hospital } = content;

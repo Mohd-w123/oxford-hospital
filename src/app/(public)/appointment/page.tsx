@@ -3,6 +3,9 @@ import { getSiteContent } from '@/lib/content-store';
 import AppointmentForm from '@/components/shared/AppointmentForm';
 import { Calendar, Clock, PhoneCall, ShieldAlert, MapPin, CheckCircle2, Sparkles } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function AppointmentPage({
   searchParams
 }: {
